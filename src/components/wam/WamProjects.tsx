@@ -39,7 +39,7 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient }: ProjectI
         <motion.div 
           style={{ 
             y,
-            background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(240,10,180,0.12) 0%, transparent 40%)`
+            background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(240,10,180,0.1) 0%, transparent 40%)`
           }}
           className={`absolute inset-0 opacity-40 transition-opacity duration-1000 blur-[80px] pointer-events-none`} 
         />
@@ -59,7 +59,7 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient }: ProjectI
         </div>
 
         <motion.h2 
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-[7rem] font-light font-serif tracking-tighter leading-[1] text-white select-none pointer-events-none flex flex-col items-center"
+          className="text-[3.5rem] sm:text-6xl md:text-7xl lg:text-[7.5rem] font-light font-serif tracking-tighter leading-[1] text-white select-none pointer-events-none flex flex-col items-center"
         >
           <span className="opacity-40 text-xs md:text-base tracking-[0.4em] font-sans uppercase font-medium mb-4 group-hover:text-fuchsia-400 group-hover:opacity-100 transition-colors">Specialized Intelligence</span>
           <span className="italic block group-hover:translate-x-4 transition-transform duration-1000 ease-[0.22, 1, 0.36, 1] text-white">
@@ -68,7 +68,7 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient }: ProjectI
         </motion.h2>
 
         <div className="flex flex-col items-center gap-4 mt-8 bg-black/40 backdrop-blur-md px-6 py-4 border border-white/5 rounded-2xl group-hover:border-white/20 transition-all max-w-lg">
-          <h3 className="text-[10px] md:text-xs uppercase tracking-[0.4em] font-medium text-white/90">
+          <h3 className="text-[10px] md:text-xs uppercase tracking-[0.4em] font-black text-white/90">
             {role}
           </h3>
           <p className="text-[10px] md:text-xs text-zinc-500 italic font-serif tracking-widest leading-relaxed uppercase">
@@ -103,34 +103,34 @@ export default function WamProjects() {
     {
       id: "traffic",
       title: "Smart Traffic",
-      role: "Simulation / 2023",
+      role: "Simulation Architect | 2026",
       desc: "Optimized traffic signal synchronization via Python simulations, reducing commuter wait times by 30%.",
       link: "https://github.com/PalakGautam-hub/Traffic_Management",
       tags: ["Python", "Simulation", "System Design"],
       bgGradient: "from-amber-600/20 via-transparent to-transparent",
     },
     {
-      id: "airbnb",
-      title: "Airbnb Clone",
-      role: "Software Architect",
-      desc: "Architected a high-performance booking app with JWT authentication achieving 90% unit test coverage.",
-      link: "https://github.com/PalakGautam-hub/Airbnb-Clone",
-      tags: ["React", "Express", "Node", "MongoDB"],
-      bgGradient: "from-rose-500/20 via-transparent to-transparent",
-    },
-    {
       id: "snip",
       title: "Snip URL",
-      role: "Microservice / 2024",
+      role: "Microservice Engineer | 2026",
       desc: "Designed a scalable microservice architecture, achieving sub-100ms redirection latency for 50,000+ requests.",
       link: "https://github.com/PalakGautam-hub/Snip-URL-shortener",
       tags: ["Node", "REST API", "System Design"],
       bgGradient: "from-teal-600/20 via-transparent to-transparent",
     },
     {
+      id: "airbnb",
+      title: "Airbnb Clone",
+      role: "Software Architect | 2026",
+      desc: "Architected a high-performance booking app with JWT authentication achieving 90% unit test coverage.",
+      link: "https://github.com/PalakGautam-hub/Airbnb-Clone",
+      tags: ["React", "Express", "Node", "MongoDB"],
+      bgGradient: "from-rose-500/20 via-transparent to-transparent",
+    },
+    {
       id: "lexora",
       title: "Lexora AI",
-      role: "AI Engineering",
+      role: "AI Engineering | 2026",
       desc: "Spearheaded an AI full-stack application using LLM APIs, slashing document review cycles by 60%.",
       link: "https://github.com/PalakGautam-hub/Lexora-AI",
       tags: ["Python", "LLMs", "NLP"],
@@ -142,8 +142,8 @@ export default function WamProjects() {
     <section id="work" className="w-full bg-black border-t border-white/10">
       
       <div className="w-full py-12 md:py-20 px-6 sm:px-10 flex flex-col sm:flex-row justify-between items-start sm:items-end border-b border-white/5 gap-4">
-        <h2 className="text-xl md:text-2xl lg:text-3xl font-light font-serif text-white tracking-tight uppercase">Selected <span className="italic">Intelligence.</span></h2>
-        <span className="text-[9px] md:text-[10px] tracking-[0.4em] text-zinc-600 uppercase font-medium">Decoding [ 2024 - 2026 ]</span>
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-light font-serif text-white tracking-tight uppercase">Strategic <span className="italic text-white/50">Intelligence.</span></h2>
+        <span className="text-[9px] md:text-[10px] tracking-[0.4em] text-zinc-600 uppercase font-bold">DECODING [ FY-2026 ]</span>
       </div>
 
       <div className="flex flex-col">
@@ -167,14 +167,14 @@ export default function WamProjects() {
             </a>
           </div>
 
-          <div className="flex gap-10 md:gap-16 justify-center flex-wrap">
-            <a href="https://github.com/PalakGautam-hub" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 tracking-[0.3em] font-medium group uppercase text-[10px]">
+          <div className="flex gap-10 md:gap-16 justify-center flex-wrap uppercase font-black tracking-[0.4em] text-[10px]">
+            <a href="https://github.com/PalakGautam-hub" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 group">
               <Github className="w-4 h-4 group-hover:text-fuchsia-400" /> GitHub
             </a>
-            <a href="https://linkedin.com/in/palak-gautam77" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 tracking-[0.3em] font-medium group uppercase text-[10px]">
+            <a href="https://linkedin.com/in/palak-gautam77" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 group">
               <Linkedin className="w-4 h-4 group-hover:text-fuchsia-400" /> LinkedIn
             </a>
-            <a href="https://leetcode.com/u/palak-gautam77" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 tracking-[0.3em] font-medium group uppercase text-[10px]">
+            <a href="https://leetcode.com/u/palak-gautam77" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 group">
               <Terminal className="w-4 h-4 group-hover:text-fuchsia-400" /> LeetCode
             </a>
           </div>
