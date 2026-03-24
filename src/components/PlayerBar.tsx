@@ -2,16 +2,17 @@ import { useState, useEffect } from "react";
 import { Play, Pause, SkipBack, SkipForward, Volume2, Shuffle, Repeat } from "lucide-react";
 
 const tracks = [
-  { title: "Airbnb Clone", artist: "Full Stack Project", duration: "3:42" },
-  { title: "Lexora AI", artist: "AI/NLP Project", duration: "2:58" },
-  { title: "URL Shortener", artist: "Microservice Project", duration: "4:15" },
-  { title: "Traffic Manager", artist: "Python Simulation", duration: "3:30" },
+  { title: "Airbnb Clone", artist: "Full Stack Web App • 2024", duration: "3:42" },
+  { title: "Lexora AI", artist: "AI Document Assistant • 2024", duration: "2:58" },
+  { title: "Snip URL Shortener", artist: "Microservice Architecture • 2024", duration: "4:15" },
+  { title: "Traffic Manager", artist: "Python Simulation • 2023", duration: "3:30" },
+  { title: "Customer Ops", artist: "Analytics Dashboard • 2026", duration: "2:45" },
 ];
 
 const PlayerBar = () => {
   const [playing, setPlaying] = useState(true);
   const [currentTrack, setCurrentTrack] = useState(0);
-  const [progress, setProgress] = useState(35);
+  const [progress, setProgress] = useState(25);
 
   useEffect(() => {
     if (!playing) return;

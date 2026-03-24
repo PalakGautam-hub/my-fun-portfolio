@@ -16,10 +16,11 @@ const navItems = [
 ];
 
 const playlists = [
-  { id: "projects", label: "🔥 Top Projects" },
-  { id: "skills", label: "💻 Tech Stack" },
-  { id: "experience", label: "🚀 Career Journey" },
-  { id: "certifications", label: "📜 Achievements" },
+  { id: "projects", label: "🔥 My Greatest Hits" },
+  { id: "skills", label: "💻 The Python & JS Mix" },
+  { id: "experience", label: "🚀 Career Traversals" },
+  { id: "certifications", label: "📜 Unlocked Achievements" },
+  { id: "home", label: "📊 Data Analyst Vibes" },
 ];
 
 const SidebarNav = ({ activeSection, onNavigate }: SidebarNavProps) => {
