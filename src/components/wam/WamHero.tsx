@@ -2,84 +2,97 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const fonts = [
-  "font-serif italic font-light", 
-  "font-sans font-black uppercase tracking-tighter", 
+  "font-serif italic", 
+  "font-sans font-black uppercase", 
   "font-serif font-black", 
-  "font-sans italic font-bold tracking-widest",
+  "font-sans italic font-bold",
   "font-mono font-black"
 ];
 
-export default function WamHero() {
-  const [fontIndex, setFontIndex] = useState(0);
+const WaveLetter = ({ char, index }: { char: string, index: number }) => {
+  const [fontIdx, setFontIdx] = useState(0);
 
-  // High-end font morphing for the full name "PALAK"
   useEffect(() => {
-    const timer = setInterval(() => {
-      setFontIndex((prev) => (prev + 1) % fonts.length);
-    }, 2800);
-    return () => clearInterval(timer);
+    // Individual letters morph at random intervals for that "WAM" organic-tech feel
+    const randomDelay = Math.random() * 2000;
+    const timeout = setTimeout(() => {
+      const interval = setInterval(() => {
+        setFontIdx((prev) => (prev + 1) % fonts.length);
+      }, 2000 + Math.random() * 1000);
+      return () => clearInterval(interval);
+    }, randomDelay);
+    
+    return () => clearTimeout(timeout);
   }, []);
+
+  return (
+    <motion.span
+      className={`inline-block transition-all duration-700 ${fonts[fontIdx]} text-white`}
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ 
+        duration: 0.8, 
+        delay: index * 0.1,
+        ease: [0.22, 1, 0.36, 1]
+      }}
+    >
+      {char}
+    </motion.span>
+  );
+};
+
+export default function WamHero() {
+  const name = "PALAK";
 
   return (
     <section className="relative w-full h-screen bg-black flex flex-col items-center justify-center overflow-hidden pt-20 px-6 sm:px-10 lg:px-20">
       
-      {/* Background Ambience - Subtle pulsing glow */}
-      <motion.div 
-        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(232,121,249,0.03)_0%,transparent_60%)] pointer-events-none"
-        animate={{ opacity: [0.1, 0.4, 0.1] }}
-        transition={{ duration: 10, repeat: Infinity }}
-      />
+      {/* Background Ambience */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(232,121,249,0.02)_0%,transparent_70%)] pointer-events-none" />
       
-      {/* Universal Narrative Tagline - Legible from iPhone to Desktop Ultra-wide */}
+      {/* Narrative Tagline */}
       <motion.div 
         className="absolute top-1/4 sm:top-[30%] text-center w-full z-10 px-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5, delay: 0.5 }}
+        transition={{ duration: 1.5, delay: 0.3 }}
       >
-        <span className="text-[9px] sm:text-xs md:text-sm lg:text-base uppercase tracking-[0.5em] sm:tracking-[0.8em] font-sans font-black text-white/40 block max-w-[280px] sm:max-w-none mx-auto leading-relaxed">
+        <span className="text-[10px] sm:text-xs md:text-sm lg:text-base uppercase tracking-[0.6em] sm:tracking-[0.8em] font-sans font-black text-white/40 block max-w-[300px] sm:max-w-none mx-auto leading-relaxed">
           Analyzing the logic. Engineering the insight.
         </span>
       </motion.div>
 
-      {/* Main Morphing Name - Dynamically Scaling for All Devices (Laptop, Tab, Phone) */}
+      {/* Main Morphing Name - WAM-STYLE (Per-Character Morphing) */}
       <div className="relative flex items-center justify-center w-full h-[40vh] md:h-[60vh] z-0 px-4">
-        <AnimatePresence mode="wait">
-          <motion.h1
-            key={`palak-morph-${fontIndex}`}
-            className={`text-6xl sm:text-8xl md:text-[14rem] lg:text-[18rem] xl:text-[22rem] text-white leading-none select-none text-center ${fonts[fontIndex]}`}
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 1.05, y: -20 }}
-            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-          >
-            PALAK
-          </motion.h1>
-        </AnimatePresence>
+        <h1 className="text-[5.5rem] sm:text-[9rem] md:text-[15rem] lg:text-[20rem] xl:text-[24rem] leading-none select-none text-center flex items-center justify-center gap-0">
+          {name.split("").map((char, i) => (
+            <WaveLetter key={i} char={char} index={i} />
+          ))}
+        </h1>
       </div>
 
-      {/* Strategic Primary Navigation - Thumb-reachable and Desktop-elegant */}
+      {/* Narrative Links */}
       <motion.div 
         className="absolute bottom-16 sm:bottom-24 flex flex-col sm:flex-row gap-8 sm:gap-20 items-center z-10 w-full justify-center px-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.2 }}
       >
-        <div className="flex gap-8 sm:gap-16 flex-wrap justify-center border-t border-white/5 pt-8 sm:pt-0 sm:border-t-0">
-          <a href="#work" className="group text-sm sm:text-base font-serif italic text-white hover:text-fuchsia-400 transition-all flex items-center gap-4">
-            Strategic Work <span className="text-xs transition-transform group-hover:translate-x-2 group-hover:-translate-y-1">→</span>
+        <div className="flex gap-8 sm:gap-16 flex-wrap justify-center items-center">
+          <a href="#work" className="group text-sm sm:text-base font-serif italic text-white hover:text-fuchsia-400 transition-all flex items-center gap-4 border-b border-white/5 pb-2">
+            Strategic Work <span className="text-xs transition-transform group-hover:translate-x-2">→</span>
           </a>
-          <a href="#insights" className="group text-sm sm:text-base font-serif italic text-white/40 hover:text-teal-400 transition-all flex items-center gap-4">
-            The Core Value <span className="text-xs transition-transform group-hover:rotate-45">→</span>
+          <a href="#insights" className="group text-sm sm:text-base font-serif italic text-white/40 hover:text-white transition-all flex items-center gap-4 border-b border-white/5 pb-2">
+            The Core Value <span className="text-xs">→</span>
           </a>
         </div>
         
-        <div className="hidden lg:flex flex-col items-start border-l border-white/10 pl-10 gap-2">
+        <div className="flex flex-col items-center sm:items-start sm:border-l border-white/10 sm:pl-10 gap-2">
            <span className="text-[9px] uppercase tracking-[0.6em] text-white/10 font-black">STAY CONNECTED</span>
            <div className="flex gap-8">
-              <a href="https://github.com/PalakGautam-hub" target="_blank" className="text-[10px] text-white/20 hover:text-white transition-colors">GH</a>
-              <a href="https://linkedin.com/in/palak-gautam77" target="_blank" className="text-[10px] text-white/20 hover:text-white transition-colors">LI</a>
-              <a href="https://leetcode.com/u/palak-gautam77" target="_blank" className="text-[10px] text-white/20 hover:text-white transition-colors">LC</a>
+              <a href="https://github.com/PalakGautam-hub" target="_blank" className="text-[10px] uppercase font-black tracking-widest text-white/20 hover:text-white transition-colors">GH</a>
+              <a href="https://linkedin.com/in/palak-gautam77" target="_blank" className="text-[10px] uppercase font-black tracking-widest text-white/20 hover:text-white transition-colors">LI</a>
+              <a href="https://leetcode.com/u/palak-gautam77" target="_blank" className="text-[10px] uppercase font-black tracking-widest text-white/20 hover:text-white transition-colors">LC</a>
            </div>
         </div>
       </motion.div>
@@ -90,8 +103,7 @@ export default function WamHero() {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       >
-        <span className="text-[8px] uppercase tracking-[1em] text-white font-black rotate-90 mb-4 whitespace-nowrap">SCROLL TO ANALYZE</span>
-        <div className="w-[1.5px] h-16 bg-gradient-to-t from-fuchsia-500 to-transparent" />
+        <div className="w-[1.5px] h-16 bg-gradient-to-t from-fuchsia-500/50 to-transparent" />
       </motion.div>
 
     </section>
