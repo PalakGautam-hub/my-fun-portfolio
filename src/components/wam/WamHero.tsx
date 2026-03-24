@@ -63,8 +63,8 @@ export default function WamHero() {
       </motion.div>
 
       {/* Main Morphing Name - WAM-STYLE (Per-Character Morphing) */}
-      <div className="relative flex items-center justify-center w-full h-[40vh] md:h-[60vh] z-0 px-4">
-        <h1 className="text-[5.5rem] sm:text-[9rem] md:text-[15rem] lg:text-[20rem] xl:text-[24rem] leading-none select-none text-center flex items-center justify-center gap-0">
+      <div className="relative flex items-center justify-center w-full h-[30vh] md:h-[50vh] z-0 px-4">
+        <h1 className="text-6xl sm:text-8xl md:text-[12rem] lg:text-[15rem] xl:text-[18rem] leading-none select-none text-center flex items-center justify-center gap-0">
           {name.split("").map((char, i) => (
             <WaveLetter key={i} char={char} index={i} />
           ))}
