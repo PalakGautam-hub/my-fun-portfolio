@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
-import { ExternalLink, Github, Linkedin, Terminal, Mail, Phone, ArrowUpRight, BarChart3 } from "lucide-react";
+import { ExternalLink, Github, Linkedin, Terminal, Mail, ArrowUpRight } from "lucide-react";
 
 interface ProjectItemProps {
   id: string;
@@ -96,9 +96,18 @@ export default function WamProjects() {
       title: "Ops Dashboard",
       role: "Analytics Lead | 2026",
       desc: "Designed end-to-end dashboard tracking customer KPIs like retention and revenue risk, reducing manual reporting by 70%.",
-      link: "#",
+      link: "https://github.com/PalakGautam-hub/Customer_operation_analytics",
       tags: ["Python", "Power BI", "Data Automation", "KPI Tracking"],
       bgGradient: "from-teal-500/20 via-transparent to-transparent",
+    },
+    {
+      id: "traffic",
+      title: "Smart Traffic",
+      role: "Simulation / 2023",
+      desc: "Optimized traffic signal synchronization via Python simulations, reducing commuter wait times by 30%.",
+      link: "https://github.com/PalakGautam-hub/Traffic_Management",
+      tags: ["Python", "Simulation", "System Design"],
+      bgGradient: "from-amber-600/20 via-transparent to-transparent",
     },
     {
       id: "airbnb",
@@ -108,6 +117,15 @@ export default function WamProjects() {
       link: "https://github.com/PalakGautam-hub/Airbnb-Clone",
       tags: ["React", "Express", "Node", "MongoDB"],
       bgGradient: "from-rose-500/20 via-transparent to-transparent",
+    },
+    {
+      id: "snip",
+      title: "Snip URL",
+      role: "Microservice / 2024",
+      desc: "Designed a scalable microservice architecture, achieving sub-100ms redirection latency for 50,000+ requests.",
+      link: "https://github.com/PalakGautam-hub/Snip-URL-shortener",
+      tags: ["Node", "REST API", "System Design"],
+      bgGradient: "from-teal-600/20 via-transparent to-transparent",
     },
     {
       id: "lexora",
@@ -143,21 +161,21 @@ export default function WamProjects() {
         </h2>
 
         <div className="flex flex-col items-center gap-10 relative z-10 w-full">
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-12 justify-center">
-            <a href="mailto:gautampalak77@gmail.com" className="group text-lg sm:text-xl font-serif italic text-white hover:text-fuchsia-400 transition-all border-b border-white/5 pb-2 flex items-center gap-4">
-               <Mail className="w-4 h-4 opacity-40 group-hover:opacity-100" /> gautampalak77@gmail.com
-            </a>
-            <a href="tel:+917633904564" className="group text-lg sm:text-xl font-serif italic text-white hover:text-teal-400 transition-all border-b border-white/5 pb-2 flex items-center gap-4">
-               <Phone className="w-4 h-4 opacity-40 group-hover:opacity-100" /> +917633904564
+          <div className="flex flex-col items-center gap-4 justify-center">
+            <a href="mailto:gautampalak77@gmail.com" className="group text-lg sm:text-2xl font-serif italic text-white hover:text-fuchsia-400 transition-all border-b border-white/5 pb-2 flex items-center gap-4">
+               <Mail className="w-5 h-5 opacity-40 group-hover:opacity-100" /> gautampalak77@gmail.com <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>
 
-          <div className="flex gap-10 justify-center">
-            <a href="https://github.com/PalakGautam-hub" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 tracking-[0.2em] font-medium group uppercase text-[10px]">
-              <Github className="w-4 h-4 group-hover:text-fuchsia-400" /> Git
+          <div className="flex gap-10 md:gap-16 justify-center flex-wrap">
+            <a href="https://github.com/PalakGautam-hub" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 tracking-[0.3em] font-medium group uppercase text-[10px]">
+              <Github className="w-4 h-4 group-hover:text-fuchsia-400" /> GitHub
             </a>
-            <a href="https://linkedin.com/in/palak-gautam77" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 tracking-[0.2em] font-medium group uppercase text-[10px]">
-              <Linkedin className="w-4 h-4 group-hover:text-teal-400" /> LinkedIn
+            <a href="https://linkedin.com/in/palak-gautam77" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 tracking-[0.3em] font-medium group uppercase text-[10px]">
+              <Linkedin className="w-4 h-4 group-hover:text-fuchsia-400" /> LinkedIn
+            </a>
+            <a href="https://leetcode.com/u/palak-gautam77" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 tracking-[0.3em] font-medium group uppercase text-[10px]">
+              <Terminal className="w-4 h-4 group-hover:text-fuchsia-400" /> LeetCode
             </a>
           </div>
         </div>
