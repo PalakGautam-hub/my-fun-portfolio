@@ -10,14 +10,14 @@ export default function WamHeader() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
       <motion.header 
-        className={`fixed top-0 left-0 w-full z-[1100] px-6 md:px-12 py-4 md:py-8 flex justify-between items-center transition-all duration-500 ${scrolled ? 'backdrop-blur-xl bg-black/60 border-b border-white/5' : ''} ${isOpen ? 'bg-transparent border-transparent' : ''}`}
+        className={`fixed top-0 left-0 w-full z-[1100] px-6 md:px-12 py-4 md:py-8 flex justify-between items-center transition-all duration-500 ${scrolled ? 'md:backdrop-blur-xl bg-black/95 md:bg-black/60 border-b border-white/5' : ''} ${isOpen ? 'bg-transparent border-transparent' : ''}`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
@@ -78,7 +78,7 @@ export default function WamHeader() {
               <a href="#insights" onClick={() => setIsOpen(false)} className="text-4xl md:text-7xl font-serif italic text-white/20 hover:text-white transition-all">Insights</a>
             </nav>
 
-            <div className="flex flex-col items-center gap-10 w-full mb-8 relative z-10 bg-white/[0.02] backdrop-blur-3xl p-8 md:p-16 rounded-[2.5rem] border border-white/5 max-w-2xl">
+            <div className="flex flex-col items-center gap-10 w-full mb-8 relative z-10 bg-white/[0.02] backdrop-blur-lg md:backdrop-blur-3xl p-8 md:p-16 rounded-[2.5rem] border border-white/5 max-w-2xl">
               <div className="flex flex-col items-center gap-4 text-center">
                 <span className="text-[9px] uppercase tracking-[0.6em] text-white/20 font-black mb-1">Direct Communication</span>
                 <a href="mailto:gautampalak77@gmail.com" className="text-lg md:text-3xl tracking-wide font-serif italic text-fuchsia-400 hover:text-white transition-colors">

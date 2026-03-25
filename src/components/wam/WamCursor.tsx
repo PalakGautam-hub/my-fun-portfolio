@@ -10,8 +10,14 @@ export default function WamCursor() {
   const cursorY = useSpring(mouseY, springConfig);
 
   const [isHovering, setIsHovering] = useState(false);
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
 
   useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+      setIsMobileDevice(true);
+      return;
+    }
+    
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -39,9 +45,12 @@ export default function WamCursor() {
     };
   }, [mouseX, mouseY]);
 
+  // Completely unmount the framer-motion heavy blend-node on iOS/touch to save memory
+  if (isMobileDevice) return null;
+
   return (
     <motion.div
-      className="fixed top-0 left-0 w-6 h-6 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference"
+      className="hidden md:block fixed top-0 left-0 w-6 h-6 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference"
       style={{
         x: cursorX,
         y: cursorY,

@@ -14,15 +14,19 @@ const WaveLetter = ({ char, index }: { char: string, index: number }) => {
 
   useEffect(() => {
     // Individual letters morph at random intervals for that "WAM" organic-tech feel
+    let interval: NodeJS.Timeout;
     const randomDelay = Math.random() * 2000;
+    
     const timeout = setTimeout(() => {
-      const interval = setInterval(() => {
+      interval = setInterval(() => {
         setFontIdx((prev) => (prev + 1) % fonts.length);
       }, 2000 + Math.random() * 1000);
-      return () => clearInterval(interval);
     }, randomDelay);
     
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+      if (interval) clearInterval(interval);
+    };
   }, []);
 
   return (

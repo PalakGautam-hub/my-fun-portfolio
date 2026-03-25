@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { ExternalLink, Github, Linkedin, Terminal, Mail, ArrowUpRight } from "lucide-react";
 
 interface ProjectItemProps {
@@ -13,40 +13,38 @@ interface ProjectItemProps {
 }
 
 function ProjectItem({ id, title, role, desc, link, tags, bgGradient }: ProjectItemProps) {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [-40, 40]);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  // Only track mouse on desktop — touch events on mobile cause excessive re-renders
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (window.innerWidth < 768) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setMousePos({ x, y });
-  };
+  }, []);
 
   return (
-    <div 
-      ref={ref} 
-      className="group relative w-full h-[80vh] md:h-screen flex flex-col items-center justify-center overflow-hidden border-b border-white/10 cursor-pointer px-6"
+    <div
+      className="group relative w-full h-[85vh] md:h-screen flex flex-col items-center justify-center overflow-hidden border-b border-white/10 cursor-pointer px-6"
       onMouseMove={handleMouseMove}
     >
-      <div className={`absolute inset-0 z-0 bg-black overflow-hidden`}>
-        <motion.div 
-          style={{ 
-            y,
+      {/* Background layer — NO blurs on mobile to prevent crashes. Pure hidden on small screens */}
+      <div className="absolute inset-0 z-0 bg-black overflow-hidden pointer-events-none">
+        {/* Desktop-only glowing follow cursor */}
+        <div
+          style={{
             background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(240,10,180,0.1) 0%, transparent 40%)`
           }}
-          className={`absolute inset-0 opacity-40 transition-opacity duration-1000 blur-[80px] pointer-events-none`} 
+          className="absolute inset-0 opacity-40 transition-opacity duration-1000 hidden md:block md:blur-[80px] pointer-events-none"
         />
-        <motion.div 
-          className={`absolute inset-0 opacity-10 bg-gradient-to-br ${bgGradient} blur-[120px]`} 
+        {/* Desktop-only heavy gradient blurs */}
+        <div
+          className={`absolute inset-0 opacity-10 bg-gradient-to-br ${bgGradient} hidden md:block md:blur-[120px] pointer-events-none`}
         />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 contrast-150 brightness-50 z-0 pointer-events-none mix-blend-overlay" />
+        
+        {/* Mobile fallback super-flat gradient (zero GPU cost) */}
+        <div className={`md:hidden absolute inset-0 opacity-5 bg-gradient-to-br ${bgGradient} pointer-events-none`} />
       </div>
 
       <div className="relative z-10 text-center max-w-6xl w-full flex flex-col items-center gap-6 md:gap-8">
@@ -58,16 +56,15 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient }: ProjectI
           ))}
         </div>
 
-        <motion.h2 
-          className="text-[3.5rem] sm:text-6xl md:text-7xl lg:text-[7.5rem] font-light font-serif tracking-tighter leading-[1] text-white select-none pointer-events-none flex flex-col items-center"
-        >
+        <h2 className="text-[3.5rem] sm:text-6xl md:text-7xl lg:text-[7.5rem] font-light font-serif tracking-tighter leading-[1] text-white select-none pointer-events-none flex flex-col items-center z-10">
           <span className="opacity-40 text-xs md:text-base tracking-[0.4em] font-sans uppercase font-medium mb-4 group-hover:text-fuchsia-400 group-hover:opacity-100 transition-colors">Specialized Intelligence</span>
-          <span className="italic block group-hover:translate-x-4 transition-transform duration-1000 ease-[0.22, 1, 0.36, 1] text-white">
+          <span className="italic block group-hover:translate-x-4 transition-transform duration-700 text-white">
             {title}
           </span>
-        </motion.h2>
+        </h2>
 
-        <div className="flex flex-col items-center gap-4 mt-8 bg-black/40 backdrop-blur-md px-6 py-4 border border-white/5 rounded-2xl group-hover:border-white/20 transition-all max-w-lg">
+        {/* Removed backdrop-blur-md on mobile (bg-black/40 -> bg-black/80 md:bg-black/40 md:backdrop-blur-md) */}
+        <div className="flex flex-col items-center gap-4 mt-8 bg-black/80 md:bg-black/40 md:backdrop-blur-md px-6 py-4 border border-white/5 rounded-2xl group-hover:border-white/20 transition-all max-w-lg z-10">
           <h3 className="text-[10px] md:text-xs uppercase tracking-[0.4em] font-black text-white/90">
             {role}
           </h3>
@@ -76,11 +73,11 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient }: ProjectI
           </p>
         </div>
 
-        <a 
-          href={link} 
-          target="_blank" 
+        <a
+          href={link}
+          target="_blank"
           rel="noopener noreferrer"
-          className="group/btn relative px-8 py-3.5 bg-transparent border border-white/20 hover:border-white transition-all text-[9.5px] tracking-[0.4em] font-bold font-sans uppercase text-white hover:bg-white hover:text-black mt-8 flex items-center gap-3"
+          className="group/btn relative z-20 px-8 py-3.5 bg-transparent border border-white/20 hover:border-white transition-all text-[9.5px] tracking-[0.4em] font-bold font-sans uppercase text-white hover:bg-white hover:text-black mt-8 flex items-center gap-3"
         >
           Explore Insight <ExternalLink className="w-3.5 h-3.5" />
         </a>
@@ -153,7 +150,8 @@ export default function WamProjects() {
       </div>
       
       <div className="w-full bg-black py-24 sm:py-48 flex flex-col items-center justify-center gap-12 text-center px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-radial from-fuchsia-500/5 via-transparent to-transparent opacity-50 blur-[100px] z-0" />
+        {/* Reduce blur on mobile for performance */}
+        <div className="hidden md:block absolute inset-0 bg-gradient-radial from-fuchsia-500/5 via-transparent to-transparent opacity-50 blur-[100px] z-0 transform-gpu" />
 
         <h2 className="text-4xl sm:text-6xl md:text-7xl font-light font-serif text-white tracking-tighter leading-tight max-w-4xl relative z-10">
           Ready to decode <br className="hidden sm:block" />

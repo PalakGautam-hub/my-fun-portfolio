@@ -5,9 +5,12 @@ export default function WamStatement() {
   return (
     <section id="insights" className="w-full bg-black py-32 md:py-48 px-6 sm:px-12 flex flex-col items-center justify-center border-y border-white/5 relative overflow-hidden">
       
-      {/* Background ambient glow - Floating & Animated */}
+      {/* Background ambient glow - Floating & Animated - Replaced heavy CSS blur with native radial gradient */}
       <motion.div 
-        className="absolute top-1/4 -left-40 w-[500px] h-[500px] bg-fuchsia-600/5 blur-[160px] rounded-full z-0"
+        className="hidden md:block absolute top-1/4 -left-40 w-[500px] h-[500px] rounded-full z-0 transform-gpu"
+        style={{
+          background: 'radial-gradient(circle, rgba(217, 70, 239, 0.05) 0%, transparent 60%)'
+        }}
         animate={{ 
           y: [-50, 50, -50], 
           x: [-30, 30, -30],
@@ -52,7 +55,7 @@ export default function WamStatement() {
             <motion.img 
               src="/palak_portrait.png" 
               alt="Palak Gautam Portrait" 
-              className="w-full h-full object-cover object-top filter grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
+              className="w-full h-full object-cover object-top md:filter md:grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
             />
             
             {/* Visual Accents */}
