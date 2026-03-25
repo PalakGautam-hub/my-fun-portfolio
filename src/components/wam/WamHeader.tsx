@@ -93,13 +93,13 @@ export default function WamHeader() {
                    </div>
                    <span className="text-[9px] uppercase tracking-widest text-zinc-500 font-black">GitHub</span>
                  </a>
-                 <a href="https://linkedin.com/in/palak-gautam77" target="_blank" className="flex flex-col items-center gap-3 group">
+                 <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" className="flex flex-col items-center gap-3 group">
                    <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-fuchsia-400 group-hover:text-black transition-all">
                      <Linkedin className="w-5 h-5" />
                    </div>
                    <span className="text-[9px] uppercase tracking-widest text-zinc-500 font-black">LinkedIn</span>
                  </a>
-                 <a href="https://leetcode.com/u/palak-gautam77" target="_blank" className="flex flex-col items-center gap-3 group">
+                 <a href="https://leetcode.com/u/palakG05/" target="_blank" className="flex flex-col items-center gap-3 group">
                    <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-fuchsia-400 group-hover:text-black transition-all">
                      <Terminal className="w-5 h-5" />
                    </div>

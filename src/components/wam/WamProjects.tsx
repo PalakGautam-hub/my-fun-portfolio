@@ -169,10 +169,10 @@ export default function WamProjects() {
             <a href="https://github.com/PalakGautam-hub" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 group">
               <Github className="w-4 h-4 group-hover:text-fuchsia-400" /> GitHub
             </a>
-            <a href="https://linkedin.com/in/palak-gautam77" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 group">
+            <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 group">
               <Linkedin className="w-4 h-4 group-hover:text-fuchsia-400" /> LinkedIn
             </a>
-            <a href="https://leetcode.com/u/palak-gautam77" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 group">
+            <a href="https://leetcode.com/u/palakG05/" target="_blank" className="text-zinc-600 hover:text-white transition-colors flex items-center gap-3 group">
               <Terminal className="w-4 h-4 group-hover:text-fuchsia-400" /> LeetCode
             </a>
           </div>

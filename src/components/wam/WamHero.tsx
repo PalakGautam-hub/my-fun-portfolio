@@ -95,8 +95,8 @@ export default function WamHero() {
            <span className="text-[9px] uppercase tracking-[0.6em] text-white/10 font-black">STAY CONNECTED</span>
            <div className="flex gap-8">
               <a href="https://github.com/PalakGautam-hub" target="_blank" className="text-[10px] uppercase font-black tracking-widest text-white/20 hover:text-white transition-colors">GH</a>
-              <a href="https://linkedin.com/in/palak-gautam77" target="_blank" className="text-[10px] uppercase font-black tracking-widest text-white/20 hover:text-white transition-colors">LI</a>
-              <a href="https://leetcode.com/u/palak-gautam77" target="_blank" className="text-[10px] uppercase font-black tracking-widest text-white/20 hover:text-white transition-colors">LC</a>
+              <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" className="text-[10px] uppercase font-black tracking-widest text-white/20 hover:text-white transition-colors">LI</a>
+              <a href="https://leetcode.com/u/palakG05/" target="_blank" className="text-[10px] uppercase font-black tracking-widest text-white/20 hover:text-white transition-colors">LC</a>
            </div>
         </div>
       </motion.div>
