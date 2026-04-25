@@ -26,36 +26,41 @@ export default function WamTechStack() {
        const Icon = icons[i % icons.length];
        const colorClass = colors[i % colors.length];
        
-       // Multi-Ring Circular Distribution
+       // Optimized Multi-Ring Circular Distribution
+       const ring1Count = isMobile ? 4 : 6;
+       const ring2Count = isMobile ? 8 : 10;
+       
        let ringIndex = 0;
        let posInRing = i;
-       let nodesInRing = 6;
-       let radius = 0.5;
+       let nodesInRing = ring1Count;
+       let ringRadius = 0.6;
 
-       if (i >= 6 && i < 15) {
+       if (i >= ring1Count && i < ring1Count + ring2Count) {
          ringIndex = 1;
-         posInRing = i - 6;
-         nodesInRing = 9;
-         radius = 0.75;
-       } else if (i >= 15) {
+         posInRing = i - ring1Count;
+         nodesInRing = ring2Count;
+         ringRadius = 0.9;
+       } else if (i >= ring1Count + ring2Count) {
          ringIndex = 2;
-         posInRing = i - 15;
-         nodesInRing = filteredSkills.length - 15;
-         radius = 1.0;
+         posInRing = i - (ring1Count + ring2Count);
+         nodesInRing = filteredSkills.length - (ring1Count + ring2Count);
+         ringRadius = 1.2;
        }
 
        const angle = (posInRing / nodesInRing) * (Math.PI * 2);
        
-       const spreadY = isMobile ? 38 : 38; 
-       const spreadX = isMobile ? 42 : 48; 
+       // Adjust spread to be more circular and contained
+       const spreadY = isMobile ? 30 : 32; 
+       const spreadX = isMobile ? 35 : 40; 
        
-       const top = 50 + radius * spreadY * Math.sin(angle);
-       const left = 50 + radius * spreadX * Math.cos(angle);
+       const top = 50 + ringRadius * spreadY * Math.sin(angle);
+       const left = 50 + ringRadius * spreadX * Math.cos(angle);
 
        return {
          name,
          Icon,
          colorClass,
+         ring: ringIndex,
          top: `${top}%`,
          left: `${left}%`,
          delay: (i * 0.05),
@@ -103,42 +108,40 @@ export default function WamTechStack() {
         </div>
       </div>
 
-      {/* Refined Orbiting Tech Cards - Static Grid on Mobile */}
-      <div className="relative z-20 w-full max-w-4xl px-6 md:px-0">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:block md:absolute md:inset-0 gap-4 md:gap-0 pointer-events-auto md:pointer-events-none">
-          {techPills.map((pill, i) => (
-            <motion.div
-              key={i}
-              className="relative md:absolute flex flex-col items-center justify-center gap-2 p-4 md:w-28 md:h-28 rounded-xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.4)] md:pointer-events-auto cursor-grab active:cursor-grabbing hover:bg-white/[0.05] hover:border-fuchsia-500/40 transition-colors duration-500 group"
-              drag={typeof window !== 'undefined' && window.innerWidth >= 768}
-              dragConstraints={containerRef}
-              dragElastic={0.1}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              animate={typeof window !== 'undefined' && window.innerWidth >= 768 ? {
-                y: [0, -8, 0],
-              } : {}}
-              transition={{
-                y: { duration: 6 + (i % 4), repeat: Infinity, ease: "easeInOut" },
-                opacity: { duration: 0.5, delay: pill.delay },
-                scale: { duration: 0.5, delay: pill.delay }
-              }}
-              style={typeof window !== 'undefined' && window.innerWidth >= 768 ? { 
-                top: pill.top, 
-                left: pill.left,
-                transform: 'translate(-50%, -50%)'
-              } : {}}
-            >
-              <div className="p-2 rounded-xl bg-white/10 group-hover:scale-110 group-hover:bg-primary/5 transition-all duration-700">
-                <pill.Icon className={`w-4 h-4 md:w-5 md:h-5 ${pill.colorClass.replace('fuchsia', 'primary').replace('purple', 'secondary').replace('pink', 'primary')} opacity-80 group-hover:opacity-100 group-hover:text-primary`} />
-              </div>
-              <span className="font-mono text-[7px] md:text-[9px] tracking-[0.2em] text-white/40 group-hover:text-white transition-colors uppercase text-center px-2">
-                {pill.name}
-              </span>
-            </motion.div>
-          ))}
-        </div>
+      {/* Static Circular Tech Cards */}
+      <div className="absolute inset-0 z-20 pointer-events-none">
+        {techPills.map((pill, i) => (
+          <motion.div
+            key={i}
+            className="absolute flex flex-col items-center justify-center gap-1.5 p-3 w-24 h-24 md:w-32 md:h-32 rounded-2xl border border-white/[0.08] bg-black/40 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.4)] pointer-events-auto cursor-grab active:cursor-grabbing hover:bg-white/[0.05] hover:border-fuchsia-500/40 transition-colors duration-500 group"
+            drag
+            dragConstraints={containerRef}
+            dragElastic={0.1}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            animate={{
+              y: [0, -8, 0],
+            }}
+            transition={{
+              y: { duration: 6 + (i % 4), repeat: Infinity, ease: "easeInOut" },
+              opacity: { duration: 0.5, delay: pill.delay },
+              scale: { duration: 0.5, delay: pill.delay }
+            }}
+            style={{ 
+              top: pill.top, 
+              left: pill.left,
+              transform: 'translate(-50%, -50%)'
+            }}
+          >
+            <div className="p-2 rounded-xl bg-white/5 group-hover:scale-110 group-hover:bg-fuchsia-500/10 transition-all duration-700">
+              <pill.Icon className={`w-4 h-4 md:w-6 md:h-6 ${pill.colorClass} opacity-80 group-hover:opacity-100 group-hover:text-fuchsia-400`} />
+            </div>
+            <span className="font-mono text-[8px] md:text-[10px] tracking-[0.15em] text-white/40 group-hover:text-white transition-colors uppercase text-center px-1">
+              {pill.name}
+            </span>
+          </motion.div>
+        ))}
       </div>
 
       {/* Premium Interaction Hint */}
