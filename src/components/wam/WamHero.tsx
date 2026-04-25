@@ -93,8 +93,8 @@ export default function WamHero() {
           <div className="absolute inset-0 border-[2px] border-white/10 rounded-[4rem] pointer-events-none m-4" />
         </motion.div>
 
-        {/* Futuristic Orbital Nodes (Floating Intelligence Cards) */}
-        <div className="absolute inset-0 pointer-events-none">
+        {/* Futuristic Orbital Nodes - Removed for mobile to ensure visibility */}
+        <div className="absolute inset-0 pointer-events-none hidden md:block">
           {nodes.map((node, i) => (
             <motion.div
               key={i}

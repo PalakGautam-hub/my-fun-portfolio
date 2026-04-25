@@ -86,40 +86,42 @@ export default function WamTechStack() {
         </div>
       </div>
 
-      {/* Refined Orbiting Tech Cards */}
-      <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden">
-        {techPills.map((pill, i) => (
-          <motion.div
-            key={i}
-            className="absolute flex flex-col items-center justify-center gap-2 w-20 h-20 md:w-28 md:h-28 rounded-xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.4)] pointer-events-auto cursor-grab active:cursor-grabbing hover:bg-white/[0.05] hover:border-fuchsia-500/40 transition-colors duration-500 group"
-            drag
-            dragConstraints={containerRef}
-            dragElastic={0.1}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              y: [0, -8, 0],
-            }}
-            transition={{
-              y: { duration: 6 + (i % 4), repeat: Infinity, ease: "easeInOut" },
-              opacity: { duration: 1, delay: pill.delay },
-              scale: { duration: 1, delay: pill.delay }
-            }}
-            style={{ 
-              top: pill.top, 
-              left: pill.left,
-              transform: 'translate(-50%, -50%)'
-            }}
-          >
-            <div className="p-2 rounded-xl bg-white/10 group-hover:scale-110 group-hover:bg-primary/5 transition-all duration-700">
-              <pill.Icon className={`w-4 h-4 md:w-5 md:h-5 ${pill.colorClass.replace('fuchsia', 'primary').replace('purple', 'secondary').replace('pink', 'primary')} opacity-80 group-hover:opacity-100 group-hover:text-primary`} />
-            </div>
-            <span className="font-mono text-[7px] md:text-[9px] tracking-[0.2em] text-white/40 group-hover:text-white transition-colors uppercase text-center px-2">
-              {pill.name}
-            </span>
-          </motion.div>
-        ))}
+      {/* Refined Orbiting Tech Cards - Static Grid on Mobile */}
+      <div className="relative z-20 w-full max-w-4xl px-6 md:px-0">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:block md:absolute md:inset-0 gap-4 md:gap-0 pointer-events-auto md:pointer-events-none">
+          {techPills.map((pill, i) => (
+            <motion.div
+              key={i}
+              className="relative md:absolute flex flex-col items-center justify-center gap-2 p-4 md:w-28 md:h-28 rounded-xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.4)] md:pointer-events-auto cursor-grab active:cursor-grabbing hover:bg-white/[0.05] hover:border-fuchsia-500/40 transition-colors duration-500 group"
+              drag={typeof window !== 'undefined' && window.innerWidth >= 768}
+              dragConstraints={containerRef}
+              dragElastic={0.1}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              animate={typeof window !== 'undefined' && window.innerWidth >= 768 ? {
+                y: [0, -8, 0],
+              } : {}}
+              transition={{
+                y: { duration: 6 + (i % 4), repeat: Infinity, ease: "easeInOut" },
+                opacity: { duration: 0.5, delay: pill.delay },
+                scale: { duration: 0.5, delay: pill.delay }
+              }}
+              style={typeof window !== 'undefined' && window.innerWidth >= 768 ? { 
+                top: pill.top, 
+                left: pill.left,
+                transform: 'translate(-50%, -50%)'
+              } : {}}
+            >
+              <div className="p-2 rounded-xl bg-white/10 group-hover:scale-110 group-hover:bg-primary/5 transition-all duration-700">
+                <pill.Icon className={`w-4 h-4 md:w-5 md:h-5 ${pill.colorClass.replace('fuchsia', 'primary').replace('purple', 'secondary').replace('pink', 'primary')} opacity-80 group-hover:opacity-100 group-hover:text-primary`} />
+              </div>
+              <span className="font-mono text-[7px] md:text-[9px] tracking-[0.2em] text-white/40 group-hover:text-white transition-colors uppercase text-center px-2">
+                {pill.name}
+              </span>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       {/* Premium Interaction Hint */}
