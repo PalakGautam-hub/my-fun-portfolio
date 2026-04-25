@@ -26,14 +26,31 @@ export default function WamTechStack() {
        const Icon = icons[i % icons.length];
        const colorClass = colors[i % colors.length];
        
-       const angle = (i * 137.5) * (Math.PI / 180);
-       const r = isMobile ? 0.55 : 0.55 + (0.4 * (Math.sqrt(i) / Math.sqrt(filteredSkills.length))); 
+       // Multi-Ring Circular Distribution
+       let ringIndex = 0;
+       let posInRing = i;
+       let nodesInRing = 6;
+       let radius = 0.5;
+
+       if (i >= 6 && i < 15) {
+         ringIndex = 1;
+         posInRing = i - 6;
+         nodesInRing = 9;
+         radius = 0.75;
+       } else if (i >= 15) {
+         ringIndex = 2;
+         posInRing = i - 15;
+         nodesInRing = filteredSkills.length - 15;
+         radius = 1.0;
+       }
+
+       const angle = (posInRing / nodesInRing) * (Math.PI * 2);
        
-       const spreadY = isMobile ? 38 : 42; // Wider spread for desktop
-       const spreadX = isMobile ? 42 : 50; 
+       const spreadY = isMobile ? 38 : 38; 
+       const spreadX = isMobile ? 42 : 48; 
        
-       const top = 50 + r * spreadY * Math.sin(angle);
-       const left = 50 + r * spreadX * Math.cos(angle);
+       const top = 50 + radius * spreadY * Math.sin(angle);
+       const left = 50 + radius * spreadX * Math.cos(angle);
 
        return {
          name,
