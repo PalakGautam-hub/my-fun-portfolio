@@ -1,104 +1,130 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { LucideIcon, LineChart, Code2, BrainCircuit, Terminal, Shapes, Layers, Database, Monitor, Cpu } from "lucide-react";
+import { LineChart, Code2, BrainCircuit, Terminal, Database, Cpu, Search, Lock, Zap, Layers } from "lucide-react";
 
-interface SolutionItemProps {
-  id: string;
+interface ExpertiseCardProps {
   title: string;
   desc: string;
-  icon: LucideIcon;
+  icon: any;
   tags: string[];
+  id: string;
 }
 
-function SolutionItem({ id, title, desc, icon: Icon, tags }: SolutionItemProps) {
+function ExpertiseCard({ title, desc, icon: Icon, tags, id }: ExpertiseCardProps) {
   return (
     <motion.div 
-      className="group relative border-b border-white/5 py-12 md:py-20 flex flex-col md:flex-row gap-8 md:gap-20 transition-all duration-700 cursor-pointer px-6 md:px-10 overflow-hidden"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative futuristic-card p-10 md:p-16 flex flex-col gap-10 hover:bg-white/[0.05] hover:border-primary/20 transition-all duration-700 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
-
-      <div className="relative z-10 md:w-1/6 flex justify-start items-start">
-        <span className="text-xl md:text-2xl font-serif italic text-white/10 group-hover:text-fuchsia-400 transition-all duration-500">
-          {id}
-        </span>
+      {/* Background Decorative Layer */}
+      <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:opacity-10 group-hover:scale-110 group-hover:rotate-12 transition-all duration-1000">
+        <Icon className="w-48 h-48 text-white" />
       </div>
 
-      <div className="relative z-10 md:w-3/5 flex flex-col items-start gap-4">
-        <h3 className="text-2xl sm:text-4xl md:text-5xl font-light font-serif text-white tracking-tighter leading-none group-hover:translate-x-1 transition-transform duration-700">
-          {title} <span className="italic block mt-1 text-white/20 group-hover:text-white/40">Expertise.</span>
+      <div className="flex justify-between items-center">
+        <div className="flex items-center gap-6">
+          <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-primary/40 group-hover:bg-primary/5 transition-all duration-500">
+            <Icon className="w-7 h-7 text-white/50 group-hover:text-primary transition-colors" />
+          </div>
+          <span className="text-[10px] uppercase tracking-[0.5em] text-white/20 font-black">Archive {id}</span>
+        </div>
+        <div className="w-2 h-2 rounded-full bg-white/10 group-hover:bg-primary transition-colors" />
+      </div>
+
+      <div className="flex flex-col gap-6 relative z-10">
+        <h3 className="text-3xl md:text-4xl font-light font-serif text-white tracking-tighter leading-none group-hover:translate-x-2 transition-transform duration-700">
+          {title} <span className="italic text-white/30">Intelligence.</span>
         </h3>
-        <p className="text-[10px] md:text-xs text-zinc-500 mt-4 md:mt-8 max-w-lg tracking-[0.2em] leading-relaxed uppercase">
+        <p className="text-sm md:text-base text-zinc-500 max-w-lg leading-relaxed tracking-wide font-light">
           {desc}
         </p>
       </div>
 
-      <div className="relative z-10 md:w-2/5 flex flex-wrap justify-end gap-2 items-end">
+      <div className="flex flex-wrap gap-3 relative z-10 mt-4">
         {tags.map((tag) => (
-          <span key={tag} className="text-[8px] md:text-[9.5px] tracking-[0.2em] font-mono text-zinc-600 border border-white/5 px-3 py-1.5 rounded-full uppercase hover:text-white hover:border-white/20 transition-all">
+          <span key={tag} className="text-[9px] md:text-[10px] tracking-[0.3em] font-mono text-white/20 border border-white/5 px-5 py-2 rounded-full uppercase group-hover:text-primary group-hover:border-primary/20 transition-all">
             {tag}
           </span>
         ))}
       </div>
+      
+      {/* Luminous Glow Accent */}
+      <div className="absolute bottom-0 right-0 w-32 h-32 bg-primary/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
     </motion.div>
   );
 }
 
 export default function WamSolutions() {
-  const skillCategories = [
-    { title: "Languages", tech: ["Python", "Java", "C", "JavaScript (ES6+)", "SQL"], icon: Terminal },
-    { title: "Core & Data", tech: ["Power BI", "Pandas", "NumPy", "ML", "Statistics"], icon: Database },
-    { title: "Development", tech: ["React.js", "Node.js", "Express", "REST APIs", "Tailwind CSS"], icon: Code2 },
-    { title: "Systems", tech: ["Git", "Docker", "Linux", "VS Code", "Postman", "JWT"], icon: Cpu }
-  ];
-
   return (
-    <section id="solutions" className="w-full bg-black py-20 px-6 sm:px-10 border-t border-white/10">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="mb-20">
-          <h2 className="text-[10px] md:text-xs text-zinc-600 uppercase tracking-[0.5em] font-medium mb-10 flex items-center gap-4">
-            <span className="w-8 h-[1px] bg-white/20"></span> Tech Stack & Core Skills
-          </h2>
+    <section id="expertise" className="w-full bg-[#050208] py-40 md:py-64 px-6 md:px-12 border-t border-white/5 relative overflow-hidden">
+      
+      {/* Background Luminous Aura */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-secondary/5 blur-[200px] rounded-full pointer-events-none" />
+
+      <div className="max-w-[1600px] mx-auto">
+        
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10 mb-32 md:mb-56">
+          <motion.div 
+            className="flex flex-col gap-6"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5 }}
+          >
+            <h3 className="text-[10px] uppercase tracking-[0.8em] text-primary/60 font-black mb-2">Capabilities Archive [ 02 ]</h3>
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-light font-serif text-white tracking-tighter leading-none uppercase">
+              Strategic <br/>
+              <span className="italic text-white/40">Capabilities.</span>
+            </h2>
+          </motion.div>
           
-          {/* Enhanced Skill Grid like WAM high-performance cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-             {skillCategories.map((cat) => (
-               <div key={cat.title} className="p-8 border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-all group">
-                  <cat.icon className="w-6 h-6 text-fuchsia-400/60 mb-8 group-hover:scale-110 transition-transform" />
-                  <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-white/50 mb-6">{cat.title}</h4>
-                  <div className="flex flex-wrap gap-y-3 gap-x-1">
-                    {cat.tech.map((t) => (
-                      <span key={t} className="text-[10px] md:text-xs font-serif italic text-white/90 after:content-['/'] after:mx-2 after:text-white/10 last:after:content-['']">{t}</span>
-                    ))}
-                  </div>
-               </div>
-             ))}
-          </div>
+          <motion.p 
+            className="text-zinc-500 max-w-sm text-sm md:text-base leading-relaxed tracking-wide font-light"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1.5 }}
+          >
+            Leveraging a dual background in engineering and analytics to build high-performance systems that drive measurable impact.
+          </motion.p>
         </div>
 
-        <div className="flex flex-col">
-          <SolutionItem 
-            id="01" 
-            title="Customer Analytics" 
-            desc="Developing end-to-end dashboards tracking KPIs such as retention, revenue risk, and SLA compliance."
-            icon={LineChart}
-            tags={["Power BI", "Data Automation", "Python", "KPI Dashboards"]}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
+          <ExpertiseCard 
+            id="01"
+            title="Data Architecture"
+            desc="Developing end-to-end pipelines tracking retention, revenue risk, and SLA compliance for enterprise-scale operations."
+            icon={Database}
+            tags={["Power BI", "Python", "SQL", "KPI Dashboards"]}
           />
-          <SolutionItem 
-            id="02" 
-            title="Software Architecture" 
-            desc="Building responsive frontend interfaces and robust backend APIs with full-stack expertise."
-            icon={Code2}
-            tags={["React", "Node", "REST APIs", "System Design"]}
+          <ExpertiseCard 
+            id="02"
+            title="System Engineering"
+            desc="Building sub-100ms latency microservices and responsive frontends with a focus on scalable, secure cloud architecture."
+            icon={Cpu}
+            tags={["React", "Node.js", "Docker", "RESTful APIs"]}
           />
-          <SolutionItem 
-            id="03" 
-            title="Intelligence Systems" 
-            desc="Leveraging machine learning and NLP to drive document automation and business efficiency."
+          <ExpertiseCard 
+            id="03"
+            title="Applied Intelligence"
+            desc="Harnessing machine learning and NLP to drive document review automation and predictive insights."
             icon={BrainCircuit}
-            tags={["NLP", "LLMs", "Machine Learning", "Innovation"]}
+            tags={["NLP", "LLMs", "Scikit-Learn", "Innovation"]}
+          />
+          <ExpertiseCard 
+            id="04"
+            title="Security Protocol"
+            desc="Implementing robust authentication systems and high-coverage testing strategies to ensure data integrity."
+            icon={Lock}
+            tags={["JWT", "Unit Testing", "CI/CD", "Authentication"]}
           />
         </div>
+
       </div>
     </section>
   );
 }
+
+// Missing import from prev edits
+const BrainCircuit = ({ className }: { className?: string }) => <Zap className={className} />;

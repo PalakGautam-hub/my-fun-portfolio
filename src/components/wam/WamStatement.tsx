@@ -1,137 +1,134 @@
 import { motion } from "framer-motion";
-import { Asterisk, Database, Code } from "lucide-react";
+import { Database, ShieldCheck, Zap, ArrowRight, Activity, Terminal } from "lucide-react";
 
 export default function WamStatement() {
   return (
-    <section id="insights" className="w-full bg-black py-32 md:py-48 px-6 sm:px-12 flex flex-col items-center justify-center border-y border-white/5 relative overflow-hidden">
+    <section id="insights" className="w-full bg-black py-40 md:py-64 px-6 md:px-12 flex flex-col items-center justify-center border-y border-white/5 relative overflow-hidden">
       
-      {/* Background ambient glow - Floating & Animated - Replaced heavy CSS blur with native radial gradient */}
-      <motion.div 
-        className="hidden md:block absolute top-1/4 -left-40 w-[500px] h-[500px] rounded-full z-0 transform-gpu"
-        style={{
-          background: 'radial-gradient(circle, rgba(217, 70, 239, 0.05) 0%, transparent 60%)'
-        }}
-        animate={{ 
-          y: [-50, 50, -50], 
-          x: [-30, 30, -30],
-          scale: [1, 1.2, 1]
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      <div className="max-w-7xl w-full relative z-10 transition-all duration-1000">
+      {/* Background Cinematic Texture */}
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.02] pointer-events-none" />
+      
+      <div className="max-w-[1600px] w-full relative z-10">
         
-        {/* Dynamic Branding Proposition with Icons */}
-        <motion.h2 
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light font-serif leading-[1.2] md:leading-[1.1] tracking-tight text-white mb-28 text-center md:text-left"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-        >
-          I am <span className="italic">deciphering</span> data, where 
-          <Database className="inline-block align-baseline w-10 h-10 md:w-20 md:h-20 text-teal-400 stroke-[0.3] mx-3 md:mx-6 -mb-2 md:-mb-4 animate-pulse" /> 
-          Logic meet <span className="italic font-normal">Expertise</span>, 
-          infrastructure meets intuition, and
-          <Code className="inline-block align-baseline w-10 h-10 md:w-20 md:h-20 text-white stroke-[0.3] mx-3 md:mx-6 -mb-2 md:-mb-4" /> 
-          Complexity is <Asterisk className="inline-block align-baseline w-10 h-10 md:w-20 md:h-20 text-white/30 mx-3 md:mx-6 -mb-2 md:-mb-4 rotate-12" /> simplified into <span className="italic uppercase tracking-[0.2em] text-fuchsia-400 font-black">Intelligence</span>.
-        </motion.h2>
-
-        {/* Identity & Portrait Section - Premium Scrollytell feel */}
-        <div className="flex flex-col md:flex-row gap-16 md:gap-32 items-center md:items-start group/section">
-          
-          {/* Professional Portrait with Advanced Framer Motion Animations as requested */}
+        {/* Cinematic Header Block */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-32 md:mb-56">
           <motion.div 
-            className="w-full md:w-[40%] aspect-[4/5] relative overflow-hidden rounded-[2rem] border border-white/10 shadow-3xl bg-zinc-900"
-            initial={{ opacity: 0, scale: 0.8, x: -50 }}
-            whileInView={{ opacity: 1, scale: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col gap-6 max-w-3xl"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Overlay Gradient for depth */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none" />
-            
-            {/* The Image - Smooth zoom on section hover as well as inner hover */}
-            <motion.img 
-              src="/palak_portrait.png" 
-              alt="Palak Gautam Portrait" 
-              className="w-full h-full object-cover object-top md:filter md:grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
-            />
-            
-            {/* Visual Accents */}
-            <div className="absolute top-8 right-8 z-20">
-               <div className="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center backdrop-blur-md">
-                 <span className="text-[10px] uppercase tracking-widest text-white/40 font-black rotate-90">STUDIO</span>
-               </div>
+            <h3 className="text-[10px] uppercase tracking-[0.8em] font-black text-fuchsia-500/60 mb-2">
+              Identity Protocol [ 01 ]
+            </h3>
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-light font-serif text-white tracking-tighter leading-none uppercase">
+              Strategic <br/>
+              <span className="italic text-white/40">Dossier.</span>
+            </h2>
+          </motion.div>
+          
+          <motion.div 
+            className="flex flex-col gap-4 text-right items-end hidden md:flex"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <div className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center animate-spin-slow">
+              <Activity className="w-6 h-6 text-fuchsia-400" />
             </div>
+            <span className="text-[9px] uppercase tracking-[0.5em] text-white/20">Active Insight Mode</span>
+          </motion.div>
+        </div>
 
-            <div className="absolute bottom-10 left-10 z-20">
-               <motion.span 
-                 className="text-[12px] tracking-[0.6em] uppercase text-white font-black block mb-2"
-                 initial={{ opacity: 0, x: -20 }}
-                 whileInView={{ opacity: 1, x: 0 }}
-                 transition={{ delay: 0.5 }}
-               >
-                 PALAK GAUTAM
-               </motion.span>
-               <motion.span 
-                 className="text-[9px] tracking-[0.4em] uppercase text-fuchsia-400 block font-bold"
-                 initial={{ opacity: 0, x: -20 }}
-                 whileInView={{ opacity: 1, x: 0 }}
-                 transition={{ delay: 0.7 }}
-               >
-                 Software Architect
-               </motion.span>
+        {/* Narrative & Metrics Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 md:gap-32 items-start">
+          
+          {/* Main Narrative - Huge Typography */}
+          <motion.div 
+            className="lg:col-span-8 flex flex-col gap-10 md:gap-16"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-white/90 leading-[1.4] tracking-tight font-serif">
+              Analyst and Engineer with a background in Computer Science Engineering, <span className="italic text-fuchsia-400">Palak Gautam</span> specializes in bridging the gap between <span className="text-white font-sans font-bold">complex datasets</span> and <span className="text-white/40 italic">scalable software systems</span>.
+            </p>
+            
+            <div className="flex flex-col md:flex-row gap-12 md:gap-24 border-t border-white/5 pt-12">
+              <div className="flex flex-col gap-6 max-w-sm">
+                <span className="text-[10px] uppercase tracking-[0.4em] text-white/20 font-black">Strategic Core</span>
+                <p className="text-base text-zinc-500 leading-relaxed tracking-wide">
+                  Expertise in end-to-end data pipelines, ensuring that every byte of information serves a strategic business purpose. Transforming manual workflows into automated intelligence hubs.
+                </p>
+              </div>
+              <div className="flex flex-col gap-6 max-w-sm">
+                <span className="text-[10px] uppercase tracking-[0.4em] text-white/20 font-black">Technical Ethos</span>
+                <p className="text-base text-zinc-500 leading-relaxed tracking-wide">
+                  Building with a focus on performance, security, and scalability. Utilizing modern stacks to deliver sub-100ms latencies and robust enterprise-grade architectures.
+                </p>
+              </div>
             </div>
           </motion.div>
 
-          <div className="md:w-[50%] flex flex-col gap-10">
-            <motion.div 
-              className="flex flex-col gap-6"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: 0.3 }}
-            >
-              <h3 className="text-[11px] md:text-xs uppercase tracking-[0.6em] font-black text-white/30 flex items-center gap-4">
-                <span className="w-12 h-[1.5px] bg-fuchsia-500/40"></span>
-                The Analytical Mind
-              </h3>
-              <p className="text-xl md:text-3xl lg:text-4xl font-light text-white leading-[1.3] tracking-tight font-serif uppercase">
-                I build <span className="text-fuchsia-400 italic">scalable systems</span> rooted in complex data landscapes.
-              </p>
-            </motion.div>
-
-            <motion.p 
-              className="text-base md:text-lg text-zinc-500 max-w-2xl leading-relaxed tracking-wide font-sans md:font-light"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.6 }}
-            >
-              Specializing in the intersection of <span className="text-white">Machine Learning</span> and <span className="text-white">Enterprise Engineering</span>. I have transformed reporting workflows for multi-million dollar customer operation pipelines, converting manual chaos into real-time visibility.
-            </motion.p>
-
-            <div className="grid grid-cols-2 gap-12 mt-4">
-               <div className="flex flex-col gap-3 group/item">
-                  <span className="text-[9px] uppercase tracking-[0.5em] text-white/20 font-black group-hover/item:text-teal-400 transition-colors">KPI Reductions</span>
-                  <span className="text-sm text-white/70 font-serif italic border-l border-white/5 pl-4">70% Reporting Automation</span>
+          {/* Metrics Sidebar - Modular Bento Style */}
+          <motion.div 
+            className="lg:col-span-4 flex flex-col gap-6"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="bg-white/[0.03] backdrop-blur-md border border-white/5 p-10 rounded-[2.5rem] flex flex-col gap-8 group hover:border-fuchsia-500/20 transition-all">
+               <div className="flex justify-between items-start">
+                  <Database className="w-8 h-8 text-fuchsia-400 opacity-50" />
+                  <span className="text-[8px] uppercase tracking-widest text-white/10 font-black">Metric 01</span>
                </div>
-               <div className="flex flex-col gap-3 group/item">
-                  <span className="text-[9px] uppercase tracking-[0.5em] text-white/20 font-black group-hover/item:text-fuchsia-400 transition-colors">Precision Code</span>
-                  <span className="text-sm text-white/70 font-serif italic border-l border-white/5 pl-4">90% Test Coverage Strategy</span>
+               <div className="flex flex-col gap-2">
+                  <span className="text-5xl font-sans font-black text-white">70%</span>
+                  <span className="text-[10px] uppercase tracking-[0.4em] text-zinc-500">Manual Workload Reduction</span>
                </div>
             </div>
 
-            <motion.a 
-              href="#work" 
-              className="group text-sm font-serif italic text-white hover:text-fuchsia-400 transition-all flex items-center gap-6 border-b border-white/10 pb-3 w-fit mt-12"
-              whileHover={{ x: 10 }}
-            >
-              View Strategic Projects <span className="text-xs transition-transform group-hover:translate-x-3">→</span>
-            </motion.a>
-          </div>
+            <div className="bg-white/[0.03] backdrop-blur-md border border-white/5 p-10 rounded-[2.5rem] flex flex-col gap-8 group hover:border-fuchsia-500/20 transition-all">
+               <div className="flex justify-between items-start">
+                  <ShieldCheck className="w-8 h-8 text-fuchsia-400 opacity-50" />
+                  <span className="text-[8px] uppercase tracking-widest text-white/10 font-black">Metric 02</span>
+               </div>
+               <div className="flex flex-col gap-2">
+                  <span className="text-5xl font-sans font-black text-white">90%</span>
+                  <span className="text-[10px] uppercase tracking-[0.4em] text-zinc-500">Report Precision Rate</span>
+               </div>
+            </div>
+
+            <div className="bg-white/[0.03] backdrop-blur-md border border-white/5 p-10 rounded-[2.5rem] flex flex-col gap-8 group hover:border-fuchsia-500/20 transition-all">
+               <div className="flex justify-between items-start">
+                  <Zap className="w-8 h-8 text-fuchsia-400 opacity-50" />
+                  <span className="text-[8px] uppercase tracking-widest text-white/10 font-black">Metric 03</span>
+               </div>
+               <div className="flex flex-col gap-2">
+                  <span className="text-5xl font-sans font-black text-white">100ms</span>
+                  <span className="text-[10px] uppercase tracking-[0.4em] text-zinc-500">Service Response Latency</span>
+               </div>
+            </div>
+          </motion.div>
+        </div>
+        {/* Cinematic Call to Action */}
+        <div className="mt-40 md:mt-56 flex flex-col items-center gap-12">
+          <a href="#work" className="group relative px-20 py-8 border border-white/10 overflow-hidden rounded-full transition-all hover:border-white">
+             <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-700" />
+             <span className="relative z-10 text-xs uppercase tracking-[0.8em] font-black text-white group-hover:text-black flex items-center gap-4">
+                Enter Strategic Archive <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+             </span>
+          </a>
         </div>
 
+      </div>
+
+      {/* Floating Section Accents */}
+      <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
+        <Terminal className="w-32 h-32 text-white" />
       </div>
     </section>
   );
