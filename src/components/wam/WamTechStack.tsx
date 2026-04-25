@@ -15,21 +15,22 @@ export default function WamTechStack() {
       "Git", "Docker", "Linux", "VS Code", "Postman"
     ];
 
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    // Show fewer skills on mobile to maintain 60fps
+    const filteredSkills = isMobile ? allSkills.slice(0, 12) : allSkills;
+
     const icons = [Terminal, Database, Code2, Cpu, Cloud, Layers, Server];
     const colors = ["text-fuchsia-400", "text-purple-400", "text-pink-400"];
 
-    return allSkills.map((name, i) => {
+    return filteredSkills.map((name, i) => {
        const Icon = icons[i % icons.length];
        const colorClass = colors[i % colors.length];
        
-       // Refined orbital distribution with a "safe zone" in the center
-       // We use a wider horizontal spread to frame the central title better
        const angle = (i * 137.5) * (Math.PI / 180);
-       // Start r from a higher value to avoid the center (0.5 to 1.0 range)
-       const r = 0.55 + (0.45 * (Math.sqrt(i) / Math.sqrt(allSkills.length))); 
+       const r = 0.55 + (0.45 * (Math.sqrt(i) / Math.sqrt(filteredSkills.length))); 
        
-       const spreadY = 38;
-       const spreadX = 45; // Wider horizontal to clear the text
+       const spreadY = isMobile ? 38 : 38; // Increased spread for mobile
+       const spreadX = isMobile ? 42 : 45; 
        
        const top = 50 + r * spreadY * Math.sin(angle);
        const left = 50 + r * spreadX * Math.cos(angle);
@@ -40,7 +41,7 @@ export default function WamTechStack() {
          colorClass,
          top: `${top}%`,
          left: `${left}%`,
-         delay: (i * 0.05), // Staggered entrance
+         delay: (i * 0.05),
        };
     });
   }, []);
@@ -99,11 +100,9 @@ export default function WamTechStack() {
               opacity: 1,
               scale: 1,
               y: [0, -8, 0],
-              rotateZ: [0, 2, -2, 0]
             }}
             transition={{
               y: { duration: 6 + (i % 4), repeat: Infinity, ease: "easeInOut" },
-              rotateZ: { duration: 8 + (i % 3), repeat: Infinity, ease: "easeInOut" },
               opacity: { duration: 1, delay: pill.delay },
               scale: { duration: 1, delay: pill.delay }
             }}

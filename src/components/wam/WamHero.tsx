@@ -23,10 +23,14 @@ export default function WamHero() {
 
   // Orbital node distribution with protected "Safe Zone" for face
   const nodes = useMemo(() => {
-    return skills.map((skill, i) => {
-      const angle = (i / skills.length) * (Math.PI * 2);
-      const rx = 32; // Horizontal radius
-      const ry = 42; // Vertical radius
+    // Only show 4 nodes on mobile to reduce GPU load
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const skillsToShow = isMobile ? skills.slice(0, 4) : skills;
+    
+    return skillsToShow.map((skill, i) => {
+      const angle = (i / skillsToShow.length) * (Math.PI * 2);
+      const rx = isMobile ? 42 : 32; // Expanded radius for mobile to avoid face
+      const ry = isMobile ? 38 : 42; 
       return {
         ...skill,
         top: `${50 + ry * Math.sin(angle)}%`,

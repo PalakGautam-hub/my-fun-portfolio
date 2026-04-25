@@ -31,8 +31,8 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: P
       className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden border-b border-white/5 px-6 md:px-12 py-32"
     >
       {/* Immersive Cinematic Background */}
-      <div className="absolute inset-0 z-0 bg-[#050208]">
-        <div className={`absolute inset-0 opacity-20 bg-gradient-to-br ${bgGradient} blur-[140px] animate-pulse-luminous`} />
+      <div className="absolute inset-0 z-0 bg-[#050208] transform translate-z-0">
+        <div className={`absolute inset-0 opacity-20 bg-gradient-to-br ${bgGradient} blur-[140px] md:blur-[140px] blur-[40px] animate-pulse-luminous`} />
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-[0.03]" />
       </div>
 
@@ -196,7 +196,7 @@ export default function WamProjects() {
              </span>
           </a>
 
-          <div className="flex gap-16 md:gap-32 justify-center flex-wrap uppercase font-black tracking-[0.8em] text-[10px] text-white/20">
+          <div className="flex gap-10 md:gap-32 justify-center flex-wrap uppercase font-black tracking-[0.4em] md:tracking-[0.8em] text-[8px] md:text-[10px] text-white/20">
             <a href="https://github.com/PalakGautam-hub" target="_blank" className="hover:text-primary hover:scale-110 transition-all duration-500">GitHub</a>
             <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" className="hover:text-primary hover:scale-110 transition-all duration-500">LinkedIn</a>
             <a href="https://leetcode.com/u/palakG05/" target="_blank" className="hover:text-primary hover:scale-110 transition-all duration-500">LeetCode</a>

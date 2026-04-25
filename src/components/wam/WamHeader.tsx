@@ -17,7 +17,7 @@ export default function WamHeader() {
   return (
     <>
       <motion.header 
-        className={`fixed top-0 left-0 w-full z-[1100] px-6 md:px-16 py-8 md:py-12 flex justify-between items-center transition-all duration-1000 ${scrolled ? 'md:backdrop-blur-3xl bg-black/60 border-b border-white/5 py-4 md:py-8' : ''}`}
+        className={`fixed top-0 left-0 w-full z-[1100] px-4 md:px-16 py-6 md:py-12 flex justify-between items-center transition-all duration-1000 ${scrolled ? 'md:backdrop-blur-3xl bg-black/60 border-b border-white/5 py-3 md:py-8' : ''}`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
@@ -34,11 +34,11 @@ export default function WamHeader() {
               />
               <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-primary animate-pulse" />
             </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-xl font-serif tracking-[0.4em] font-black text-white uppercase leading-none group-hover:text-primary transition-colors">PALAK GAUTAM</span>
-              <div className="flex items-center gap-3">
-                 <span className="text-[7px] uppercase tracking-[0.6em] text-white/20 font-black">Archive v4.0</span>
-                 <Activity className="w-2 h-2 text-primary opacity-40" />
+            <div className="flex flex-col gap-0.5">
+              <span className="text-sm md:text-xl font-serif tracking-[0.4em] font-black text-white uppercase leading-none group-hover:text-primary transition-colors">PALAK GAUTAM</span>
+              <div className="flex items-center gap-2 md:gap-3">
+                 <span className="text-[6px] md:text-[7px] uppercase tracking-[0.4em] md:tracking-[0.6em] text-white/20 font-black">Archive v4.0</span>
+                 <Activity className="w-1.5 h-1.5 md:w-2 md:h-2 text-primary opacity-40" />
               </div>
             </div>
           </a>
@@ -86,7 +86,7 @@ export default function WamHeader() {
                   key={item.id}
                   href={`#${item.id}`}
                   onClick={() => setIsOpen(false)}
-                  className="text-4xl md:text-5xl lg:text-6xl font-serif italic text-white/10 hover:text-white transition-all uppercase tracking-tighter"
+                  className="text-3xl md:text-5xl lg:text-6xl font-serif italic text-white/10 hover:text-white transition-all uppercase tracking-tighter"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 + i * 0.15, duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
@@ -96,10 +96,10 @@ export default function WamHeader() {
               ))}
             </nav>
 
-            <div className="absolute bottom-20 left-0 w-full flex justify-center gap-16 text-[10px] uppercase font-black tracking-[0.8em] text-white/10 relative z-10 mt-20">
-               <a href="https://github.com/PalakGautam-hub" target="_blank" className="hover:text-primary transition-colors">GH</a>
-               <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" className="hover:text-primary transition-colors">LI</a>
-               <a href="https://leetcode.com/u/palakG05/" target="_blank" className="hover:text-primary transition-colors">LC</a>
+            <div className="flex gap-6 md:gap-32 justify-center flex-wrap uppercase font-black tracking-[0.4em] md:tracking-[0.8em] text-[8px] md:text-[10px] text-white/20 relative z-10 mt-20">
+              <a href="https://github.com/PalakGautam-hub" target="_blank" className="hover:text-primary hover:scale-110 transition-all duration-500">GitHub</a>
+              <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" className="hover:text-primary hover:scale-110 transition-all duration-500">LinkedIn</a>
+              <a href="https://leetcode.com/u/palakG05/" target="_blank" className="hover:text-primary hover:scale-110 transition-all duration-500">LeetCode</a>
             </div>
             
           </motion.div>
