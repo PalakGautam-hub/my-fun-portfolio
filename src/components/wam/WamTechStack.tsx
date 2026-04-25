@@ -27,10 +27,10 @@ export default function WamTechStack() {
        const colorClass = colors[i % colors.length];
        
        const angle = (i * 137.5) * (Math.PI / 180);
-       const r = isMobile ? 0.55 : 0.45 + (0.45 * (Math.sqrt(i) / Math.sqrt(filteredSkills.length))); 
+       const r = isMobile ? 0.55 : 0.55 + (0.4 * (Math.sqrt(i) / Math.sqrt(filteredSkills.length))); 
        
-       const spreadY = isMobile ? 38 : 30; // Tighter spread for desktop
-       const spreadX = isMobile ? 42 : 36; 
+       const spreadY = isMobile ? 38 : 42; // Wider spread for desktop
+       const spreadX = isMobile ? 42 : 50; 
        
        const top = 50 + r * spreadY * Math.sin(angle);
        const left = 50 + r * spreadX * Math.cos(angle);
@@ -77,7 +77,7 @@ export default function WamTechStack() {
         </motion.div>
         
         <div className="mt-16 flex flex-col items-center">
-          <h2 className="text-3xl md:text-5xl font-bold font-sans uppercase tracking-[0.25em] text-white text-center leading-none">
+          <h2 className="text-3xl md:text-7xl font-bold font-sans uppercase tracking-[0.25em] text-white text-center leading-none">
             INTELLIGENCE
           </h2>
           <span className="mt-4 text-xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-purple-300 to-pink-500 italic font-serif lowercase tracking-wide">
