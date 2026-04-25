@@ -26,11 +26,11 @@ export default function WamHeader() {
         {/* Futuristic Brand Identity */}
         <div className="z-[60] flex items-center">
           <a href="/" className="flex items-center gap-6 group">
-            <div className="w-14 h-14 relative flex items-center justify-center p-3 rounded-2xl bg-primary/10 border border-primary/20 group-hover:border-primary/40 group-hover:bg-primary/5 transition-all duration-700 shadow-[0_0_20px_rgba(240,10,180,0.15)]">
+            <div className="w-14 h-14 relative flex items-center justify-center p-3 rounded-2xl bg-primary/10 md:bg-white/[0.03] border border-primary/20 md:border-white/10 group-hover:border-primary/40 group-hover:bg-primary/5 transition-all duration-700 shadow-[0_0_20px_rgba(240,10,180,0.15)] md:shadow-none">
               <img 
                 src="/logo_pg.png" 
                 alt="PG Logo" 
-                className="w-full h-full object-contain filter hue-rotate-[280deg] brightness-125 group-hover:drop-shadow-neon transition-all" 
+                className="w-full h-full object-contain filter hue-rotate-[280deg] brightness-125 md:hue-rotate-0 md:brightness-100 group-hover:drop-shadow-neon transition-all" 
               />
               <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-primary animate-pulse" />
             </div>
