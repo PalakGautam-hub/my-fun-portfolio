@@ -37,8 +37,8 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: P
     >
       {/* Immersive Cinematic Background */}
       <div className="absolute inset-0 z-0 bg-[#050208]">
-        <div className={`absolute inset-0 opacity-10 bg-gradient-to-br ${bgGradient} blur-3xl md:blur-[160px] animate-pulse-luminous`} />
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-[0.02]" />
+        <div className={`absolute inset-0 opacity-10 bg-gradient-to-br ${bgGradient} blur-2xl md:blur-[160px] animate-pulse-luminous will-change-[opacity,transform]`} />
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-[0.02] hidden md:block" />
       </div>
 
       {/* Massive Background Project Index */}

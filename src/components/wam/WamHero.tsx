@@ -3,9 +3,15 @@ import { useRef, useMemo, useState, useEffect } from "react";
 import { Terminal, Database, Code2, Cpu, Cloud, Layers, Server, Atom, Github, Linkedin, MessageSquare, Sparkles } from "lucide-react";
 
 function AmbientParticles() {
+  const [particleCount, setParticleCount] = useState(30);
+  
+  useEffect(() => {
+    if (window.innerWidth < 768) setParticleCount(12);
+  }, []);
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {[...Array(30)].map((_, i) => (
+      {[...Array(particleCount)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute w-1 h-1 bg-primary/40 rounded-full blur-[1px]"
@@ -24,7 +30,7 @@ function AmbientParticles() {
             duration: Math.random() * 10 + 10,
             repeat: Infinity,
             ease: "linear",
-            delay: Math.random() * 10
+            delay: Math.random() * i * 0.1
           }}
         />
       ))}
@@ -103,10 +109,10 @@ const skills = useMemo(() => [
       >
         {/* The Central Visual Anchor (Portrait) */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-          transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full h-[35vh] sm:h-[45vh] md:w-[480px] md:h-[600px] aspect-auto md:aspect-[4/5] rounded-[2rem] md:rounded-[4rem] overflow-hidden group shadow-[0_0_100px_hsla(var(--primary)/0.1)] mb-4 md:mb-0"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full h-[35vh] sm:h-[45vh] md:w-[480px] md:h-[600px] aspect-auto md:aspect-[4/5] rounded-[2rem] md:rounded-[4rem] overflow-hidden group shadow-[0_0_100px_hsla(var(--primary)/0.1)] mb-12 md:mb-0 will-change-transform"
         >
           {/* Luminous Ribbon/Aura Effect */}
           <div className="absolute inset-0 z-20 pointer-events-none">
