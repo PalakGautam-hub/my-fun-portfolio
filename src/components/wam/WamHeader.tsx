@@ -91,31 +91,36 @@ export default function WamHeader() {
             exit={{ opacity: 0, clipPath: "circle(0% at 90% 10%)" }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsla(var(--primary)/0.03)_0%,transparent_70%)] pointer-events-none" />
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03]">
+              <span className="text-[25vw] font-black uppercase tracking-tighter italic">NAVIGATION</span>
+            </div>
             
-            <nav className="flex flex-col items-center gap-8 md:gap-12 w-full text-center relative z-10">
+            <nav className="flex flex-col items-center gap-6 md:gap-10 w-full text-center relative z-10">
               {[
-                { name: 'Archive', id: 'work' },
-                { name: 'Capabilities', id: 'expertise' },
-                { name: 'Intelligence', id: 'about' },
-                { name: 'Connection', id: 'contact' }
+                { name: 'Portfolio Archive', id: 'work', sub: 'Project Documentation' },
+                { name: 'Core Capabilities', id: 'expertise', sub: 'Technical Skillset' },
+                { name: 'Digital Identity', id: 'about', sub: 'Professional Dossier' },
+                { name: 'Secure Protocol', id: 'contact', sub: 'Direct Communication' }
               ].map((item, i) => (
                 <motion.a 
                   key={item.id}
                   href={`#${item.id}`}
                   onMouseEnter={playHover}
                   onClick={() => { playClick(); setIsOpen(false); }}
-                  className="text-4xl md:text-6xl lg:text-7xl font-serif italic text-white/10 hover:text-white transition-all duration-700 uppercase tracking-tighter hover:scale-110"
+                  className="group flex flex-col items-center gap-2"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + i * 0.1, duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  {item.name}
+                  <span className="text-[8px] md:text-[10px] uppercase tracking-[0.8em] text-primary/40 group-hover:text-primary transition-colors duration-500">{item.sub}</span>
+                  <span className="text-4xl md:text-6xl lg:text-7xl font-serif italic text-white/40 group-hover:text-white transition-all duration-700 uppercase tracking-tighter group-hover:scale-105">
+                    {item.name.split(' ')[0]} <span className="text-white/10 group-hover:text-white/40">{item.name.split(' ')[1]}</span>
+                  </span>
                 </motion.a>
               ))}
             </nav>
 
-            <div className="flex gap-6 md:gap-32 justify-center flex-wrap uppercase font-black tracking-[0.4em] md:tracking-[0.8em] text-[8px] md:text-[10px] text-white/20 relative z-10 mt-24">
+            <div className="flex gap-8 md:gap-32 justify-center flex-wrap uppercase font-black tracking-[0.4em] md:tracking-[0.8em] text-[8px] md:text-[10px] text-white/40 relative z-10 mt-24">
               <a href="https://github.com/PalakGautam-hub" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">GitHub</a>
               <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">LinkedIn</a>
               <a href="https://leetcode.com/u/palakG05/" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">LeetCode</a>
