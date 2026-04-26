@@ -33,7 +33,7 @@ export default function WamTechStack() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[100svh] md:min-h-screen bg-black overflow-hidden flex flex-col items-center border-t border-white/5 py-32 md:py-48 z-10">
+    <section className="relative w-full min-h-[100svh] md:min-h-screen bg-black overflow-x-hidden flex flex-col items-center border-t border-white/5 py-24 md:py-48 z-10">
       
       {/* Refined 3D Grid */}
       <div className="absolute inset-0 z-0 opacity-5 pointer-events-none" 
@@ -48,7 +48,7 @@ export default function WamTechStack() {
       {/* Sophisticated Layered Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-primary/5 rounded-full blur-3xl md:blur-[160px] pointer-events-none" />
       
-      <div className="relative z-10 w-full max-w-[1400px] px-6 md:px-12 flex flex-col gap-16 md:gap-24">
+      <div className="relative z-10 w-full max-w-[1400px] px-6 md:px-12 flex flex-col gap-12 md:gap-24">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-16">
@@ -73,7 +73,7 @@ export default function WamTechStack() {
                 <div className="absolute inset-[-15%] rounded-full border border-primary/10 border-dashed animate-[spin_25s_linear_infinite]" />
                 <Atom className="w-6 h-6 md:w-8 md:h-8 text-primary/60 animate-pulse" />
               </motion.div>
-              <h2 className="text-4xl sm:text-6xl md:text-8xl font-light font-serif text-white tracking-tighter leading-none uppercase">
+              <h2 className="text-3xl sm:text-6xl md:text-8xl font-light font-serif text-white tracking-tighter leading-none uppercase">
                 Intelligence<br/>
                 <span className="italic text-white/20">Stack.</span>
               </h2>
@@ -82,7 +82,7 @@ export default function WamTechStack() {
         </div>
 
         {/* Tech Nodes Grid (Block Manner) */}
-        <div className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-6 w-full">
+        <div className="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-6 w-full">
           {techPills.map((pill, i) => (
             <TechNode key={i} pill={pill} playHover={playHover} playClick={playClick} />
           ))}

@@ -46,9 +46,9 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: P
         style={{ y: useTransform(springProgress, [0, 1], [-100, 100]) }}
         className="absolute inset-0 flex items-center justify-center z-0 opacity-[0.02]"
       >
-        <span className="text-[20vw] font-black font-serif italic text-white select-none">
+        <h1 className="text-[12vw] md:text-[10vw] font-black uppercase tracking-tighter text-stroke-futuristic opacity-5 whitespace-nowrap select-none italic">
           {index}
-        </span>
+        </h1>
       </motion.div>
 
       <div className="relative z-10 max-w-[1600px] w-full grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-32 items-center">
@@ -236,7 +236,7 @@ export default function WamProjects() {
              </span>
           </motion.a>
 
-          <div className="flex gap-10 md:gap-32 justify-center flex-wrap uppercase font-black tracking-[0.5em] md:tracking-[1em] text-[9px] md:text-[11px] text-white/70">
+          <div className="flex gap-6 md:gap-32 justify-center flex-wrap uppercase font-black tracking-[0.3em] md:tracking-[1em] text-[9px] md:text-[11px] text-white/70">
             <a href="https://github.com/PalakGautam-hub" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">GitHub</a>
             <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">LinkedIn</a>
             <a href="https://leetcode.com/u/palakG05/" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">LeetCode</a>
