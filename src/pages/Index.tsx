@@ -42,8 +42,8 @@ export default function Index() {
 
               {/* Global Luminous Depth Layers */}
               <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/5 blur-[160px] rounded-full animate-pulse-luminous" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary/5 blur-[160px] rounded-full animate-pulse-luminous" style={{ animationDelay: '3s' }} />
+                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/5 blur-3xl md:blur-[160px] rounded-full animate-pulse-luminous" />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary/5 blur-3xl md:blur-[160px] rounded-full animate-pulse-luminous" style={{ animationDelay: '3s' }} />
               </div>
               
               {/* Custom High-Precision Cursor */}

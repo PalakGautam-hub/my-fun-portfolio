@@ -58,7 +58,7 @@ function ExpertiseCard({ title, desc, icon: Icon, tags, id }: ExpertiseCardProps
       </div>
       
       {/* Luminous Glow Accent */}
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+      <div className="absolute bottom-0 right-0 w-64 h-64 bg-primary/5 blur-3xl md:blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
     </motion.div>
   );
 }
@@ -68,7 +68,7 @@ export default function WamSolutions() {
     <section id="expertise" className="w-full bg-[#050208] py-48 md:py-80 px-6 md:px-12 border-t border-white/5 relative overflow-hidden">
       
       {/* Background Luminous Aura */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-primary/5 blur-[240px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-primary/5 blur-3xl md:blur-[240px] rounded-full pointer-events-none" />
 
       <div className="max-w-[1600px] mx-auto">
         

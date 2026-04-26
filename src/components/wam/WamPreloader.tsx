@@ -29,7 +29,7 @@ export default function WamPreloader({ onComplete }: { onComplete: () => void })
       {isVisible && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, y: -20, filter: "blur(20px)" }}
+          exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="fixed inset-0 z-[9999] bg-[#050208] flex flex-col items-center justify-center overflow-hidden"
         >

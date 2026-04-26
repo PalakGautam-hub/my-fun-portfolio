@@ -72,8 +72,28 @@ export default function WamTechStack() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full min-h-[100vh] md:min-h-screen bg-black overflow-hidden flex flex-col items-center justify-center border-t border-white/5 py-32">
+    <section ref={containerRef} className="relative w-full min-h-[100svh] md:min-h-screen bg-black overflow-hidden flex flex-col items-center justify-center border-t border-white/5 py-32">
       
+      {/* Section Header */}
+      <div className="absolute top-24 md:top-32 left-6 md:left-12 z-30 pointer-events-none">
+        <motion.div 
+          className="flex flex-col gap-10"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-2 h-2 rounded-full bg-primary" />
+            <h3 className="text-[11px] uppercase tracking-[1em] text-primary/40 font-black mb-2">Technical Archive [ 01 ]</h3>
+          </div>
+          <h2 className="text-4xl sm:text-6xl md:text-8xl font-light font-serif text-white tracking-tighter leading-none uppercase">
+            Core <br/>
+            <span className="italic text-white/20">Skills.</span>
+          </h2>
+        </motion.div>
+      </div>
+
       {/* Refined 3D Grid */}
       <div className="absolute inset-0 z-0 opacity-5 pointer-events-none" 
            style={{
@@ -85,14 +105,14 @@ export default function WamTechStack() {
       />
 
       {/* Sophisticated Layered Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-primary/5 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-primary/5 rounded-full blur-3xl md:blur-[160px] pointer-events-none" />
       
       {/* Central Core Element */}
       <div className="relative z-10 flex flex-col items-center justify-center pointer-events-none">
         <motion.div 
           animate={{ rotate: 360 }}
           transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-          className="w-20 h-20 md:w-32 md:h-32 rounded-full border border-primary/20 flex items-center justify-center bg-black/80 backdrop-blur-3xl shadow-[0_0_100px_hsla(var(--primary)/0.1)] relative"
+          className="w-20 h-20 md:w-32 md:h-32 rounded-full border border-primary/20 flex items-center justify-center bg-black/80 backdrop-blur-md md:backdrop-blur-3xl shadow-[0_0_100px_hsla(var(--primary)/0.1)] relative"
         >
           {/* Multi-layered orbit rings */}
           <div className="absolute inset-[-15%] rounded-full border border-primary/10 border-dashed animate-[spin_25s_linear_infinite]" />
@@ -146,7 +166,7 @@ function TechNode({ pill, containerRef, playHover, playClick }: { pill: any, con
 
   return (
     <motion.div
-      className="absolute flex flex-col items-center justify-center gap-1.5 p-2 w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 rounded-2xl md:rounded-3xl border border-white/5 bg-white/[0.02] backdrop-blur-[24px] shadow-2xl pointer-events-auto cursor-grab active:cursor-grabbing hover:bg-white/[0.08] hover:border-primary/40 transition-colors duration-700 group hover:z-50"
+      className="absolute flex flex-col items-center justify-center gap-1.5 p-2 w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 rounded-2xl md:rounded-3xl border border-white/10 bg-white/[0.06] backdrop-blur-sm md:backdrop-blur-[24px] shadow-[0_0_15px_rgba(255,255,255,0.03)] pointer-events-auto cursor-grab active:cursor-grabbing hover:bg-white/[0.12] hover:border-primary/50 transition-all duration-700 group hover:z-50 hover:shadow-[0_0_30px_rgba(var(--primary),0.2)]"
       drag
       dragConstraints={containerRef}
       dragElastic={0.2}
@@ -172,10 +192,10 @@ function TechNode({ pill, containerRef, playHover, playClick }: { pill: any, con
         zIndex: isHovered ? 100 : 20 + pill.ring
       }}
     >
-      <div className="p-1.5 md:p-2.5 rounded-xl bg-white/5 group-hover:scale-110 group-hover:bg-primary/10 transition-transform duration-700">
-        <pill.Icon className={`w-4 h-4 md:w-6 md:h-6 ${pill.colorClass} opacity-60 group-hover:opacity-100 transition-all duration-700`} />
+      <div className="p-1.5 md:p-2.5 rounded-xl bg-white/10 group-hover:scale-110 group-hover:bg-primary/20 transition-transform duration-700 shadow-inner">
+        <pill.Icon className={`w-4 h-4 md:w-6 md:h-6 ${pill.colorClass} opacity-90 drop-shadow-[0_0_8px_currentColor] group-hover:opacity-100 group-hover:drop-shadow-[0_0_12px_currentColor] transition-all duration-700`} />
       </div>
-      <span className="font-mono text-[7px] sm:text-[8px] md:text-[10px] tracking-[0.15em] md:tracking-[0.2em] text-white/30 group-hover:text-white transition-colors uppercase text-center font-bold px-1 hidden sm:block group-hover:block">
+      <span className="font-mono text-[7px] sm:text-[8px] md:text-[10px] tracking-[0.15em] md:tracking-[0.2em] text-white/70 group-hover:text-white transition-colors uppercase text-center font-bold px-1 hidden sm:block group-hover:block drop-shadow-md">
         {pill.name}
       </span>
     </motion.div>

@@ -72,13 +72,13 @@ export default function WamHero() {
   }, [skills]);
 
   return (
-    <section ref={containerRef} className="relative w-full h-[110vh] flex items-center justify-center overflow-hidden bg-[#050208] select-none">
+    <section ref={containerRef} className="relative w-full h-[100svh] md:h-[110vh] flex items-center justify-center overflow-hidden bg-[#050208] select-none">
       
       {/* Immersive Luminous Environment (Background) */}
       <AmbientParticles />
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-[60%] h-[60%] bg-primary/10 blur-[160px] rounded-full animate-pulse-luminous" />
-        <div className="absolute bottom-1/4 right-1/4 w-[50%] h-[50%] bg-secondary/10 blur-[140px] rounded-full animate-pulse-luminous" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/4 left-1/4 w-[60%] h-[60%] bg-primary/10 blur-3xl md:blur-[160px] rounded-full animate-pulse-luminous" />
+        <div className="absolute bottom-1/4 right-1/4 w-[50%] h-[50%] bg-secondary/10 blur-3xl md:blur-[140px] rounded-full animate-pulse-luminous" style={{ animationDelay: '2s' }} />
         
         {/* Subtle Futuristic Grid */}
         <div className="absolute inset-0 opacity-[0.03]" 
@@ -245,7 +245,7 @@ function OrbitalNode({ node }: { node: any }) {
           y: { duration: 6 + Math.random() * 4, repeat: Infinity, ease: "easeInOut" },
           scale: { type: "spring", damping: 15, stiffness: 200 }
         }}
-        className="luminous-glass px-6 py-5 rounded-[2rem] flex items-center gap-5 border-white/5 hover:border-primary/30 transition-all duration-700 cursor-pointer backdrop-blur-[32px]"
+        className="luminous-glass px-6 py-5 rounded-[2rem] flex items-center gap-5 border-white/5 hover:border-primary/30 transition-all duration-700 cursor-pointer backdrop-blur-md md:backdrop-blur-[32px]"
       >
         <div className={`p-2.5 rounded-2xl bg-white/5 ${node.color} group-hover/node:scale-125 transition-all duration-700 ease-out`}>
           <node.icon className="w-6 h-6" />
