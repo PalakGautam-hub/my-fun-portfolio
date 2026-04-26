@@ -51,7 +51,7 @@ export default function WamHero() {
   const springConfig = { damping: 30, stiffness: 100, mass: 0.5 };
   const smoothY1 = useSpring(y1, springConfig);
 
-const skills = useMemo(() => [
+  const skills = useMemo(() => [
     { name: "Python", icon: Terminal, color: "text-fuchsia-400", glow: "rgba(255, 0, 128, 0.2)" },
     { name: "ML/AI", icon: Atom, color: "text-blue-400", glow: "rgba(0, 128, 255, 0.2)" },
     { name: "React", icon: Layers, color: "text-cyan-400", glow: "rgba(0, 255, 255, 0.2)" },
@@ -59,23 +59,6 @@ const skills = useMemo(() => [
     { name: "Systems", icon: Cpu, color: "text-indigo-400", glow: "rgba(75, 0, 130, 0.2)" },
     { name: "Data", icon: Database, color: "text-pink-400", glow: "rgba(255, 105, 180, 0.2)" }
   ], []);
-
-  const nodes = useMemo(() => {
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    const skillsToShow = isMobile ? skills.slice(0, 4) : skills;
-    
-    return skillsToShow.map((skill, i) => {
-      const angle = (i / skillsToShow.length) * (Math.PI * 2);
-      const rx = isMobile ? 42 : 32; 
-      const ry = isMobile ? 38 : 42; 
-      return {
-        ...skill,
-        top: `${50 + ry * Math.sin(angle)}%`,
-        left: `${50 + rx * Math.cos(angle)}%`,
-        delay: i * 0.1
-      };
-    });
-  }, [skills]);
 
   return (
     <section ref={containerRef} className="relative w-full h-[100svh] md:h-[110vh] flex items-center justify-center overflow-hidden bg-[#050208] select-none">
@@ -105,7 +88,7 @@ const skills = useMemo(() => [
       {/* Central Immersive Composition */}
       <motion.div 
         style={{ scale, opacity }}
-        className="relative z-10 w-full max-w-7xl h-full flex flex-col md:flex-row items-center justify-between md:justify-center px-6 md:px-0 pt-32 pb-10 md:pt-[env(safe-area-inset-top)] md:pb-[env(safe-area-inset-bottom)]"
+        className="relative z-10 w-full max-w-7xl h-full flex flex-col items-center justify-center px-6 md:px-0 pt-32 pb-10 md:pt-0 md:pb-0"
       >
         {/* The Central Visual Anchor (Portrait) */}
         <motion.div 
@@ -131,9 +114,7 @@ const skills = useMemo(() => [
           <div className="absolute inset-0 border-[1px] border-white/5 rounded-[2rem] md:rounded-[4rem] pointer-events-none m-4 md:m-6" />
         </motion.div>
 
-        {/* Orbital Nodes Removed for cleaner 'Full' photo aesthetic */}
-
-        {/* Mobile-Only Sequential Introduction (Replaces desktop orbital clutter) */}
+        {/* Mobile-Only Sequential Introduction */}
         <div className="flex flex-col gap-6 w-full md:hidden relative z-20 items-center text-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -183,12 +164,12 @@ const skills = useMemo(() => [
         </div>
 
         {/* Bottom Information Architecture */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+        <div className="flex flex-col items-center gap-10 pointer-events-auto">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-12 flex flex-col items-center gap-10 pointer-events-auto"
+            className="flex flex-col items-center gap-10"
           >
             {/* Quote Block (Shown on all devices, centered below image) */}
             <div className="flex flex-col gap-4 md:gap-6 max-w-xl group items-center text-center">
@@ -228,45 +209,3 @@ const skills = useMemo(() => [
     </section>
   );
 }
-
-function OrbitalNode({ node }: { node: any }) {
-  const [isHovered, setIsHovered] = useState(false);
-  
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: 2 + node.delay, duration: 2, ease: [0.16, 1, 0.3, 1] }}
-      style={{ top: node.top, left: node.left }}
-      className="absolute pointer-events-auto group/node z-40"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <motion.div
-        animate={{ 
-          y: isHovered ? 0 : [0, -15, 0], 
-          scale: isHovered ? 1.1 : 1,
-          boxShadow: isHovered ? `0 0 30px ${node.glow}` : "0 0 0px transparent"
-        }}
-        transition={{ 
-          y: { duration: 6 + Math.random() * 4, repeat: Infinity, ease: "easeInOut" },
-          scale: { type: "spring", damping: 15, stiffness: 200 }
-        }}
-        className="luminous-glass px-6 py-5 rounded-[2rem] flex items-center gap-5 border-white/5 hover:border-primary/30 transition-all duration-700 cursor-pointer backdrop-blur-md md:backdrop-blur-[32px]"
-      >
-        <div className={`p-2.5 rounded-2xl bg-white/5 ${node.color} group-hover/node:scale-125 transition-all duration-700 ease-out`}>
-          <node.icon className="w-6 h-6" />
-        </div>
-        <div className="flex flex-col gap-0.5">
-          <span className="text-[9px] uppercase tracking-[0.4em] font-black text-white/20 group-hover/node:text-primary/40 transition-colors">Integrity</span>
-          <span className="text-[13px] uppercase tracking-[0.2em] font-bold text-white group-hover/node:text-primary transition-colors">
-            {node.name}
-          </span>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-}
-
-const BrainCircuit = ({ className }: { className?: string }) => <Atom className={className} />;
-
