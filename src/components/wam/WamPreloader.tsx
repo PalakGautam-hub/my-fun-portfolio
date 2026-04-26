@@ -21,7 +21,17 @@ export default function WamPreloader({ onComplete }: { onComplete: () => void })
       });
     }, 100);
 
-    return () => clearInterval(timer);
+    // Failsafe: Force dismiss after 2.5 seconds regardless of progress
+    const failsafe = setTimeout(() => {
+      setIsVisible(false);
+      onComplete();
+      clearInterval(timer);
+    }, 2500);
+
+    return () => {
+      clearInterval(timer);
+      clearTimeout(failsafe);
+    };
   }, [onComplete]);
 
   return (
