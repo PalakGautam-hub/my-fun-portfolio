@@ -18,34 +18,34 @@ export default function WamHeader() {
 
   return (
     <>
-      <motion.header 
+      <motion.header
         className={`fixed top-0 left-0 w-full z-[1100] px-6 md:px-16 py-5 md:py-12 flex justify-between items-center transition-all duration-[1000ms] ${scrolled ? 'backdrop-blur-lg md:backdrop-blur-3xl bg-black/40 border-b border-white/5 py-3 md:py-8 opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}
         initial={{ y: -100, opacity: 0 }}
         animate={scrolled ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        
+
         {/* Futuristic Brand Identity */}
         <div className="z-[60] flex items-center">
-          <a 
-            href="/" 
+          <a
+            href="/"
             className="flex items-center gap-4 md:gap-6 group"
             onMouseEnter={playHover}
             onClick={playClick}
           >
             <div className="w-9 h-9 md:w-14 md:h-14 relative flex items-center justify-center p-2 md:p-3 rounded-lg md:rounded-2xl bg-white/[0.03] border border-white/10 group-hover:border-primary/40 group-hover:bg-primary/5 transition-all duration-700 shadow-[0_0_20px_rgba(240,10,180,0.05)]">
-              <img 
-                src="/logo_pg.png" 
-                alt="PG Logo" 
-                className="w-full h-full object-contain group-hover:drop-shadow-neon transition-all duration-700" 
+              <img
+                src="/logo_pg.png"
+                alt="PG Logo"
+                className="w-full h-full object-contain group-hover:drop-shadow-neon transition-all duration-700"
               />
               <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             </div>
             <div className="flex flex-col gap-0.5">
               <span className="text-[10px] md:text-xl font-serif tracking-[0.2em] md:tracking-[0.4em] font-black text-white uppercase leading-none group-hover:text-primary transition-colors duration-700">PALAK GAUTAM</span>
               <div className="flex items-center gap-2 md:gap-3">
-                 <span className="text-[4px] md:text-[7px] uppercase tracking-[0.3em] md:tracking-[0.6em] text-white/20 font-black">Archive v4.0</span>
-                 <Activity className="w-1 h-1 md:w-2 md:h-2 text-primary opacity-40 animate-pulse" />
+                <span className="text-[4px] md:text-[7px] uppercase tracking-[0.3em] md:tracking-[0.6em] text-white/20 font-black">Archive v4.0</span>
+                <Activity className="w-1 h-1 md:w-2 md:h-2 text-primary opacity-40 animate-pulse" />
               </div>
             </div>
           </a>
@@ -53,7 +53,7 @@ export default function WamHeader() {
 
         {/* Action Protocol Controls */}
         <div className="flex items-center gap-6 md:gap-12 z-[1100]">
-          
+
           <button
             onClick={() => { playClick(); toggleMute(); }}
             onMouseEnter={playHover}
@@ -62,7 +62,7 @@ export default function WamHeader() {
             {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-primary" />}
           </button>
 
-          <a 
+          <a
             href="mailto:gautampalak77@gmail.com"
             onMouseEnter={playHover}
             onClick={playClick}
@@ -71,7 +71,7 @@ export default function WamHeader() {
             Communication Protocol <ArrowRight className="w-4 h-4 group-hover:translate-x-3 transition-transform text-primary duration-700" />
           </a>
 
-          <button 
+          <button
             className={`p-4 md:p-6 rounded-full cursor-pointer transition-all duration-700 z-[1200] border shadow-2xl ${isOpen ? 'bg-white text-black border-white' : 'luminous-glass text-white border-white/10 hover:border-white/40'}`}
             onClick={() => { playClick(); setIsOpen(!isOpen); }}
             onMouseEnter={playHover}
@@ -85,17 +85,17 @@ export default function WamHeader() {
       <AnimatePresence>
         {isOpen && (
           <motion.div 
-            className="fixed inset-0 bg-[#050208] z-[1000] flex flex-col items-center justify-center py-32 px-12 overflow-hidden"
-            initial={{ opacity: 0, clipPath: "circle(0% at 90% 10%)" }}
-            animate={{ opacity: 1, clipPath: "circle(150% at 90% 10%)" }}
-            exit={{ opacity: 0, clipPath: "circle(0% at 90% 10%)" }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 bg-[#050208] z-[9999] flex flex-col items-center justify-center py-32 px-12 overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
           >
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <span className="text-[20vw] font-black uppercase tracking-tighter italic text-white/[0.03]">MENU</span>
+              <span className="text-[20vw] font-black uppercase tracking-tighter italic text-white/[0.05]">SYSTEM</span>
             </div>
             
-            <nav className="flex flex-col items-center gap-8 md:gap-12 w-full text-center relative z-10">
+            <nav className="flex flex-col items-center gap-8 md:gap-12 w-full text-center relative z-[10000]">
               {[
                 { name: 'PORTFOLIO', id: 'work', sub: 'Archive' },
                 { name: 'CAPABILITIES', id: 'expertise', sub: 'Technical' },
@@ -107,12 +107,12 @@ export default function WamHeader() {
                   href={`#${item.id}`}
                   onMouseEnter={playHover}
                   onClick={() => { playClick(); setIsOpen(false); }}
-                  className="group flex flex-col items-center gap-1"
+                  className="group flex flex-col items-center gap-1 cursor-pointer"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + i * 0.1, duration: 0.8 }}
+                  transition={{ delay: 0.1 + i * 0.1, duration: 0.5 }}
                 >
-                  <span className="text-[10px] uppercase tracking-[0.6em] text-primary group-hover:text-white transition-colors">{item.sub}</span>
+                  <span className="text-[12px] uppercase tracking-[0.6em] text-primary font-black">{item.sub}</span>
                   <span className="text-5xl md:text-8xl font-serif italic text-white group-hover:text-primary transition-all duration-500 uppercase tracking-tighter">
                     {item.name}
                   </span>
@@ -120,10 +120,10 @@ export default function WamHeader() {
               ))}
             </nav>
 
-            <div className="flex gap-8 md:gap-24 justify-center flex-wrap uppercase font-black tracking-[0.4em] text-[10px] text-white relative z-10 mt-20">
-              <a href="https://github.com/PalakGautam-hub" target="_blank" className="hover:text-primary transition-colors">GitHub</a>
-              <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" className="hover:text-primary transition-colors">LinkedIn</a>
-              <a href="https://leetcode.com/u/palakG05/" target="_blank" className="hover:text-primary transition-colors">LeetCode</a>
+            <div className="flex gap-8 md:gap-24 justify-center flex-wrap uppercase font-black tracking-[0.4em] text-[10px] text-white relative z-[10000] mt-20">
+              <a href="https://github.com/PalakGautam-hub" target="_blank" className="hover:text-primary transition-colors cursor-pointer">GitHub</a>
+              <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" className="hover:text-primary transition-colors cursor-pointer">LinkedIn</a>
+              <a href="https://leetcode.com/u/palakG05/" target="_blank" className="hover:text-primary transition-colors cursor-pointer">LeetCode</a>
             </div>
           </motion.div>
         )}
