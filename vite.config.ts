@@ -13,6 +13,13 @@ export default defineConfig(({ mode }) => ({
     },
   },
   plugins: [react()].filter(Boolean),
+  build: {
+    target: "es2015",
+    minify: "esbuild",
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
