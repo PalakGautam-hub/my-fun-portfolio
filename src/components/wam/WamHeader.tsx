@@ -19,7 +19,7 @@ export default function WamHeader() {
   return (
     <>
       <motion.header 
-        className={`fixed top-0 left-0 w-full z-[1100] px-4 md:px-16 py-6 md:py-12 flex justify-between items-center transition-all duration-[1500ms] ${scrolled ? 'md:backdrop-blur-3xl bg-black/40 border-b border-white/5 py-3 md:py-8' : ''}`}
+        className={`fixed top-0 left-0 w-full z-[1100] px-6 md:px-16 py-5 md:py-12 flex justify-between items-center transition-all duration-[1500ms] ${scrolled ? 'md:backdrop-blur-3xl bg-black/40 border-b border-white/5 py-3 md:py-8' : ''}`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
@@ -29,11 +29,11 @@ export default function WamHeader() {
         <div className="z-[60] flex items-center">
           <a 
             href="/" 
-            className="flex items-center gap-3 md:gap-6 group"
+            className="flex items-center gap-4 md:gap-6 group"
             onMouseEnter={playHover}
             onClick={playClick}
           >
-            <div className="w-10 h-10 md:w-14 md:h-14 relative flex items-center justify-center p-2 md:p-3 rounded-xl md:rounded-2xl bg-white/[0.03] border border-white/10 group-hover:border-primary/40 group-hover:bg-primary/5 transition-all duration-700 shadow-[0_0_20px_rgba(240,10,180,0.05)]">
+            <div className="w-9 h-9 md:w-14 md:h-14 relative flex items-center justify-center p-2 md:p-3 rounded-lg md:rounded-2xl bg-white/[0.03] border border-white/10 group-hover:border-primary/40 group-hover:bg-primary/5 transition-all duration-700 shadow-[0_0_20px_rgba(240,10,180,0.05)]">
               <img 
                 src="/logo_pg.png" 
                 alt="PG Logo" 
@@ -41,10 +41,10 @@ export default function WamHeader() {
               />
               <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             </div>
-            <div className="flex flex-col gap-0">
-              <span className="text-[12px] md:text-xl font-serif tracking-[0.3em] md:tracking-[0.4em] font-black text-white uppercase leading-none group-hover:text-primary transition-colors duration-700">PALAK GAUTAM</span>
+            <div className="flex flex-col gap-0.5">
+              <span className="text-[10px] md:text-xl font-serif tracking-[0.2em] md:tracking-[0.4em] font-black text-white uppercase leading-none group-hover:text-primary transition-colors duration-700">PALAK GAUTAM</span>
               <div className="flex items-center gap-2 md:gap-3">
-                 <span className="text-[5px] md:text-[7px] uppercase tracking-[0.4em] md:tracking-[0.6em] text-white/20 font-black">Archive v4.0</span>
+                 <span className="text-[4px] md:text-[7px] uppercase tracking-[0.3em] md:tracking-[0.6em] text-white/20 font-black">Archive v4.0</span>
                  <Activity className="w-1 h-1 md:w-2 md:h-2 text-primary opacity-40 animate-pulse" />
               </div>
             </div>
@@ -52,14 +52,14 @@ export default function WamHeader() {
         </div>
 
         {/* Action Protocol Controls */}
-        <div className="flex items-center gap-8 md:gap-12 z-[1100]">
+        <div className="flex items-center gap-6 md:gap-12 z-[1100]">
           
           <button
             onClick={() => { playClick(); toggleMute(); }}
             onMouseEnter={playHover}
-            className="p-3 rounded-full border border-white/5 bg-white/[0.02] hover:bg-white/5 transition-colors text-white/30 hover:text-white"
+            className="p-2.5 md:p-3 rounded-full border border-white/5 bg-white/[0.02] hover:bg-white/5 transition-colors text-white/30 hover:text-white"
           >
-            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-primary" />}
+            {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-primary" />}
           </button>
 
           <a 
@@ -72,13 +72,14 @@ export default function WamHeader() {
           </a>
 
           <button 
-            className={`p-5 md:p-6 rounded-full cursor-pointer transition-all duration-700 z-[1200] border shadow-2xl ${isOpen ? 'bg-white text-black border-white' : 'luminous-glass text-white border-white/10 hover:border-white/40'}`}
+            className={`p-4 md:p-6 rounded-full cursor-pointer transition-all duration-700 z-[1200] border shadow-2xl ${isOpen ? 'bg-white text-black border-white' : 'luminous-glass text-white border-white/10 hover:border-white/40'}`}
             onClick={() => { playClick(); setIsOpen(!isOpen); }}
             onMouseEnter={playHover}
           >
-            {isOpen ? <X className="w-6 h-6 stroke-[3]" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="w-5 h-5 stroke-[3]" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
+      </motion.header>
       </motion.header>
 
       {/* Futuristic Menu Overlay */}
