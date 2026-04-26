@@ -45,9 +45,9 @@ export default function WamHero() {
   const springConfig = { damping: 30, stiffness: 100, mass: 0.5 };
   const smoothY1 = useSpring(y1, springConfig);
 
-  const skills = useMemo(() => [
+const skills = useMemo(() => [
     { name: "Python", icon: Terminal, color: "text-fuchsia-400", glow: "rgba(255, 0, 128, 0.2)" },
-    { name: "ML/AI", icon: BrainCircuit, color: "text-blue-400", glow: "rgba(0, 128, 255, 0.2)" },
+    { name: "ML/AI", icon: Atom, color: "text-blue-400", glow: "rgba(0, 128, 255, 0.2)" },
     { name: "React", icon: Layers, color: "text-cyan-400", glow: "rgba(0, 255, 255, 0.2)" },
     { name: "Cloud", icon: Cloud, color: "text-purple-400", glow: "rgba(128, 0, 255, 0.2)" },
     { name: "Systems", icon: Cpu, color: "text-indigo-400", glow: "rgba(75, 0, 130, 0.2)" },
