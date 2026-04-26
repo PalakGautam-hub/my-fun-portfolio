@@ -122,10 +122,10 @@ const skills = useMemo(() => [
           <img 
             src="/palak_portrait.png" 
             alt="Palak Gautam" 
-            className="w-full h-full object-contain filter grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2000ms] ease-out"
+            className="w-full h-full object-contain group-hover:scale-105 transition-all duration-[2000ms] ease-out"
           />
           
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050208] via-transparent to-transparent opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050208]/40 via-transparent to-transparent pointer-events-none" />
           
           {/* Internal Glass Overlay */}
           <div className="absolute inset-0 border-[1px] border-white/5 rounded-[2rem] md:rounded-[4rem] pointer-events-none m-4 md:m-6" />
