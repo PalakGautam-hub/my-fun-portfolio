@@ -44,7 +44,7 @@ export default function WamHeader() {
             <div className="flex flex-col gap-0.5">
               <span className="text-[10px] md:text-xl font-serif tracking-[0.2em] md:tracking-[0.4em] font-black text-white uppercase leading-none group-hover:text-primary transition-colors duration-700">PALAK GAUTAM</span>
               <div className="flex items-center gap-2 md:gap-3">
-                 <span className="text-[4px] md:text-[7px] uppercase tracking-[0.3em] md:tracking-[0.6em] text-white/20 font-black">Archive v4.0</span>
+                 <span className="text-[4px] md:text-[7px] uppercase tracking-[0.3em] md:tracking-[0.6em] text-white/20 font-black">Archive v4.2.0 (FINAL REBUILD)</span>
                  <Activity className="w-1 h-1 md:w-2 md:h-2 text-primary opacity-40 animate-pulse" />
               </div>
             </div>

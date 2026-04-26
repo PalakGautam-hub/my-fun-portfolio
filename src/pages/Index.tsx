@@ -14,7 +14,7 @@ export default function Index() {
   const [loading, setLoading] = useState(true);
 
   return (
-    <div className="relative min-h-screen bg-[#06020a] text-white selection:bg-primary selection:text-white font-sans overflow-x-hidden cinematic-grain">
+    <div id="root-container" data-version="4.2.0-FINAL" className="relative min-h-screen bg-[#06020a] text-white selection:bg-primary selection:text-white font-sans overflow-x-hidden cinematic-grain">
       {/* System Build: v4.2.0 - Final Hard Refresh */}
       <AnimatePresence mode="wait">
         {loading ? (
