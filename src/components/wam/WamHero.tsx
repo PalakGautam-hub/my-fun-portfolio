@@ -99,14 +99,14 @@ const skills = useMemo(() => [
       {/* Central Immersive Composition */}
       <motion.div 
         style={{ scale, opacity }}
-        className="relative z-10 w-full max-w-7xl h-full flex flex-col md:flex-row items-center justify-center px-6 md:px-0 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]"
+        className="relative z-10 w-full max-w-7xl h-full flex flex-col md:flex-row items-center justify-between md:justify-center px-6 md:px-0 pt-32 pb-10 md:pt-[env(safe-area-inset-top)] md:pb-[env(safe-area-inset-bottom)]"
       >
         {/* The Central Visual Anchor (Portrait) */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full h-[35vh] sm:h-[45vh] md:w-[480px] md:h-[600px] aspect-auto md:aspect-[4/5] rounded-[2rem] md:rounded-[4rem] overflow-hidden group shadow-[0_0_100px_hsla(var(--primary)/0.1)] mb-12 md:mb-0"
+          className="relative w-full h-[35vh] sm:h-[45vh] md:w-[480px] md:h-[600px] aspect-auto md:aspect-[4/5] rounded-[2rem] md:rounded-[4rem] overflow-hidden group shadow-[0_0_100px_hsla(var(--primary)/0.1)] mb-4 md:mb-0"
         >
           {/* Luminous Ribbon/Aura Effect */}
           <div className="absolute inset-0 z-20 pointer-events-none">
@@ -133,7 +133,7 @@ const skills = useMemo(() => [
         </div>
 
         {/* Mobile-Only Sequential Introduction (Replaces desktop orbital clutter) */}
-        <div className="flex flex-col gap-12 w-full md:hidden relative z-20 items-center text-center">
+        <div className="flex flex-col gap-6 w-full md:hidden relative z-20 items-center text-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
