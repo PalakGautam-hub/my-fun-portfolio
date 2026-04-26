@@ -80,7 +80,6 @@ export default function WamHeader() {
           </button>
         </div>
       </motion.header>
-      </motion.header>
 
       {/* Futuristic Menu Overlay */}
       <AnimatePresence>
