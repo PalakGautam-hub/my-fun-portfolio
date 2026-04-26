@@ -153,21 +153,6 @@ const skills = useMemo(() => [
               </div>
             ))}
           </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 1 }}
-            className="flex flex-col gap-4 items-center"
-          >
-            <div className="flex items-center gap-3">
-              <Sparkles className="w-3.5 h-3.5 text-primary" />
-              <span className="text-[10px] uppercase tracking-[0.4em] font-black text-white/90">Digital Intelligence</span>
-            </div>
-            <p className="text-xs text-zinc-400 leading-relaxed max-w-[280px] italic font-light">
-              "Orchestrating logic. <span className="text-white/40">Architecting emotion.</span> Elevating digital existence through cinematic engineering."
-            </p>
-          </motion.div>
         </div>
       </motion.div>
 
@@ -210,13 +195,13 @@ const skills = useMemo(() => [
             transition={{ duration: 2, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-4 flex flex-col gap-10 pointer-events-auto"
           >
-            {/* Desktop Only Quote (hidden on mobile as it's moved below image) */}
-            <div className="hidden md:flex flex-col gap-5 max-w-xs group order-2 md:order-1">
+            {/* Quote Block (Shown on both mobile and desktop, but styled for both) */}
+            <div className="flex flex-col gap-4 md:gap-5 max-w-xs group order-2 md:order-1 items-center md:items-start text-center md:text-left">
               <div className="flex items-center gap-4">
                 <Sparkles className="w-4 h-4 text-primary group-hover:rotate-12 transition-transform duration-500" />
                 <span className="text-[10px] uppercase tracking-[0.4em] font-black text-white/90">Digital Intelligence</span>
               </div>
-              <p className="text-sm text-zinc-300 leading-relaxed tracking-wide italic font-light drop-shadow-sm">
+              <p className="text-[11px] md:text-sm text-zinc-300 leading-relaxed tracking-wide italic font-light drop-shadow-sm">
                 "Orchestrating logic. <span className="text-white/60">Architecting emotion.</span> Elevating digital existence through cinematic engineering."
               </p>
             </div>
