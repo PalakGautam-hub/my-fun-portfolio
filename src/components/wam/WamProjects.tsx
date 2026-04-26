@@ -33,7 +33,7 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: P
     <motion.div
       ref={containerRef}
       style={{ opacity, scale }}
-      className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden border-b border-white/5 px-6 md:px-12 py-32"
+      className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden border-b border-white/5 px-6 md:px-12 lg:px-20 xl:px-32 py-32"
     >
       {/* Immersive Cinematic Background */}
       <div className="absolute inset-0 z-0 bg-[#050208]">
@@ -51,7 +51,7 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: P
         </h1>
       </motion.div>
 
-      <div className="relative z-10 max-w-[1600px] w-full grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-32 items-center">
+      <div className="relative z-10 max-w-[1600px] w-full grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 xl:gap-32 items-center">
         
         {/* Project Typographic Block */}
         <div className="lg:col-span-7 flex flex-col gap-12">
@@ -172,7 +172,7 @@ export default function WamProjects() {
     <section id="work" className="w-full bg-[#050208] border-t border-white/5">
       
       {/* Strategic Archive Header */}
-      <div className="w-full py-48 md:py-80 px-6 md:px-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-16 border-b border-white/5 relative overflow-hidden">
+      <div className="w-full py-48 md:py-80 px-6 md:px-12 lg:px-20 xl:px-32 flex flex-col md:flex-row justify-between items-start md:items-end gap-16 border-b border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,hsla(var(--primary)/0.03)_0%,transparent_50%)] pointer-events-none" />
         
         <div className="flex flex-col gap-10 relative z-10">
@@ -210,25 +210,25 @@ export default function WamProjects() {
       </div>
       
       {/* Final Call to Intelligence */}
-      <div className="w-full bg-[#050208] py-80 md:py-[40vh] flex flex-col items-center justify-center gap-32 text-center px-6 relative overflow-hidden">
+      <section id="work" className="w-full min-h-screen bg-[#050208] py-32 md:py-48 lg:py-64 px-6 md:px-12 lg:px-20 flex flex-col items-center border-t border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsla(var(--primary)/0.05)_0%,transparent_80%)] pointer-events-none" />
 
         <motion.h2 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl sm:text-7xl md:text-[8rem] lg:text-[12rem] font-light font-serif text-white tracking-tighter leading-[0.85] max-w-[2000px] relative z-10 uppercase"
+          className="text-4xl sm:text-7xl md:text-[8rem] lg:text-[12rem] font-light font-serif text-white tracking-tighter leading-[0.85] max-w-[2000px] relative z-10 uppercase text-center"
         >
           Ready to decode <br className="hidden sm:block" />
           <span className="italic text-white/10">the next system?</span>
         </motion.h2>
 
-        <div className="flex flex-col items-center gap-24 relative z-10 w-full">
+        <div className="max-w-[1800px] w-full flex flex-col items-center justify-center relative z-10 px-6 md:px-12 lg:px-20 mt-32">
           <motion.a 
             href="mailto:gautampalak77@gmail.com" 
             onMouseEnter={playHover}
             onClick={playClick}
-            className="group relative px-6 sm:px-12 md:px-24 py-6 md:py-10 border border-white/5 bg-white/[0.02] rounded-full overflow-hidden transition-all duration-700 hover:border-primary/40 hover:scale-105 shadow-2xl"
+            className="group relative w-full max-w-4xl px-6 sm:px-12 md:px-24 py-6 md:py-10 border border-white/5 bg-white/[0.02] rounded-full overflow-hidden transition-all duration-700 hover:border-primary/40 hover:scale-105 shadow-2xl"
           >
              <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-1000 ease-[0.16,1,0.3,1]" />
              <span className="relative z-10 text-xl md:text-3xl font-serif italic text-white group-hover:text-white flex items-center gap-10 transition-colors duration-500">
