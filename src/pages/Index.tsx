@@ -26,18 +26,18 @@ export default function Index() {
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             >
               {/* Global Futuristic Technical Grid */}
-              <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.05]" 
-                   style={{
-                     backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)`,
-                     backgroundSize: '80px 80px'
-                   }}
+              <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.05] hidden md:block"
+                style={{
+                  backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)`,
+                  backgroundSize: '80px 80px'
+                }}
               />
 
               {/* Global Atmospheric CRT Scan-lines - Benchmark Polish */}
-              <div className="fixed inset-0 z-50 pointer-events-none opacity-[0.02]"
-                   style={{
-                     background: `repeating-linear-gradient(to bottom, transparent, transparent 1px, rgba(255,255,255,0.05) 1px, rgba(255,255,255,0.05) 2px)`,
-                   }}
+              <div className="fixed inset-0 z-50 pointer-events-none opacity-[0.02] hidden md:block"
+                style={{
+                  background: `repeating-linear-gradient(to bottom, transparent, transparent 1px, rgba(255,255,255,0.05) 1px, rgba(255,255,255,0.05) 2px)`,
+                }}
               />
 
               {/* Global Luminous Depth Layers */}
@@ -45,7 +45,7 @@ export default function Index() {
                 <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/5 blur-3xl md:blur-[160px] rounded-full animate-pulse-luminous" />
                 <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary/5 blur-3xl md:blur-[160px] rounded-full animate-pulse-luminous" style={{ animationDelay: '3s' }} />
               </div>
-              
+
               {/* Custom High-Precision Cursor (Desktop Only) */}
               <div className="hidden md:block">
                 <WamCursor />
@@ -58,26 +58,23 @@ export default function Index() {
                 <WamHero />
 
                 <div className="w-full relative">
-                   <WamStatement />
-                   <WamTechStack />
-                   <WamSolutions />
-                   <WamProjects />
+                  <WamStatement />
+                  <WamTechStack />
+                  <WamSolutions />
+                  <WamProjects />
                 </div>
               </main>
-              
+
               {/* Minimal Futuristic Footer */}
-              <footer className="w-full py-16 px-12 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5 bg-[#050208] relative z-10">
-                <div 
-                  className="lg:col-span-5 flex flex-col gap-10 md:gap-14 luminous-glass p-8 md:p-16 lg:p-24 rounded-[2.5rem] md:rounded-[5rem] group hover:bg-white/[0.04] transition-all duration-1000 border-white/5 hover:border-primary/20 shadow-2xl relative overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-30 pointer-events-none" />        <div className="flex flex-col gap-2">
-                   <span className="text-[10px] uppercase tracking-[0.5em] text-white font-black">PALAK GAUTAM</span>
-                   <p className="text-[8px] uppercase tracking-[0.3em] text-white/20">System Protocol Archive © 2026</p>
+              <footer className="w-full py-16 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5 bg-[#050208] relative z-10">
+                <div className="flex flex-col gap-2">
+                  <span className="text-[10px] uppercase tracking-[0.5em] text-white font-black">PALAK GAUTAM</span>
+                  <p className="text-[8px] uppercase tracking-[0.3em] text-white/20">System Protocol Archive © 2026</p>
                 </div>
-                <div className="flex gap-12 text-[8px] uppercase tracking-[0.4em] font-black text-white/20">
-                   <span className="hover:text-primary transition-colors cursor-pointer">Security Protocol</span>
-                   <span className="hover:text-primary transition-colors cursor-pointer">Intelligence Access</span>
-                   <span className="hover:text-primary transition-colors cursor-pointer">Data Integrity</span>
+                <div className="flex gap-8 md:gap-12 text-[8px] uppercase tracking-[0.4em] font-black text-white/20">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Security Protocol</span>
+                  <span className="hover:text-primary transition-colors cursor-pointer">Intelligence Access</span>
+                  <span className="hover:text-primary transition-colors cursor-pointer">Data Integrity</span>
                 </div>
               </footer>
             </motion.div>

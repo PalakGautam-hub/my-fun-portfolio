@@ -13,6 +13,11 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     let lenis: any;
     
     try {
+      // Disable Lenis on touch devices for better native performance and reliability
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      
+      if (isTouchDevice) return;
+
       lenis = new Lenis({
         duration: 1,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
