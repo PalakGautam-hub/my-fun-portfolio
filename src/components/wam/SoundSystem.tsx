@@ -17,18 +17,22 @@ export function SoundSystemProvider({ children }: { children: React.ReactNode })
   const [transitionSound, setTransitionSound] = useState<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Using high-frequency subtle blips for a premium digital feel
-    const hover = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3'); // Soft blip
-    const click = new Audio('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3'); // Mechanical click
-    const transition = new Audio('https://assets.mixkit.co/active_storage/sfx/2567/2567-preview.mp3'); // Airy sweep
+    try {
+      // Using high-frequency subtle blips for a premium digital feel
+      const hover = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3'); // Soft blip
+      const click = new Audio('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3'); // Mechanical click
+      const transition = new Audio('https://assets.mixkit.co/active_storage/sfx/2567/2567-preview.mp3'); // Airy sweep
 
-    hover.volume = 0.1;
-    click.volume = 0.15;
-    transition.volume = 0.2;
+      hover.volume = 0.1;
+      click.volume = 0.15;
+      transition.volume = 0.2;
 
-    setHoverSound(hover);
-    setClickSound(click);
-    setTransitionSound(transition);
+      setHoverSound(hover);
+      setClickSound(click);
+      setTransitionSound(transition);
+    } catch (error) {
+      console.warn("Audio system failed to initialize (common on mobile). Falling back to silent mode.", error);
+    }
   }, []);
 
   const toggleMute = useCallback(() => setIsMuted(prev => !prev), []);
