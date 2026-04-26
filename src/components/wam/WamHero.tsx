@@ -106,7 +106,7 @@ export default function WamHero() {
           initial={{ opacity: 0, scale: 0.85, filter: "blur(10px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-[320px] h-[400px] md:w-[480px] md:h-[600px] aspect-[4/5] rounded-[4rem] overflow-hidden group shadow-[0_0_100px_hsla(var(--primary)/0.1)]"
+          className="relative w-[260px] h-[325px] sm:w-[320px] sm:h-[400px] md:w-[480px] md:h-[600px] aspect-[4/5] rounded-[3rem] md:rounded-[4rem] overflow-hidden group shadow-[0_0_100px_hsla(var(--primary)/0.1)]"
         >
           {/* Luminous Ribbon/Aura Effect */}
           <div className="absolute inset-0 z-20 pointer-events-none">

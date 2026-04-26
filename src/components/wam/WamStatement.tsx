@@ -116,7 +116,7 @@ export default function WamStatement() {
             href="#work" 
             onMouseEnter={playHover}
             onClick={playClick}
-            className="group relative px-24 py-10 border border-white/5 bg-white/[0.02] overflow-hidden rounded-full transition-all duration-1000 hover:border-primary/40 hover:scale-105 shadow-2xl"
+            className="group relative px-8 sm:px-12 md:px-24 py-6 md:py-10 border border-white/5 bg-white/[0.02] overflow-hidden rounded-full transition-all duration-1000 hover:border-primary/40 hover:scale-105 shadow-2xl text-center"
           >
              <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-1000 ease-[0.16,1,0.3,1]" />
              <span className="relative z-10 text-[11px] uppercase tracking-[1em] font-black text-white group-hover:text-white flex items-center gap-8 transition-colors duration-500">

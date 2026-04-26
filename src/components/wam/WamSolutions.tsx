@@ -20,7 +20,7 @@ function ExpertiseCard({ title, desc, icon: Icon, tags, id }: ExpertiseCardProps
       viewport={{ once: true }}
       transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
       onMouseEnter={playHover}
-      className="group relative bg-white/[0.01] border border-white/5 p-12 md:p-20 flex flex-col gap-12 hover:bg-white/[0.03] hover:border-primary/20 transition-all duration-1000 overflow-hidden rounded-[4rem] shadow-2xl"
+      className="group relative bg-white/[0.01] border border-white/5 p-8 md:p-20 flex flex-col gap-12 hover:bg-white/[0.03] hover:border-primary/20 transition-all duration-1000 overflow-hidden rounded-[2.5rem] md:rounded-[4rem] shadow-2xl"
     >
       {/* Background Decorative Layer */}
       <div className="absolute top-0 right-0 p-16 opacity-[0.02] group-hover:opacity-10 group-hover:scale-125 group-hover:rotate-12 transition-all duration-1000 ease-out">
@@ -29,8 +29,8 @@ function ExpertiseCard({ title, desc, icon: Icon, tags, id }: ExpertiseCardProps
 
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-8">
-          <div className="w-20 h-20 rounded-[2.5rem] bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-primary/40 group-hover:bg-primary/5 transition-all duration-700 shadow-xl">
-            <Icon className="w-8 h-8 text-white/30 group-hover:text-primary transition-all duration-700" />
+          <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-[2.5rem] bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-primary/40 group-hover:bg-primary/5 transition-all duration-700 shadow-xl">
+            <Icon className="w-6 h-6 md:w-8 md:h-8 text-white/30 group-hover:text-primary transition-all duration-700" />
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-[10px] uppercase tracking-[0.8em] text-white/10 font-black">Capability</span>
@@ -51,7 +51,7 @@ function ExpertiseCard({ title, desc, icon: Icon, tags, id }: ExpertiseCardProps
 
       <div className="flex flex-wrap gap-4 relative z-10 mt-6">
         {tags.map((tag) => (
-          <span key={tag} className="text-[10px] tracking-[0.4em] font-black text-white/20 border border-white/5 px-8 py-3 rounded-full uppercase group-hover:text-primary group-hover:border-primary/10 transition-all duration-700 bg-white/[0.01]">
+          <span key={tag} className="text-[8px] md:text-[10px] tracking-[0.2em] md:tracking-[0.4em] font-black text-white/20 border border-white/5 px-4 md:px-8 py-2 md:py-3 rounded-full uppercase group-hover:text-primary group-hover:border-primary/10 transition-all duration-700 bg-white/[0.01]">
             {tag}
           </span>
         ))}

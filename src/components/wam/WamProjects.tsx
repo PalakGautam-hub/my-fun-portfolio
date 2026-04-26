@@ -84,7 +84,7 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: P
 
         {/* Project Intelligence Module (Glass Card) */}
         <div 
-          className="lg:col-span-5 flex flex-col gap-14 luminous-glass p-12 md:p-24 rounded-[5rem] group hover:bg-white/[0.04] transition-all duration-1000 border-white/5 hover:border-primary/20 shadow-2xl"
+          className="lg:col-span-5 flex flex-col gap-10 md:gap-14 luminous-glass p-8 md:p-16 lg:p-24 rounded-[3rem] md:rounded-[5rem] group hover:bg-white/[0.04] transition-all duration-1000 border-white/5 hover:border-primary/20 shadow-2xl"
           onMouseEnter={playHover}
         >
           <div className="flex flex-col gap-10">
@@ -228,7 +228,7 @@ export default function WamProjects() {
             href="mailto:gautampalak77@gmail.com" 
             onMouseEnter={playHover}
             onClick={playClick}
-            className="group relative px-24 py-10 border border-white/5 bg-white/[0.02] rounded-full overflow-hidden transition-all duration-700 hover:border-primary/40 hover:scale-105 shadow-2xl"
+            className="group relative px-6 sm:px-12 md:px-24 py-6 md:py-10 border border-white/5 bg-white/[0.02] rounded-full overflow-hidden transition-all duration-700 hover:border-primary/40 hover:scale-105 shadow-2xl"
           >
              <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-1000 ease-[0.16,1,0.3,1]" />
              <span className="relative z-10 text-xl md:text-3xl font-serif italic text-white group-hover:text-white flex items-center gap-10 transition-colors duration-500">
