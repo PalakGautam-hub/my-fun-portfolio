@@ -98,9 +98,9 @@ function TechNode({ pill, playHover, playClick }: { pill: any, playHover: any, p
   return (
     <motion.div
       drag
-      dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
-      dragElastic={0.1}
+      dragElastic={0.2}
       dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+      whileDrag={{ scale: 1.1, zIndex: 100 }}
       className="relative flex flex-col items-center justify-center gap-2 p-3 w-[28vw] h-[28vw] sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-2xl md:rounded-3xl border border-white/10 bg-white/[0.06] md:backdrop-blur-md shadow-xl cursor-grab active:cursor-grabbing hover:bg-white/[0.12] hover:border-primary/50 transition-all duration-500 group hover:z-50 active:scale-90 will-change-transform"
       initial={{ opacity: 0, scale: 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
