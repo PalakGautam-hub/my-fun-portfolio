@@ -106,7 +106,7 @@ const skills = useMemo(() => [
           initial={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full h-[35vh] sm:h-[45vh] md:w-[480px] md:h-[600px] aspect-auto md:aspect-[4/5] rounded-[2rem] md:rounded-[4rem] overflow-hidden group shadow-[0_0_100px_hsla(var(--primary)/0.1)] mb-8 md:mb-0"
+          className="relative w-full h-[35vh] sm:h-[45vh] md:w-[480px] md:h-[600px] aspect-auto md:aspect-[4/5] rounded-[2rem] md:rounded-[4rem] overflow-hidden group shadow-[0_0_100px_hsla(var(--primary)/0.1)] mb-12 md:mb-0"
         >
           {/* Luminous Ribbon/Aura Effect */}
           <div className="absolute inset-0 z-20 pointer-events-none">
@@ -133,11 +133,25 @@ const skills = useMemo(() => [
         </div>
 
         {/* Mobile-Only Sequential Introduction (Replaces desktop orbital clutter) */}
-        <div className="flex flex-col gap-8 w-full md:hidden relative z-20 items-center text-center">
+        <div className="flex flex-col gap-12 w-full md:hidden relative z-20 items-center text-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 1 }}
+            className="flex flex-wrap gap-2 justify-center"
+          >
+            {skills.slice(0, 3).map((skill, i) => (
+              <div key={i} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md flex items-center gap-3">
+                <skill.icon className={`w-3.5 h-3.5 ${skill.color}`} />
+                <span className="text-[10px] font-black tracking-widest text-white/60 uppercase">{skill.name}</span>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 1 }}
             className="flex flex-col gap-4 items-center"
           >
             <div className="flex items-center gap-3">
@@ -147,20 +161,6 @@ const skills = useMemo(() => [
             <p className="text-xs text-zinc-400 leading-relaxed max-w-[280px] italic font-light">
               "Orchestrating logic. <span className="text-white/40">Architecting emotion.</span> Elevating digital existence through cinematic engineering."
             </p>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 1 }}
-            className="flex flex-wrap gap-2 justify-center"
-          >
-            {skills.slice(0, 3).map((skill, i) => (
-              <div key={i} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md flex items-center gap-3">
-                <skill.icon className={`w-3.5 h-3.5 ${skill.color}`} />
-                <span className="text-[10px] font-black tracking-widest text-white/60 uppercase">{skill.name}</span>
-              </div>
-            ))}
           </motion.div>
         </div>
       </motion.div>
