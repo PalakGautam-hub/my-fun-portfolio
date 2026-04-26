@@ -71,64 +71,9 @@ export default function WamHeader() {
             Communication Protocol <ArrowRight className="w-4 h-4 group-hover:translate-x-3 transition-transform text-primary duration-700" />
           </a>
 
-          <button 
-            className={`p-4 md:p-6 rounded-full cursor-pointer transition-all duration-700 z-[1200] border shadow-2xl ${isOpen ? 'bg-white text-black border-white' : 'luminous-glass text-white border-white/10 hover:border-white/40'}`}
-            onClick={() => { playClick(); setIsOpen(!isOpen); }}
-            onMouseEnter={playHover}
-          >
-            {isOpen ? <X className="w-5 h-5 stroke-[3]" /> : <Menu className="w-5 h-5" />}
-          </button>
         </div>
       </motion.header>
-
-      {/* Futuristic Menu Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            className="fixed inset-0 bg-[#050208] z-[1000] flex flex-col items-center justify-center py-32 px-12 overflow-hidden"
-            initial={{ opacity: 0, clipPath: "circle(0% at 90% 10%)" }}
-            animate={{ opacity: 1, clipPath: "circle(150% at 90% 10%)" }}
-            exit={{ opacity: 0, clipPath: "circle(0% at 90% 10%)" }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03]">
-              <span className="text-[25vw] font-black uppercase tracking-tighter italic">NAVIGATION</span>
-            </div>
-            
-            <nav className="flex flex-col items-center gap-6 md:gap-10 w-full text-center relative z-10">
-              {[
-                { name: 'Portfolio Archive', id: 'work', sub: 'Project Documentation' },
-                { name: 'Core Capabilities', id: 'expertise', sub: 'Technical Skillset' },
-                { name: 'Digital Identity', id: 'about', sub: 'Professional Dossier' },
-                { name: 'Secure Protocol', id: 'contact', sub: 'Direct Communication' }
-              ].map((item, i) => (
-                <motion.a 
-                  key={item.id}
-                  href={`#${item.id}`}
-                  onMouseEnter={playHover}
-                  onClick={() => { playClick(); setIsOpen(false); }}
-                  className="group flex flex-col items-center gap-2"
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + i * 0.1, duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <span className="text-[8px] md:text-[10px] uppercase tracking-[0.8em] text-primary/40 group-hover:text-primary transition-colors duration-500">{item.sub}</span>
-                  <span className="text-4xl md:text-6xl lg:text-7xl font-serif italic text-white/40 group-hover:text-white transition-all duration-700 uppercase tracking-tighter group-hover:scale-105">
-                    {item.name.split(' ')[0]} <span className="text-white/10 group-hover:text-white/40">{item.name.split(' ')[1]}</span>
-                  </span>
-                </motion.a>
-              ))}
-            </nav>
-
-            <div className="flex gap-8 md:gap-32 justify-center flex-wrap uppercase font-black tracking-[0.4em] md:tracking-[0.8em] text-[8px] md:text-[10px] text-white/40 relative z-10 mt-24">
-              <a href="https://github.com/PalakGautam-hub" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">GitHub</a>
-              <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">LinkedIn</a>
-              <a href="https://leetcode.com/u/palakG05/" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">LeetCode</a>
-            </div>
-            
-          </motion.div>
-        )}
-      </AnimatePresence>
+    </>
     </>
   );
 }
