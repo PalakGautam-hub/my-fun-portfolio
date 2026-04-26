@@ -81,7 +81,7 @@ export default function WamStatement() {
 
           {/* Metrics Sidebar */}
           <motion.div 
-            className="lg:col-span-4 flex flex-col gap-8"
+            className="lg:col-span-4 flex flex-col gap-8 w-full"
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -95,15 +95,15 @@ export default function WamStatement() {
               <div 
                 key={i}
                 onMouseEnter={playHover}
-                className="bg-white/[0.08] backdrop-blur-xl md:backdrop-blur-3xl border border-white/20 p-10 md:p-12 rounded-[3rem] md:rounded-[3.5rem] flex flex-col gap-8 md:gap-10 group hover:border-primary/60 hover:bg-white/[0.12] transition-all duration-1000 shadow-[0_0_40px_rgba(0,0,0,0.5)]"
+                className="w-full max-w-[320px] sm:max-w-md mx-auto bg-white/[0.08] backdrop-blur-xl md:backdrop-blur-3xl border border-white/20 p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] flex flex-col gap-6 md:gap-10 group hover:border-primary/60 hover:bg-white/[0.12] transition-all duration-1000 shadow-[0_0_40px_rgba(0,0,0,0.5)]"
               >
                  <div className="flex justify-between items-start">
-                    <metric.icon className="w-10 h-10 text-primary opacity-20 group-hover:opacity-60 transition-all duration-700 group-hover:scale-110" />
+                    <metric.icon className="w-8 h-8 md:w-10 md:h-10 text-primary opacity-20 group-hover:opacity-60 transition-all duration-700 group-hover:scale-110" />
                     <span className="text-[9px] uppercase tracking-[0.8em] text-white/5 font-black">{metric.label}</span>
                  </div>
-                 <div className="flex flex-col gap-3">
-                    <span className="text-6xl font-sans font-black text-white group-hover:text-primary transition-colors duration-700">{metric.value}</span>
-                    <span className="text-[11px] uppercase tracking-[0.4em] text-zinc-600 font-bold group-hover:text-zinc-400 transition-colors">{metric.desc}</span>
+                 <div className="flex flex-col gap-2 md:gap-3">
+                    <span className="text-5xl md:text-6xl font-sans font-black text-white group-hover:text-primary transition-colors duration-700">{metric.value}</span>
+                    <span className="text-[10px] md:text-[11px] uppercase tracking-[0.4em] text-zinc-600 font-bold group-hover:text-zinc-400 transition-colors">{metric.desc}</span>
                  </div>
               </div>
             ))}
