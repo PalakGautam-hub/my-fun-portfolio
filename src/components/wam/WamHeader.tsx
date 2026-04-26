@@ -71,63 +71,8 @@ export default function WamHeader() {
             Communication Protocol <ArrowRight className="w-4 h-4 group-hover:translate-x-3 transition-transform text-primary duration-700" />
           </a>
 
-          <button
-            className={`p-4 md:p-6 rounded-full cursor-pointer transition-all duration-700 z-[1200] border shadow-2xl ${isOpen ? 'bg-white text-black border-white' : 'luminous-glass text-white border-white/10 hover:border-white/40'}`}
-            onClick={() => { playClick(); setIsOpen(!isOpen); }}
-            onMouseEnter={playHover}
-          >
-            {isOpen ? <X className="w-5 h-5 stroke-[3]" /> : <Menu className="w-5 h-5" />}
-          </button>
         </div>
       </motion.header>
-
-      {/* Futuristic Menu Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            className="fixed inset-0 bg-[#050208] z-[9999] flex flex-col items-center justify-center py-32 px-12 overflow-hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <span className="text-[20vw] font-black uppercase tracking-tighter italic text-white/[0.05]">SYSTEM</span>
-            </div>
-            
-            <nav className="flex flex-col items-center gap-8 md:gap-12 w-full text-center relative z-[10000]">
-              {[
-                { name: 'PORTFOLIO', id: 'work', sub: 'Archive' },
-                { name: 'CAPABILITIES', id: 'expertise', sub: 'Technical' },
-                { name: 'IDENTITY', id: 'about', sub: 'Dossier' },
-                { name: 'CONTACT', id: 'contact', sub: 'Secure' }
-              ].map((item, i) => (
-                <motion.a 
-                  key={item.id}
-                  href={`#${item.id}`}
-                  onMouseEnter={playHover}
-                  onClick={() => { playClick(); setIsOpen(false); }}
-                  className="group flex flex-col items-center gap-1 cursor-pointer"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.1, duration: 0.5 }}
-                >
-                  <span className="text-[12px] uppercase tracking-[0.6em] text-primary font-black">{item.sub}</span>
-                  <span className="text-5xl md:text-8xl font-serif italic text-white group-hover:text-primary transition-all duration-500 uppercase tracking-tighter">
-                    {item.name}
-                  </span>
-                </motion.a>
-              ))}
-            </nav>
-
-            <div className="flex gap-8 md:gap-24 justify-center flex-wrap uppercase font-black tracking-[0.4em] text-[10px] text-white relative z-[10000] mt-20">
-              <a href="https://github.com/PalakGautam-hub" target="_blank" className="hover:text-primary transition-colors cursor-pointer">GitHub</a>
-              <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" className="hover:text-primary transition-colors cursor-pointer">LinkedIn</a>
-              <a href="https://leetcode.com/u/palakG05/" target="_blank" className="hover:text-primary transition-colors cursor-pointer">LeetCode</a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }

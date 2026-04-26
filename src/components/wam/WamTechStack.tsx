@@ -1,10 +1,18 @@
 import { motion } from "framer-motion";
 import { Terminal, Database, Code2, Cpu, Cloud, Layers, Server, Atom } from "lucide-react";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useSoundSystem } from "./SoundSystem";
 
 export default function WamTechStack() {
   const { playHover, playClick } = useSoundSystem();
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
   
   const techPills = useMemo(() => {
     const allSkills = [
@@ -84,7 +92,7 @@ export default function WamTechStack() {
         {/* Tech Nodes Grid (Block Manner) */}
         <div className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-6 w-full px-2">
           {techPills.map((pill, i) => (
-            <TechNode key={i} pill={pill} playHover={playHover} playClick={playClick} />
+            <TechNode key={i} pill={pill} playHover={playHover} playClick={playClick} isDesktop={isDesktop} />
           ))}
         </div>
 
@@ -94,14 +102,14 @@ export default function WamTechStack() {
   );
 }
 
-function TechNode({ pill, playHover, playClick }: { pill: any, playHover: any, playClick: any }) {
+function TechNode({ pill, playHover, playClick, isDesktop }: { pill: any, playHover: any, playClick: any, isDesktop: boolean }) {
   return (
     <motion.div
-      drag
+      drag={isDesktop}
       dragElastic={0.2}
       dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
       whileDrag={{ scale: 1.1, zIndex: 100 }}
-      className="relative flex flex-col items-center justify-center gap-2 p-3 w-[28vw] h-[28vw] sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-2xl md:rounded-3xl border border-white/10 bg-white/[0.06] md:backdrop-blur-md shadow-xl cursor-grab active:cursor-grabbing hover:bg-white/[0.12] hover:border-primary/50 transition-all duration-500 group hover:z-50 active:scale-90 will-change-transform"
+      className={`relative flex flex-col items-center justify-center gap-2 p-3 w-[28vw] h-[28vw] sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-2xl md:rounded-3xl border border-white/10 bg-white/[0.06] md:backdrop-blur-md shadow-xl ${isDesktop ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'} hover:bg-white/[0.12] hover:border-primary/50 transition-all duration-500 group hover:z-50 active:scale-90 will-change-transform`}
       initial={{ opacity: 0, scale: 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
