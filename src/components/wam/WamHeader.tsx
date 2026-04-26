@@ -29,23 +29,23 @@ export default function WamHeader() {
         <div className="z-[60] flex items-center">
           <a 
             href="/" 
-            className="flex items-center gap-6 group"
+            className="flex items-center gap-3 md:gap-6 group"
             onMouseEnter={playHover}
             onClick={playClick}
           >
-            <div className="w-14 h-14 relative flex items-center justify-center p-3 rounded-2xl bg-white/[0.03] border border-white/10 group-hover:border-primary/40 group-hover:bg-primary/5 transition-all duration-700 shadow-[0_0_20px_rgba(240,10,180,0.05)]">
+            <div className="w-10 h-10 md:w-14 md:h-14 relative flex items-center justify-center p-2 md:p-3 rounded-xl md:rounded-2xl bg-white/[0.03] border border-white/10 group-hover:border-primary/40 group-hover:bg-primary/5 transition-all duration-700 shadow-[0_0_20px_rgba(240,10,180,0.05)]">
               <img 
                 src="/logo_pg.png" 
                 alt="PG Logo" 
                 className="w-full h-full object-contain group-hover:drop-shadow-neon transition-all duration-700" 
               />
-              <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             </div>
-            <div className="flex flex-col gap-0.5">
-              <span className="text-sm md:text-xl font-serif tracking-[0.4em] font-black text-white uppercase leading-none group-hover:text-primary transition-colors duration-700">PALAK GAUTAM</span>
+            <div className="flex flex-col gap-0">
+              <span className="text-[12px] md:text-xl font-serif tracking-[0.3em] md:tracking-[0.4em] font-black text-white uppercase leading-none group-hover:text-primary transition-colors duration-700">PALAK GAUTAM</span>
               <div className="flex items-center gap-2 md:gap-3">
-                 <span className="text-[6px] md:text-[7px] uppercase tracking-[0.6em] text-white/20 font-black">Archive v4.0</span>
-                 <Activity className="w-1.5 h-1.5 md:w-2 md:h-2 text-primary opacity-40 animate-pulse" />
+                 <span className="text-[5px] md:text-[7px] uppercase tracking-[0.4em] md:tracking-[0.6em] text-white/20 font-black">Archive v4.0</span>
+                 <Activity className="w-1 h-1 md:w-2 md:h-2 text-primary opacity-40 animate-pulse" />
               </div>
             </div>
           </a>
