@@ -95,7 +95,7 @@ export default function WamStatement() {
               <div 
                 key={i}
                 onMouseEnter={playHover}
-                className="bg-white/[0.04] backdrop-blur-md md:backdrop-blur-3xl border border-white/10 p-10 md:p-12 rounded-[3rem] md:rounded-[3.5rem] flex flex-col gap-8 md:gap-10 group hover:border-primary/40 hover:bg-white/[0.06] transition-all duration-1000 shadow-2xl"
+                className="bg-white/[0.08] backdrop-blur-xl md:backdrop-blur-3xl border border-white/20 p-10 md:p-12 rounded-[3rem] md:rounded-[3.5rem] flex flex-col gap-8 md:gap-10 group hover:border-primary/60 hover:bg-white/[0.12] transition-all duration-1000 shadow-[0_0_40px_rgba(0,0,0,0.5)]"
               >
                  <div className="flex justify-between items-start">
                     <metric.icon className="w-10 h-10 text-primary opacity-20 group-hover:opacity-60 transition-all duration-700 group-hover:scale-110" />
