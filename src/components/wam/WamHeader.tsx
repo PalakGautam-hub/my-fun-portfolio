@@ -1,10 +1,9 @@
-import { Menu, X, Github, Linkedin, Terminal, Mail, ArrowRight, Activity, Shield, Volume2, VolumeX } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Activity, Volume2, VolumeX } from "lucide-react";
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useSoundSystem } from "./SoundSystem";
 
 export default function WamHeader() {
-  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { isMuted, toggleMute, playHover, playClick } = useSoundSystem();
 
