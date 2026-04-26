@@ -49,11 +49,11 @@ export default function WamStatement() {
         </div>
 
         {/* Narrative & Metrics Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 md:gap-40 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 md:gap-32 lg:gap-48 items-start">
           
           {/* Main Narrative */}
           <motion.div 
-            className="lg:col-span-8 flex flex-col gap-12 md:gap-20"
+            className="lg:col-span-7 xl:col-span-8 flex flex-col gap-12 md:gap-20"
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -95,7 +95,7 @@ export default function WamStatement() {
               <div 
                 key={i}
                 onMouseEnter={playHover}
-                className="bg-white/[0.01] backdrop-blur-md md:backdrop-blur-3xl border border-white/5 p-12 rounded-[3.5rem] flex flex-col gap-10 group hover:border-primary/20 hover:bg-white/[0.04] transition-all duration-1000 shadow-2xl"
+                className="bg-white/[0.04] backdrop-blur-md md:backdrop-blur-3xl border border-white/10 p-10 md:p-12 rounded-[3rem] md:rounded-[3.5rem] flex flex-col gap-8 md:gap-10 group hover:border-primary/40 hover:bg-white/[0.06] transition-all duration-1000 shadow-2xl"
               >
                  <div className="flex justify-between items-start">
                     <metric.icon className="w-10 h-10 text-primary opacity-20 group-hover:opacity-60 transition-all duration-700 group-hover:scale-110" />

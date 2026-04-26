@@ -20,7 +20,7 @@ function ExpertiseCard({ title, desc, icon: Icon, tags, id }: ExpertiseCardProps
       viewport={{ once: true }}
       transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
       onMouseEnter={playHover}
-      className="group relative bg-white/[0.01] border border-white/5 p-8 md:p-20 flex flex-col gap-12 hover:bg-white/[0.03] hover:border-primary/20 transition-all duration-1000 overflow-hidden rounded-[2.5rem] md:rounded-[4rem] shadow-2xl"
+      className="group relative bg-white/[0.04] border border-white/10 p-8 md:p-20 flex flex-col gap-12 hover:bg-white/[0.08] hover:border-primary/40 transition-all duration-1000 overflow-hidden rounded-[2.5rem] md:rounded-[4rem] shadow-2xl"
     >
       {/* Background Decorative Layer */}
       <div className="absolute top-0 right-0 p-16 opacity-[0.02] group-hover:opacity-10 group-hover:scale-125 group-hover:rotate-12 transition-all duration-1000 ease-out">
