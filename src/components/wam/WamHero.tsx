@@ -106,7 +106,7 @@ const skills = useMemo(() => [
           initial={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full h-[50vh] sm:h-[60vh] md:w-[480px] md:h-[600px] aspect-auto md:aspect-[4/5] rounded-[2.5rem] md:rounded-[4rem] overflow-hidden group shadow-[0_0_100px_hsla(var(--primary)/0.1)] mb-12 md:mb-0"
+          className="relative w-full h-[35vh] sm:h-[45vh] md:w-[480px] md:h-[600px] aspect-auto md:aspect-[4/5] rounded-[2rem] md:rounded-[4rem] overflow-hidden group shadow-[0_0_100px_hsla(var(--primary)/0.1)] mb-8 md:mb-0"
         >
           {/* Luminous Ribbon/Aura Effect */}
           <div className="absolute inset-0 z-20 pointer-events-none">
@@ -119,10 +119,10 @@ const skills = useMemo(() => [
             className="w-full h-full object-cover object-top md:object-center filter grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2000ms] ease-out"
           />
           
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050208] via-transparent to-transparent opacity-90 md:opacity-70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050208] via-transparent to-transparent opacity-60" />
           
           {/* Internal Glass Overlay */}
-          <div className="absolute inset-0 border-[1px] border-white/5 rounded-[2.5rem] md:rounded-[4rem] pointer-events-none m-4 md:m-6" />
+          <div className="absolute inset-0 border-[1px] border-white/5 rounded-[2rem] md:rounded-[4rem] pointer-events-none m-4 md:m-6" />
         </motion.div>
 
         {/* Futuristic Orbital Nodes (Desktop Only) */}
@@ -133,7 +133,22 @@ const skills = useMemo(() => [
         </div>
 
         {/* Mobile-Only Sequential Introduction (Replaces desktop orbital clutter) */}
-        <div className="flex flex-col gap-4 w-full md:hidden relative z-20">
+        <div className="flex flex-col gap-8 w-full md:hidden relative z-20 items-center text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 1 }}
+            className="flex flex-col gap-4 items-center"
+          >
+            <div className="flex items-center gap-3">
+              <Sparkles className="w-3.5 h-3.5 text-primary" />
+              <span className="text-[10px] uppercase tracking-[0.4em] font-black text-white/90">Digital Intelligence</span>
+            </div>
+            <p className="text-xs text-zinc-400 leading-relaxed max-w-[280px] italic font-light">
+              "Orchestrating logic. <span className="text-white/40">Architecting emotion.</span> Elevating digital existence through cinematic engineering."
+            </p>
+          </motion.div>
+
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -151,7 +166,7 @@ const skills = useMemo(() => [
       </motion.div>
 
       {/* Cinematic Interface Layers (Overlay) */}
-      <div className="absolute inset-0 z-30 pointer-events-none flex flex-col justify-between p-12 md:p-24">
+      <div className="absolute inset-0 z-30 pointer-events-none flex flex-col justify-between p-6 pt-32 pb-12 md:p-24">
         
         {/* Top Branding Section */}
         <div className="flex justify-between items-start">
@@ -189,17 +204,18 @@ const skills = useMemo(() => [
             transition={{ duration: 2, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-4 flex flex-col gap-10 pointer-events-auto"
           >
-            <div className="flex flex-col gap-5 max-w-xs group">
+            {/* Desktop Only Quote (hidden on mobile as it's moved below image) */}
+            <div className="hidden md:flex flex-col gap-5 max-w-xs group order-2 md:order-1">
               <div className="flex items-center gap-4">
                 <Sparkles className="w-4 h-4 text-primary group-hover:rotate-12 transition-transform duration-500" />
-                <span className="text-[10px] uppercase tracking-[0.4em] font-black text-white/80">Digital Intelligence</span>
+                <span className="text-[10px] uppercase tracking-[0.4em] font-black text-white/90">Digital Intelligence</span>
               </div>
-              <p className="text-sm text-zinc-500 leading-relaxed tracking-wide italic font-light">
-                "Orchestrating logic. <span className="text-white/40">Architecting emotion.</span> Elevating digital existence through cinematic engineering."
+              <p className="text-sm text-zinc-300 leading-relaxed tracking-wide italic font-light drop-shadow-sm">
+                "Orchestrating logic. <span className="text-white/60">Architecting emotion.</span> Elevating digital existence through cinematic engineering."
               </p>
             </div>
             
-            <a href="mailto:gautampalak77@gmail.com" className="flex items-center gap-8 group w-fit">
+            <a href="mailto:gautampalak77@gmail.com" className="flex items-center gap-8 group w-fit order-1 md:order-2">
               <div className="relative w-12 h-12 rounded-full border border-white/10 flex items-center justify-center overflow-hidden transition-all duration-700 group-hover:border-primary/50 group-hover:scale-110">
                 <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-700" />
                 <MessageSquare className="w-5 h-5 text-white/30 group-hover:text-primary transition-colors duration-500" />
@@ -217,7 +233,7 @@ const skills = useMemo(() => [
             transition={{ duration: 2.5, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-8 flex justify-end"
           >
-            <h2 className="text-4xl md:text-6xl font-light tracking-tighter text-white leading-none text-right uppercase">
+            <h2 className="text-3xl md:text-6xl font-light tracking-tighter text-white leading-none text-right uppercase mt-12 md:mt-0">
               <span className="opacity-40">VISIONARY</span> <br/>
               <span className="italic font-serif text-primary drop-shadow-[0_0_20px_rgba(var(--primary),0.3)]">ARCHITECT.</span>
             </h2>
