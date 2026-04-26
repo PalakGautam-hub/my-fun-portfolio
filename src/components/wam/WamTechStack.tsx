@@ -82,7 +82,7 @@ export default function WamTechStack() {
         </div>
 
         {/* Tech Nodes Grid (Block Manner) */}
-        <div className="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-6 w-full">
+        <div className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-6 w-full px-2">
           {techPills.map((pill, i) => (
             <TechNode key={i} pill={pill} playHover={playHover} playClick={playClick} />
           ))}
@@ -97,15 +97,15 @@ export default function WamTechStack() {
 function TechNode({ pill, playHover, playClick }: { pill: any, playHover: any, playClick: any }) {
   return (
     <motion.div
-      className="relative flex flex-col items-center justify-center gap-1.5 p-3 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-2xl md:rounded-3xl border border-white/10 bg-white/[0.06] backdrop-blur-sm shadow-[0_0_15px_rgba(255,255,255,0.03)] cursor-pointer hover:bg-white/[0.12] hover:border-primary/50 transition-all duration-700 group hover:shadow-[0_0_30px_rgba(var(--primary),0.2)] hover:z-50"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      className="relative flex flex-col items-center justify-center gap-2 p-3 w-[28vw] h-[28vw] sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-2xl md:rounded-3xl border border-white/10 bg-white/[0.06] backdrop-blur-md shadow-xl cursor-pointer hover:bg-white/[0.12] hover:border-primary/50 transition-all duration-500 group hover:z-50 active:scale-90"
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       whileHover={{ y: -5, scale: 1.05 }}
       transition={{
-        opacity: { duration: 0.5, delay: pill.delay },
-        y: { type: "spring", stiffness: 300, damping: 20 },
-        scale: { type: "spring", stiffness: 300, damping: 20 }
+        opacity: { duration: 0.4, delay: pill.delay },
+        scale: { type: "spring", stiffness: 400, damping: 25 },
+        y: { type: "spring", stiffness: 300, damping: 20 }
       }}
       onMouseEnter={playHover}
       onClick={playClick}

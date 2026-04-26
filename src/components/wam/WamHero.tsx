@@ -99,14 +99,14 @@ export default function WamHero() {
       {/* Central Immersive Composition */}
       <motion.div 
         style={{ scale, opacity }}
-        className="relative z-10 w-full max-w-7xl h-full flex items-center justify-center"
+        className="relative z-10 w-full max-w-7xl h-full flex flex-col md:flex-row items-center justify-center px-6 md:px-0 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]"
       >
         {/* The Central Visual Anchor (Portrait) */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.85, filter: "blur(10px)" }}
+          initial={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-[260px] h-[325px] sm:w-[320px] sm:h-[400px] md:w-[480px] md:h-[600px] aspect-[4/5] rounded-[3rem] md:rounded-[4rem] overflow-hidden group shadow-[0_0_100px_hsla(var(--primary)/0.1)]"
+          className="relative w-full h-[50vh] sm:h-[60vh] md:w-[480px] md:h-[600px] aspect-auto md:aspect-[4/5] rounded-[2.5rem] md:rounded-[4rem] overflow-hidden group shadow-[0_0_100px_hsla(var(--primary)/0.1)] mb-12 md:mb-0"
         >
           {/* Luminous Ribbon/Aura Effect */}
           <div className="absolute inset-0 z-20 pointer-events-none">
@@ -116,20 +116,37 @@ export default function WamHero() {
           <img 
             src="/palak_portrait.png" 
             alt="Palak Gautam" 
-            className="w-full h-full object-cover object-top filter grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2000ms] ease-out"
+            className="w-full h-full object-cover object-top md:object-center filter grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2000ms] ease-out"
           />
           
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050208] via-transparent to-transparent opacity-90" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050208] via-transparent to-transparent opacity-90 md:opacity-70" />
           
           {/* Internal Glass Overlay */}
-          <div className="absolute inset-0 border-[1px] border-white/5 rounded-[4rem] pointer-events-none m-6" />
+          <div className="absolute inset-0 border-[1px] border-white/5 rounded-[2.5rem] md:rounded-[4rem] pointer-events-none m-4 md:m-6" />
         </motion.div>
 
-        {/* Futuristic Orbital Nodes */}
+        {/* Futuristic Orbital Nodes (Desktop Only) */}
         <div className="absolute inset-0 pointer-events-none hidden md:block">
           {nodes.map((node, i) => (
             <OrbitalNode key={i} node={node} />
           ))}
+        </div>
+
+        {/* Mobile-Only Sequential Introduction (Replaces desktop orbital clutter) */}
+        <div className="flex flex-col gap-4 w-full md:hidden relative z-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 1 }}
+            className="flex flex-wrap gap-2 justify-center"
+          >
+            {skills.slice(0, 3).map((skill, i) => (
+              <div key={i} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md flex items-center gap-3">
+                <skill.icon className={`w-3.5 h-3.5 ${skill.color}`} />
+                <span className="text-[10px] font-black tracking-widest text-white/60 uppercase">{skill.name}</span>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </motion.div>
 
