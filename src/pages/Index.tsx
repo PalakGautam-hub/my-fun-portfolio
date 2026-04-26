@@ -15,6 +15,7 @@ export default function Index() {
 
   return (
     <div className="relative min-h-screen bg-[#050208] text-white selection:bg-primary selection:text-white font-sans overflow-x-hidden cinematic-grain">
+      {/* Build Trigger: System Refinement */}
       <AnimatePresence mode="wait">
         {loading ? (
           <WamPreloader key="loader" onComplete={() => setLoading(false)} />

@@ -112,7 +112,7 @@ const skills = useMemo(() => [
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-[300px] h-[480px] sm:w-[340px] sm:h-[520px] md:w-[480px] md:h-[600px] aspect-auto md:aspect-[4/5] rounded-[2rem] md:rounded-[4rem] overflow-hidden group shadow-[0_0_100px_hsla(var(--primary)/0.1)] mb-10 md:mb-0 will-change-transform"
+          className="relative w-[90vw] h-[65vh] md:w-[600px] md:h-[800px] rounded-[2rem] md:rounded-[4rem] overflow-hidden group shadow-[0_0_100px_hsla(var(--primary)/0.1)] mb-10 md:mb-12 will-change-transform"
         >
           {/* Luminous Ribbon/Aura Effect */}
           <div className="absolute inset-0 z-20 pointer-events-none">
@@ -131,12 +131,7 @@ const skills = useMemo(() => [
           <div className="absolute inset-0 border-[1px] border-white/5 rounded-[2rem] md:rounded-[4rem] pointer-events-none m-4 md:m-6" />
         </motion.div>
 
-        {/* Futuristic Orbital Nodes (Desktop Only) */}
-        <div className="absolute inset-0 pointer-events-none hidden md:block">
-          {nodes.map((node, i) => (
-            <OrbitalNode key={i} node={node} />
-          ))}
-        </div>
+        {/* Orbital Nodes Removed for cleaner 'Full' photo aesthetic */}
 
         {/* Mobile-Only Sequential Introduction (Replaces desktop orbital clutter) */}
         <div className="flex flex-col gap-6 w-full md:hidden relative z-20 items-center text-center">
@@ -193,41 +188,29 @@ const skills = useMemo(() => [
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-4 flex flex-col gap-10 pointer-events-auto"
+            className="md:col-span-12 flex flex-col items-center gap-10 pointer-events-auto"
           >
-            {/* Quote Block (Shown on both mobile and desktop, but styled for both) */}
-            <div className="flex flex-col gap-4 md:gap-5 max-w-xs group order-2 md:order-1 items-center md:items-start text-center md:text-left">
+            {/* Quote Block (Shown on all devices, centered below image) */}
+            <div className="flex flex-col gap-4 md:gap-6 max-w-xl group items-center text-center">
               <div className="flex items-center gap-4">
-                <Sparkles className="w-4 h-4 text-primary group-hover:rotate-12 transition-transform duration-500" />
-                <span className="text-[10px] uppercase tracking-[0.4em] font-black text-white/90">Digital Intelligence</span>
+                <Sparkles className="w-5 h-5 text-primary group-hover:rotate-12 transition-transform duration-500" />
+                <span className="text-[12px] uppercase tracking-[0.5em] font-black text-white/90">Digital Intelligence</span>
               </div>
-              <p className="text-[11px] md:text-sm text-zinc-300 leading-relaxed tracking-wide italic font-light drop-shadow-sm">
+              <p className="text-sm md:text-xl text-zinc-300 leading-relaxed tracking-wide italic font-light drop-shadow-sm px-4">
                 "Orchestrating logic. <span className="text-white/60">Architecting emotion.</span> Elevating digital existence through cinematic engineering."
               </p>
             </div>
             
-            <a href="mailto:gautampalak77@gmail.com" className="flex items-center gap-8 group w-fit order-1 md:order-2">
-              <div className="relative w-12 h-12 rounded-full border border-white/10 flex items-center justify-center overflow-hidden transition-all duration-700 group-hover:border-primary/50 group-hover:scale-110">
+            <a href="mailto:gautampalak77@gmail.com" className="flex flex-col items-center gap-4 group">
+              <div className="relative w-14 h-14 rounded-full border border-white/10 flex items-center justify-center overflow-hidden transition-all duration-700 group-hover:border-primary/50 group-hover:scale-110">
                 <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-700" />
-                <MessageSquare className="w-5 h-5 text-white/30 group-hover:text-primary transition-colors duration-500" />
+                <MessageSquare className="w-6 h-6 text-white/30 group-hover:text-primary transition-colors duration-500" />
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 items-center">
                 <span className="text-[9px] uppercase tracking-[0.3em] font-black text-white/20">Protocol Access</span>
                 <span className="text-[11px] font-bold text-white tracking-[0.25em] group-hover:text-primary transition-all duration-500 uppercase">Initiate Contact</span>
               </div>
             </a>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 2.5, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-8 flex justify-end"
-          >
-            <h2 className="text-3xl md:text-6xl font-light tracking-tighter text-white leading-none text-right uppercase mt-12 md:mt-0">
-              <span className="opacity-40">VISIONARY</span> <br/>
-              <span className="italic font-serif text-primary drop-shadow-[0_0_20px_rgba(var(--primary),0.3)]">ARCHITECT.</span>
-            </h2>
           </motion.div>
         </div>
       </div>
