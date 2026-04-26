@@ -236,7 +236,7 @@ export default function WamProjects() {
              </span>
           </motion.a>
 
-          <div className="flex gap-10 md:gap-32 justify-center flex-wrap uppercase font-black tracking-[0.5em] md:tracking-[1em] text-[9px] md:text-[11px] text-white/10">
+          <div className="flex gap-10 md:gap-32 justify-center flex-wrap uppercase font-black tracking-[0.5em] md:tracking-[1em] text-[9px] md:text-[11px] text-white/70">
             <a href="https://github.com/PalakGautam-hub" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">GitHub</a>
             <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">LinkedIn</a>
             <a href="https://leetcode.com/u/palakG05/" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">LeetCode</a>
