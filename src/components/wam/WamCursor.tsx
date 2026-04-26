@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
+import { useSoundSystem } from "./SoundSystem";
 
 export default function WamCursor() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const { playHover } = useSoundSystem();
 
-  const springConfig = { damping: 30, stiffness: 250 };
+  const springConfig = { damping: 40, stiffness: 300, mass: 0.5 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
@@ -30,7 +32,10 @@ export default function WamCursor() {
         target.closest("a") ||
         target.closest("button")
       ) {
-        setIsHovering(true);
+        if (!isHovering) {
+          playHover();
+          setIsHovering(true);
+        }
       } else {
         setIsHovering(false);
       }
@@ -43,24 +48,48 @@ export default function WamCursor() {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseover", handleMouseOver);
     };
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, isHovering, playHover]);
 
-  // Completely unmount the framer-motion heavy blend-node on iOS/touch to save memory
   if (isMobileDevice) return null;
 
   return (
-    <motion.div
-      className="hidden md:block fixed top-0 left-0 w-6 h-6 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference"
-      style={{
-        x: cursorX,
-        y: cursorY,
-        translateX: "-50%",
-        translateY: "-50%",
-        scale: isHovering ? 2.5 : 1,
-      }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ scale: { type: "spring", damping: 15, stiffness: 150 } }}
-    />
+    <div className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden hidden md:block">
+      {/* Primary High-Precision Pointer */}
+      <motion.div
+        className="absolute top-0 left-0 w-2 h-2 bg-primary rounded-full shadow-[0_0_15px_hsla(var(--primary)/0.8)]"
+        style={{
+          x: cursorX,
+          y: cursorY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+      />
+      
+      {/* Outer Atmospheric Aura */}
+      <motion.div
+        className="absolute top-0 left-0 w-12 h-12 border border-white/10 rounded-full"
+        style={{
+          x: cursorX,
+          y: cursorY,
+          translateX: "-50%",
+          translateY: "-50%",
+          scale: isHovering ? 2 : 1,
+          borderColor: isHovering ? "hsla(var(--primary) / 0.5)" : "rgba(255, 255, 255, 0.1)",
+        }}
+        transition={{ type: "spring", damping: 20, stiffness: 100 }}
+      />
+
+      {/* Kinetic Trailing Node */}
+      <motion.div
+        className="absolute top-0 left-0 w-1 h-1 bg-white/20 rounded-full"
+        style={{
+          x: useSpring(mouseX, { damping: 50, stiffness: 150 }),
+          y: useSpring(mouseY, { damping: 50, stiffness: 150 }),
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+      />
+    </div>
   );
 }
+

@@ -1,125 +1,126 @@
 import { motion } from "framer-motion";
 import { Database, ShieldCheck, Zap, ArrowRight, Activity, Terminal } from "lucide-react";
+import { useSoundSystem } from "./SoundSystem";
 
 export default function WamStatement() {
+  const { playHover, playClick } = useSoundSystem();
+
   return (
-    <section id="insights" className="w-full bg-black py-40 md:py-64 px-6 md:px-12 flex flex-col items-center justify-center border-y border-white/5 relative overflow-hidden">
+    <section id="insights" className="w-full bg-[#050208] py-48 md:py-80 px-6 md:px-12 flex flex-col items-center justify-center border-y border-white/5 relative overflow-hidden">
       
       {/* Background Cinematic Texture */}
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.02] pointer-events-none" />
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-[0.02] pointer-events-none" />
       
       <div className="max-w-[1600px] w-full relative z-10">
         
         {/* Cinematic Header Block */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-32 md:mb-56">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-16 mb-40 md:mb-72">
           <motion.div 
-            className="flex flex-col gap-6 max-w-3xl"
-            initial={{ opacity: 0, y: 40 }}
+            className="flex flex-col gap-10 max-w-4xl"
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h3 className="text-[10px] uppercase tracking-[0.8em] font-black text-fuchsia-500/60 mb-2">
-              Identity Protocol [ 01 ]
-            </h3>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-light font-serif text-white tracking-tighter leading-none uppercase">
+            <div className="flex items-center gap-4">
+              <div className="w-2 h-2 rounded-full bg-primary" />
+              <h3 className="text-[11px] uppercase tracking-[1em] font-black text-primary/40">
+                Identity Protocol [ 01 ]
+              </h3>
+            </div>
+            <h2 className="text-4xl sm:text-6xl md:text-8xl font-light font-serif text-white tracking-tighter leading-none uppercase">
               Strategic <br/>
-              <span className="italic text-white/40">Dossier.</span>
+              <span className="italic text-white/20">Dossier.</span>
             </h2>
           </motion.div>
           
           <motion.div 
-            className="flex flex-col gap-4 text-right items-end hidden md:flex"
+            className="flex flex-col gap-6 text-right items-end hidden lg:flex"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
+            transition={{ delay: 0.8, duration: 2 }}
           >
-            <div className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center animate-spin-slow">
-              <Activity className="w-6 h-6 text-fuchsia-400" />
+            <div className="w-20 h-20 rounded-full border border-white/5 flex items-center justify-center relative">
+               <div className="absolute inset-0 border border-primary/20 rounded-full animate-ping opacity-20" />
+               <Activity className="w-8 h-8 text-primary animate-pulse" />
             </div>
-            <span className="text-[9px] uppercase tracking-[0.5em] text-white/20">Active Insight Mode</span>
+            <span className="text-[10px] uppercase tracking-[0.8em] text-white/10 font-black">Neural Monitoring</span>
           </motion.div>
         </div>
 
         {/* Narrative & Metrics Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 md:gap-32 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 md:gap-40 items-start">
           
-          {/* Main Narrative - Huge Typography */}
+          {/* Main Narrative */}
           <motion.div 
-            className="lg:col-span-8 flex flex-col gap-10 md:gap-16"
-            initial={{ opacity: 0, x: -50 }}
+            className="lg:col-span-8 flex flex-col gap-12 md:gap-20"
+            initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-white/90 leading-[1.4] tracking-tight font-serif">
-              Analyst and Engineer with a background in Computer Science Engineering, <span className="italic text-fuchsia-400">Palak Gautam</span> specializes in bridging the gap between <span className="text-white font-sans font-bold">complex datasets</span> and <span className="text-white/40 italic">scalable software systems</span>.
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white/90 leading-[1.3] tracking-tight font-serif">
+              Analyst and Engineer with a background in Computer Science Engineering, <span className="italic text-primary drop-shadow-[0_0_15px_rgba(var(--primary),0.3)]">Palak Gautam</span> specializes in bridging the gap between <span className="text-white font-sans font-black">complex datasets</span> and <span className="text-white/30 italic">scalable software systems</span>.
             </p>
             
-            <div className="flex flex-col md:flex-row gap-12 md:gap-24 border-t border-white/5 pt-12">
-              <div className="flex flex-col gap-6 max-w-sm">
-                <span className="text-[10px] uppercase tracking-[0.4em] text-white/20 font-black">Strategic Core</span>
-                <p className="text-base text-zinc-500 leading-relaxed tracking-wide">
-                  Expertise in end-to-end data pipelines, ensuring that every byte of information serves a strategic business purpose. Transforming manual workflows into automated intelligence hubs.
+            <div className="flex flex-col md:flex-row gap-16 md:gap-32 border-t border-white/5 pt-16">
+              <div className="flex flex-col gap-8 max-w-sm group">
+                <span className="text-[11px] uppercase tracking-[0.4em] text-white/20 font-black group-hover:text-primary/40 transition-colors">Strategic Core</span>
+                <p className="text-lg text-zinc-500 leading-relaxed tracking-wide font-light">
+                  Expertise in end-to-end data pipelines, ensuring that every byte of information serves a strategic business purpose. Transforming manual workflows into <span className="text-white/40 italic">automated intelligence hubs.</span>
                 </p>
               </div>
-              <div className="flex flex-col gap-6 max-w-sm">
-                <span className="text-[10px] uppercase tracking-[0.4em] text-white/20 font-black">Technical Ethos</span>
-                <p className="text-base text-zinc-500 leading-relaxed tracking-wide">
-                  Building with a focus on performance, security, and scalability. Utilizing modern stacks to deliver sub-100ms latencies and robust enterprise-grade architectures.
+              <div className="flex flex-col gap-8 max-w-sm group">
+                <span className="text-[11px] uppercase tracking-[0.4em] text-white/20 font-black group-hover:text-primary/40 transition-colors">Technical Ethos</span>
+                <p className="text-lg text-zinc-500 leading-relaxed tracking-wide font-light">
+                  Building with a focus on performance, security, and scalability. Utilizing modern stacks to deliver <span className="text-white/40 italic">sub-100ms latencies</span> and robust enterprise-grade architectures.
                 </p>
               </div>
             </div>
           </motion.div>
 
-          {/* Metrics Sidebar - Modular Bento Style */}
+          {/* Metrics Sidebar */}
           <motion.div 
-            className="lg:col-span-4 flex flex-col gap-6"
-            initial={{ opacity: 0, x: 50 }}
+            className="lg:col-span-4 flex flex-col gap-8"
+            initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="bg-white/[0.03] backdrop-blur-md border border-white/5 p-10 rounded-[2.5rem] flex flex-col gap-8 group hover:border-fuchsia-500/20 transition-all">
-               <div className="flex justify-between items-start">
-                  <Database className="w-8 h-8 text-fuchsia-400 opacity-50" />
-                  <span className="text-[8px] uppercase tracking-widest text-white/10 font-black">Metric 01</span>
-               </div>
-               <div className="flex flex-col gap-2">
-                  <span className="text-5xl font-sans font-black text-white">70%</span>
-                  <span className="text-[10px] uppercase tracking-[0.4em] text-zinc-500">Manual Workload Reduction</span>
-               </div>
-            </div>
-
-            <div className="bg-white/[0.03] backdrop-blur-md border border-white/5 p-10 rounded-[2.5rem] flex flex-col gap-8 group hover:border-fuchsia-500/20 transition-all">
-               <div className="flex justify-between items-start">
-                  <ShieldCheck className="w-8 h-8 text-fuchsia-400 opacity-50" />
-                  <span className="text-[8px] uppercase tracking-widest text-white/10 font-black">Metric 02</span>
-               </div>
-               <div className="flex flex-col gap-2">
-                  <span className="text-5xl font-sans font-black text-white">90%</span>
-                  <span className="text-[10px] uppercase tracking-[0.4em] text-zinc-500">Report Precision Rate</span>
-               </div>
-            </div>
-
-            <div className="bg-white/[0.03] backdrop-blur-md border border-white/5 p-10 rounded-[2.5rem] flex flex-col gap-8 group hover:border-fuchsia-500/20 transition-all">
-               <div className="flex justify-between items-start">
-                  <Zap className="w-8 h-8 text-fuchsia-400 opacity-50" />
-                  <span className="text-[8px] uppercase tracking-widest text-white/10 font-black">Metric 03</span>
-               </div>
-               <div className="flex flex-col gap-2">
-                  <span className="text-5xl font-sans font-black text-white">100ms</span>
-                  <span className="text-[10px] uppercase tracking-[0.4em] text-zinc-500">Service Response Latency</span>
-               </div>
-            </div>
+            {[
+              { icon: Database, label: "Metric 01", value: "70%", desc: "Manual Workload Reduction" },
+              { icon: ShieldCheck, label: "Metric 02", value: "90%", desc: "Report Precision Rate" },
+              { icon: Zap, label: "Metric 03", value: "100ms", desc: "Service Response Latency" }
+            ].map((metric, i) => (
+              <div 
+                key={i}
+                onMouseEnter={playHover}
+                className="bg-white/[0.01] backdrop-blur-3xl border border-white/5 p-12 rounded-[3.5rem] flex flex-col gap-10 group hover:border-primary/20 hover:bg-white/[0.04] transition-all duration-1000 shadow-2xl"
+              >
+                 <div className="flex justify-between items-start">
+                    <metric.icon className="w-10 h-10 text-primary opacity-20 group-hover:opacity-60 transition-all duration-700 group-hover:scale-110" />
+                    <span className="text-[9px] uppercase tracking-[0.8em] text-white/5 font-black">{metric.label}</span>
+                 </div>
+                 <div className="flex flex-col gap-3">
+                    <span className="text-6xl font-sans font-black text-white group-hover:text-primary transition-colors duration-700">{metric.value}</span>
+                    <span className="text-[11px] uppercase tracking-[0.4em] text-zinc-600 font-bold group-hover:text-zinc-400 transition-colors">{metric.desc}</span>
+                 </div>
+              </div>
+            ))}
           </motion.div>
         </div>
+
         {/* Cinematic Call to Action */}
-        <div className="mt-40 md:mt-56 flex flex-col items-center gap-12">
-          <a href="#work" className="group relative px-20 py-8 border border-white/10 overflow-hidden rounded-full transition-all hover:border-white">
-             <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-700" />
-             <span className="relative z-10 text-xs uppercase tracking-[0.8em] font-black text-white group-hover:text-black flex items-center gap-4">
-                Enter Strategic Archive <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+        <div className="mt-48 md:mt-80 flex flex-col items-center gap-16">
+          <a 
+            href="#work" 
+            onMouseEnter={playHover}
+            onClick={playClick}
+            className="group relative px-24 py-10 border border-white/5 bg-white/[0.02] overflow-hidden rounded-full transition-all duration-1000 hover:border-primary/40 hover:scale-105 shadow-2xl"
+          >
+             <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-1000 ease-[0.16,1,0.3,1]" />
+             <span className="relative z-10 text-[11px] uppercase tracking-[1em] font-black text-white group-hover:text-white flex items-center gap-8 transition-colors duration-500">
+                Enter Strategic Archive <ArrowRight className="w-5 h-5 group-hover:translate-x-3 transition-transform duration-700" />
              </span>
           </a>
         </div>
@@ -127,9 +128,10 @@ export default function WamStatement() {
       </div>
 
       {/* Floating Section Accents */}
-      <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
-        <Terminal className="w-32 h-32 text-white" />
+      <div className="absolute bottom-0 left-0 p-24 opacity-5 pointer-events-none">
+        <Terminal className="w-48 h-48 text-white animate-pulse" />
       </div>
     </section>
   );
 }
+

@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import { Terminal, Database, Code2, Cpu, Cloud, Layers, Server, Atom } from "lucide-react";
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState } from "react";
+import { useSoundSystem } from "./SoundSystem";
 
 export default function WamTechStack() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { playHover, playClick } = useSoundSystem();
   
   const techPills = useMemo(() => {
     const allSkills = [
@@ -16,8 +18,7 @@ export default function WamTechStack() {
     ];
 
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    // Show fewer skills on mobile to maintain 60fps
-    const filteredSkills = isMobile ? allSkills.slice(0, 12) : allSkills;
+    const filteredSkills = allSkills; // Show all skills
 
     const icons = [Terminal, Database, Code2, Cpu, Cloud, Layers, Server];
     const colors = ["text-fuchsia-400", "text-purple-400", "text-pink-400"];
@@ -26,35 +27,37 @@ export default function WamTechStack() {
        const Icon = icons[i % icons.length];
        const colorClass = colors[i % colors.length];
        
-       // Optimized Multi-Ring Circular Distribution
-       const ring1Count = isMobile ? 4 : 6;
-       const ring2Count = isMobile ? 8 : 10;
+       const ring1Count = 6;
+       const ring2Count = 9;
        
        let ringIndex = 0;
        let posInRing = i;
        let nodesInRing = ring1Count;
-       let ringRadius = 0.6;
+       
+       // Tighter radii to prevent overflow. Values are percentages from center (50%)
+       let rx = isMobile ? 25 : 18; 
+       let ry = isMobile ? 20 : 18;
 
        if (i >= ring1Count && i < ring1Count + ring2Count) {
          ringIndex = 1;
          posInRing = i - ring1Count;
          nodesInRing = ring2Count;
-         ringRadius = 0.9;
+         rx = isMobile ? 38 : 30;
+         ry = isMobile ? 32 : 30;
        } else if (i >= ring1Count + ring2Count) {
          ringIndex = 2;
          posInRing = i - (ring1Count + ring2Count);
          nodesInRing = filteredSkills.length - (ring1Count + ring2Count);
-         ringRadius = 1.2;
+         rx = isMobile ? 46 : 42; // Max 46% so it doesn't clip
+         ry = isMobile ? 42 : 42;
        }
 
-       const angle = (posInRing / nodesInRing) * (Math.PI * 2);
+       // Stagger angles slightly for organic look
+       const angleOffset = ringIndex * (Math.PI / 8);
+       const angle = (posInRing / nodesInRing) * (Math.PI * 2) + angleOffset;
        
-       // Adjust spread to be more circular and contained
-       const spreadY = isMobile ? 30 : 32; 
-       const spreadX = isMobile ? 35 : 40; 
-       
-       const top = 50 + ringRadius * spreadY * Math.sin(angle);
-       const left = 50 + ringRadius * spreadX * Math.cos(angle);
+       const top = 50 + ry * Math.sin(angle);
+       const left = 50 + rx * Math.cos(angle);
 
        return {
          name,
@@ -71,85 +74,65 @@ export default function WamTechStack() {
   return (
     <section ref={containerRef} className="relative w-full min-h-[100vh] md:min-h-screen bg-black overflow-hidden flex flex-col items-center justify-center border-t border-white/5 py-32">
       
-      {/* Refined 3D Grid - More subtle and deeper */}
-      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none" 
+      {/* Refined 3D Grid */}
+      <div className="absolute inset-0 z-0 opacity-5 pointer-events-none" 
            style={{
              backgroundImage: `linear-gradient(rgba(240, 10, 180, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(240, 10, 180, 0.1) 1px, transparent 1px)`,
-             backgroundSize: '50px 50px',
-             transform: 'perspective(1200px) rotateX(65deg) translateY(-150px) scale(2.8)',
+             backgroundSize: '80px 80px',
+             transform: 'perspective(1500px) rotateX(70deg) translateY(-200px) scale(3)',
              transformOrigin: 'center top'
            }}
       />
 
       {/* Sophisticated Layered Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-purple-900/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-fuchsia-600/5 rounded-full blur-[100px] pointer-events-none animate-pulse" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-primary/5 rounded-full blur-[160px] pointer-events-none" />
       
-      {/* Central Core Element - Framed by the nodes */}
+      {/* Central Core Element */}
       <div className="relative z-10 flex flex-col items-center justify-center pointer-events-none">
         <motion.div 
           animate={{ rotate: 360 }}
-          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-          className="w-20 h-20 md:w-32 md:h-32 rounded-full border border-fuchsia-500/20 flex items-center justify-center bg-black/60 backdrop-blur-2xl shadow-[0_0_60px_rgba(240,10,180,0.15)] relative"
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          className="w-20 h-20 md:w-32 md:h-32 rounded-full border border-primary/20 flex items-center justify-center bg-black/80 backdrop-blur-3xl shadow-[0_0_100px_hsla(var(--primary)/0.1)] relative"
         >
           {/* Multi-layered orbit rings */}
-          <div className="absolute inset-[-10%] rounded-full border border-purple-500/30 border-dashed animate-[spin_20s_linear_infinite]" />
-          <div className="absolute inset-[-25%] rounded-full border border-white/5 scale-110" />
-          <Atom className="w-8 h-8 md:w-12 md:h-12 text-fuchsia-400/80" />
+          <div className="absolute inset-[-15%] rounded-full border border-primary/10 border-dashed animate-[spin_25s_linear_infinite]" />
+          <div className="absolute inset-[-40%] rounded-full border border-white/5 scale-110 opacity-30" />
+          <Atom className="w-8 h-8 md:w-12 md:h-12 text-primary/60 animate-pulse" />
         </motion.div>
         
-        <div className="mt-16 flex flex-col items-center">
-          <h2 className="text-3xl md:text-7xl font-bold font-sans uppercase tracking-[0.25em] text-white text-center leading-none">
+        <div className="mt-20 flex flex-col items-center">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            className="text-4xl md:text-8xl font-bold font-sans uppercase tracking-[0.3em] text-white text-center leading-none"
+          >
             INTELLIGENCE
-          </h2>
-          <span className="mt-4 text-xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-purple-300 to-pink-500 italic font-serif lowercase tracking-wide">
-            core stack
-          </span>
+          </motion.h2>
+          <motion.span 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 0.4 }}
+            transition={{ delay: 0.5, duration: 1.5 }}
+            className="mt-6 text-xl md:text-2xl text-primary italic font-serif lowercase tracking-widest"
+          >
+            neural stack components
+          </motion.span>
         </div>
       </div>
 
-      {/* Static Circular Tech Cards */}
+      {/* Spatially Interactive Nodes */}
       <div className="absolute inset-0 z-20 pointer-events-none">
         {techPills.map((pill, i) => (
-          <motion.div
-            key={i}
-            className="absolute flex flex-col items-center justify-center gap-1.5 p-3 w-24 h-24 md:w-32 md:h-32 rounded-2xl border border-white/[0.08] bg-black/40 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.4)] pointer-events-auto cursor-grab active:cursor-grabbing hover:bg-white/[0.05] hover:border-fuchsia-500/40 transition-colors duration-500 group"
-            drag
-            dragConstraints={containerRef}
-            dragElastic={0.1}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            animate={{
-              y: [0, -8, 0],
-            }}
-            transition={{
-              y: { duration: 6 + (i % 4), repeat: Infinity, ease: "easeInOut" },
-              opacity: { duration: 0.5, delay: pill.delay },
-              scale: { duration: 0.5, delay: pill.delay }
-            }}
-            style={{ 
-              top: pill.top, 
-              left: pill.left,
-              transform: 'translate(-50%, -50%)'
-            }}
-          >
-            <div className="p-2 rounded-xl bg-white/5 group-hover:scale-110 group-hover:bg-fuchsia-500/10 transition-all duration-700">
-              <pill.Icon className={`w-4 h-4 md:w-6 md:h-6 ${pill.colorClass} opacity-80 group-hover:opacity-100 group-hover:text-fuchsia-400`} />
-            </div>
-            <span className="font-mono text-[8px] md:text-[10px] tracking-[0.15em] text-white/40 group-hover:text-white transition-colors uppercase text-center px-1">
-              {pill.name}
-            </span>
-          </motion.div>
+          <TechNode key={i} pill={pill} containerRef={containerRef} playHover={playHover} playClick={playClick} />
         ))}
       </div>
 
-      {/* Premium Interaction Hint */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 opacity-20 hover:opacity-50 transition-opacity">
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-[1px] h-10 bg-gradient-to-b from-fuchsia-500 to-transparent" />
-          <span className="text-[8px] md:text-[10px] tracking-[0.5em] text-white font-mono uppercase">
-            Spatially Interactive
+      {/* Interaction Hint */}
+      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-30 opacity-20 group hover:opacity-50 transition-all duration-700">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-[1px] h-12 bg-gradient-to-b from-primary/60 to-transparent group-hover:h-20 transition-all duration-700" />
+          <span className="text-[9px] tracking-[0.8em] text-white font-black uppercase">
+            Kinetic Interface
           </span>
         </div>
       </div>
@@ -157,3 +140,45 @@ export default function WamTechStack() {
     </section>
   );
 }
+
+function TechNode({ pill, containerRef, playHover, playClick }: { pill: any, containerRef: any, playHover: any, playClick: any }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      className="absolute flex flex-col items-center justify-center gap-1.5 p-2 w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 rounded-2xl md:rounded-3xl border border-white/5 bg-white/[0.02] backdrop-blur-[24px] shadow-2xl pointer-events-auto cursor-grab active:cursor-grabbing hover:bg-white/[0.08] hover:border-primary/40 transition-colors duration-700 group hover:z-50"
+      drag
+      dragConstraints={containerRef}
+      dragElastic={0.2}
+      initial={{ opacity: 0, scale: 0.5 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      animate={{
+        y: isHovered ? 0 : [0, -6, 0],
+        scale: isHovered ? 1.2 : 1,
+      }}
+      transition={{
+        y: { duration: 4 + (Math.random() * 4), repeat: Infinity, ease: "easeInOut" },
+        opacity: { duration: 0.8, delay: pill.delay },
+        scale: { type: "spring", damping: 20, stiffness: 300 }
+      }}
+      onMouseEnter={() => { playHover(); setIsHovered(true); }}
+      onMouseLeave={() => setIsHovered(false)}
+      onDragStart={playClick}
+      style={{ 
+        top: pill.top, 
+        left: pill.left,
+        transform: 'translate(-50%, -50%)',
+        zIndex: isHovered ? 100 : 20 + pill.ring
+      }}
+    >
+      <div className="p-1.5 md:p-2.5 rounded-xl bg-white/5 group-hover:scale-110 group-hover:bg-primary/10 transition-transform duration-700">
+        <pill.Icon className={`w-4 h-4 md:w-6 md:h-6 ${pill.colorClass} opacity-60 group-hover:opacity-100 transition-all duration-700`} />
+      </div>
+      <span className="font-mono text-[7px] sm:text-[8px] md:text-[10px] tracking-[0.15em] md:tracking-[0.2em] text-white/30 group-hover:text-white transition-colors uppercase text-center font-bold px-1 hidden sm:block group-hover:block">
+        {pill.name}
+      </span>
+    </motion.div>
+  );
+}
+
