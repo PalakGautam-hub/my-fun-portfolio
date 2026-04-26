@@ -128,13 +128,13 @@
   }
 
   @keyframes pulse-luminous {
-    0%, 100% { opacity: 0.3; filter: blur(40px); }
-    50% { opacity: 0.6; filter: blur(60px); }
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
   }
 
   .animate-pulse-luminous {
     animation: pulse-luminous 8s ease-in-out infinite;
-    will-change: opacity, filter;
+    will-change: opacity;
   }
 
   .text-stroke-futuristic {
