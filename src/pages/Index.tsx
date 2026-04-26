@@ -14,7 +14,7 @@ export default function Index() {
   const [loading, setLoading] = useState(true);
 
   return (
-    <div className="relative min-h-screen bg-[#050208] text-white selection:bg-primary selection:text-white font-sans overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#050208] text-white selection:bg-primary selection:text-white font-sans overflow-x-hidden cinematic-grain">
       <AnimatePresence mode="wait">
         {loading ? (
           <WamPreloader key="loader" onComplete={() => setLoading(false)} />
@@ -65,7 +65,10 @@ export default function Index() {
               
               {/* Minimal Futuristic Footer */}
               <footer className="w-full py-16 px-12 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5 bg-[#050208] relative z-10">
-                <div className="flex flex-col gap-2">
+                <div 
+                  className="lg:col-span-5 flex flex-col gap-10 md:gap-14 luminous-glass p-8 md:p-16 lg:p-24 rounded-[2.5rem] md:rounded-[5rem] group hover:bg-white/[0.04] transition-all duration-1000 border-white/5 hover:border-primary/20 shadow-2xl relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-30 pointer-events-none" />        <div className="flex flex-col gap-2">
                    <span className="text-[10px] uppercase tracking-[0.5em] text-white font-black">PALAK GAUTAM</span>
                    <p className="text-[8px] uppercase tracking-[0.3em] text-white/20">System Protocol Archive © 2026</p>
                 </div>
