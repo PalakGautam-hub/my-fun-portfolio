@@ -97,7 +97,11 @@ export default function WamTechStack() {
 function TechNode({ pill, playHover, playClick }: { pill: any, playHover: any, playClick: any }) {
   return (
     <motion.div
-      className="relative flex flex-col items-center justify-center gap-2 p-3 w-[28vw] h-[28vw] sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-2xl md:rounded-3xl border border-white/10 bg-white/[0.06] md:backdrop-blur-md shadow-xl cursor-pointer hover:bg-white/[0.12] hover:border-primary/50 transition-all duration-500 group hover:z-50 active:scale-90 will-change-transform"
+      drag
+      dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
+      dragElastic={0.1}
+      dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+      className="relative flex flex-col items-center justify-center gap-2 p-3 w-[28vw] h-[28vw] sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-2xl md:rounded-3xl border border-white/10 bg-white/[0.06] md:backdrop-blur-md shadow-xl cursor-grab active:cursor-grabbing hover:bg-white/[0.12] hover:border-primary/50 transition-all duration-500 group hover:z-50 active:scale-90 will-change-transform"
       initial={{ opacity: 0, scale: 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
@@ -110,10 +114,10 @@ function TechNode({ pill, playHover, playClick }: { pill: any, playHover: any, p
       onMouseEnter={playHover}
       onClick={playClick}
     >
-      <div className="p-2 md:p-3 rounded-xl bg-white/10 group-hover:scale-110 group-hover:bg-primary/20 transition-transform duration-700 shadow-inner">
+      <div className="p-2 md:p-3 rounded-xl bg-white/10 group-hover:scale-110 group-hover:bg-primary/20 transition-transform duration-700 shadow-inner pointer-events-none">
         <pill.Icon className={`w-5 h-5 md:w-8 md:h-8 ${pill.colorClass} opacity-90 drop-shadow-[0_0_8px_currentColor] group-hover:opacity-100 group-hover:drop-shadow-[0_0_12px_currentColor] transition-all duration-700`} />
       </div>
-      <span className="font-mono text-[8px] sm:text-[9px] md:text-[11px] tracking-[0.1em] text-white/70 group-hover:text-white transition-colors uppercase text-center font-bold px-1 drop-shadow-md">
+      <span className="font-mono text-[8px] sm:text-[9px] md:text-[11px] tracking-[0.1em] text-white/70 group-hover:text-white transition-colors uppercase text-center font-bold px-1 drop-shadow-md pointer-events-none">
         {pill.name}
       </span>
     </motion.div>
