@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
-import { Github, FolderOpen, Sparkles, ArrowUpRight } from "lucide-react";
+import { Github, FolderOpen, Sparkles, ArrowUpRight, ExternalLink } from "lucide-react";
 import { useSoundSystem } from "./SoundSystem";
 
 interface ProjectItemProps {
@@ -14,60 +14,112 @@ interface ProjectItemProps {
   index: string;
 }
 
-function ProjectCard({ title, role, desc, link, tags, bgGradient, index }: ProjectItemProps) {
+function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: ProjectItemProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const { playHover, playClick } = useSoundSystem();
   
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const springProgress = useSpring(scrollYProgress, { damping: 30, stiffness: 100 });
+
+  const y = useTransform(springProgress, [0, 1], [-50, 50]);
+  const scale = useTransform(springProgress, [0, 0.5, 1], [0.98, 1, 0.98]);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      ref={containerRef}
+      initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-      onMouseEnter={playHover}
-      className="group relative flex flex-col gap-8 p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] hover:border-primary/40 transition-all duration-700 shadow-2xl overflow-hidden"
+      transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+      className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden border-b border-white/5 px-6 md:px-12 lg:px-20 xl:px-32 py-32"
     >
-      {/* Dynamic Background Glow */}
-      <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${bgGradient} blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-1000`} />
-      
-      <div className="flex justify-between items-start relative z-10">
-        <div className="flex flex-col gap-1">
-          <span className="text-primary font-serif italic text-2xl">{index}</span>
-          <span className="text-[9px] uppercase tracking-[0.4em] text-white/20 font-black">{role}</span>
-        </div>
-        <div className="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary/40 transition-all duration-700">
-          <Github className="w-5 h-5 text-white/20 group-hover:text-primary transition-colors" />
-        </div>
+      {/* Immersive Cinematic Background */}
+      <div className="absolute inset-0 z-0 bg-[#050208]">
+        <div className={`absolute inset-0 opacity-10 bg-gradient-to-br ${bgGradient} blur-2xl md:blur-[160px] animate-pulse-luminous will-change-[opacity,transform]`} />
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-[0.02] hidden md:block" />
       </div>
 
-      <div className="flex flex-col gap-4 relative z-10">
-        <h3 className="text-3xl md:text-4xl font-light font-serif text-white tracking-tighter uppercase leading-none group-hover:translate-x-2 transition-transform duration-700">
-          {title}<span className="text-primary/20">.</span>
-        </h3>
-        <p className="text-sm md:text-base text-zinc-500 font-light leading-relaxed tracking-wide h-20 overflow-hidden line-clamp-3">
-          {desc}
-        </p>
-      </div>
-
-      <div className="flex flex-wrap gap-2 relative z-10">
-        {tags.map((tag) => (
-          <span key={tag} className="text-[8px] tracking-[0.2em] font-black text-white/10 border border-white/5 px-4 py-2 rounded-full uppercase group-hover:text-primary/40 transition-colors">
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={playClick}
-        className="mt-4 group/btn relative w-full py-5 bg-white text-black text-[10px] tracking-[0.4em] font-black uppercase text-center rounded-2xl overflow-hidden transition-all active:scale-95 shadow-xl"
+      {/* Massive Background Project Index */}
+      <motion.div 
+        style={{ y: useTransform(springProgress, [0, 1], [-100, 100]) }}
+        className="absolute inset-0 flex items-center justify-center z-0 opacity-[0.02]"
       >
-        <div className="absolute inset-0 bg-primary translate-y-full group-hover/btn:translate-y-0 transition-transform duration-700" />
-        <span className="relative z-10 flex items-center justify-center gap-4 group-hover/btn:text-white transition-colors duration-500">
-          Access Repository <Github className="w-4 h-4" />
-        </span>
-      </a>
+        <h1 className="text-[12vw] md:text-[10vw] font-black uppercase tracking-tighter text-stroke-futuristic opacity-5 whitespace-nowrap select-none italic">
+          {index}
+        </h1>
+      </motion.div>
+
+      <div className="relative z-10 max-w-[1600px] w-full grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 xl:gap-32 items-center">
+        
+        {/* Project Typographic Block */}
+        <div className="lg:col-span-7 flex flex-col gap-12">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center gap-8"
+          >
+            <span className="text-3xl font-serif italic text-primary">{index}</span>
+            <div className="h-[1px] w-24 bg-gradient-to-r from-primary/40 to-transparent" />
+            <span className="text-[11px] uppercase tracking-[0.8em] text-white/30 font-black">Archive Access</span>
+          </motion.div>
+
+          <motion.h2 
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-light font-serif tracking-tighter leading-none text-white uppercase"
+            style={{ y }}
+          >
+            {title}<span className="text-primary/20">.</span>
+          </motion.h2>
+
+          <div className="flex flex-wrap gap-5">
+            {tags.map((tag) => (
+              <span key={tag} className="text-[10px] tracking-[0.6em] font-black text-white/30 border border-white/5 px-10 py-4 rounded-full uppercase hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-all duration-700 cursor-default">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Project Intelligence Module (Glass Card) */}
+        <div 
+          className="lg:col-span-5 flex flex-col gap-10 md:gap-14 luminous-glass p-8 md:p-16 lg:p-24 rounded-[3rem] md:rounded-[5rem] group hover:bg-white/[0.04] transition-all duration-1000 border-white/5 hover:border-primary/20 shadow-2xl"
+          onMouseEnter={playHover}
+        >
+          <div className="flex flex-col gap-10">
+            <div className="flex justify-between items-center">
+               <div className="flex items-center gap-4">
+                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  <h3 className="text-[10px] uppercase tracking-[0.8em] font-black text-primary drop-shadow-neon">
+                    {role}
+                  </h3>
+               </div>
+               <Sparkles className="w-5 h-5 text-white/10 group-hover:text-primary transition-all duration-700 group-hover:rotate-12" />
+            </div>
+            <p className="text-2xl md:text-3xl text-zinc-400 font-serif italic leading-relaxed font-light">
+              "{desc}"
+            </p>
+          </div>
+
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={playHover}
+            onClick={playClick}
+            className="group/btn relative w-full py-10 bg-white text-black text-[12px] tracking-[0.8em] font-black uppercase text-center rounded-[2.5rem] overflow-hidden transition-all active:scale-95 shadow-xl"
+          >
+            <div className="absolute inset-0 bg-primary translate-y-full group-hover/btn:translate-y-0 transition-transform duration-1000 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]" />
+            <span className="relative z-10 flex items-center justify-center gap-8 group-hover/btn:text-white transition-colors duration-500">
+              Access Repository <Github className="w-5 h-5" />
+            </span>
+          </a>
+        </div>
+
+      </div>
     </motion.div>
   );
 }
@@ -84,7 +136,7 @@ export default function WamProjects() {
       desc: "Spearheaded an AI full-stack application using LLM APIs, slashing document review cycles by 60%.",
       link: "https://github.com/PalakGautam-hub/Lexora-AI",
       tags: ["Python", "LLMs", "NLP"],
-      bgGradient: "from-secondary/20 to-transparent",
+      bgGradient: "from-secondary/20 via-transparent to-transparent",
     },
     {
       id: "lucy",
@@ -94,7 +146,7 @@ export default function WamProjects() {
       desc: "An AI-powered digital twin interface featuring voice-to-response interaction and vision support.",
       link: "https://github.com/PalakGautam-hub/LUCY-AI-Digital-Twin",
       tags: ["AI", "Digital Twin", "React"],
-      bgGradient: "from-primary/20 to-transparent",
+      bgGradient: "from-primary/20 via-transparent to-transparent",
     },
     {
       id: "traffic",
@@ -104,15 +156,17 @@ export default function WamProjects() {
       desc: "Optimized traffic signal synchronization via Python simulations, reducing commuter wait times by 30%.",
       link: "https://github.com/PalakGautam-hub/Traffic_Management",
       tags: ["Python", "Simulation", "System Design"],
-      bgGradient: "from-indigo-500/20 to-transparent",
+      bgGradient: "from-indigo-500/20 via-transparent to-transparent",
     },
   ];
 
   return (
-    <section id="work" className="w-full bg-[#050208] border-t border-white/5 py-48 md:py-80 px-6 md:px-12 lg:px-24">
+    <section id="work" className="w-full bg-[#050208] border-t border-white/5">
       
       {/* Strategic Archive Header */}
-      <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-16 mb-32 md:mb-56">
+      <div className="w-full py-48 md:py-80 px-6 md:px-12 lg:px-20 xl:px-32 flex flex-col md:flex-row justify-between items-start md:items-end gap-16 border-b border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,hsla(var(--primary)/0.03)_0%,transparent_50%)] pointer-events-none" />
+        
         <div className="flex flex-col gap-10 relative z-10">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -141,44 +195,43 @@ export default function WamProjects() {
         </div>
       </div>
 
-      {/* Grid Alignment */}
-      <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 md:gap-16">
+      <div className="flex flex-col">
         {projects.map((p) => (
-          <ProjectCard key={p.id} {...p} />
+          <ProjectItem key={p.id} {...p} />
         ))}
       </div>
       
       {/* Final Call to Intelligence */}
-      <section id="contact" className="w-full mt-64 py-32 md:py-48 flex flex-col items-center border-t border-white/5 relative overflow-hidden rounded-[4rem] bg-white/[0.01]">
+      <section id="contact" className="w-full min-h-screen bg-[#050208] py-32 md:py-48 lg:py-64 px-6 md:px-12 lg:px-20 flex flex-col items-center border-t border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsla(var(--primary)/0.05)_0%,transparent_80%)] pointer-events-none" />
 
         <motion.h2 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] font-light font-serif text-white tracking-tighter leading-[0.85] max-w-[2000px] relative z-10 uppercase text-center"
+          className="text-4xl sm:text-7xl md:text-[8rem] lg:text-[12rem] font-light font-serif text-white tracking-tighter leading-[0.85] max-w-[2000px] relative z-10 uppercase text-center"
         >
           Ready to decode <br className="hidden sm:block" />
           <span className="italic text-white/10">the next system?</span>
         </motion.h2>
 
-        <div className="max-w-[1200px] w-full flex flex-col items-center justify-center relative z-10 px-6 md:px-12 mt-24 gap-16">
+        <div className="max-w-[1800px] w-full flex flex-col items-center justify-center relative z-10 px-6 md:px-12 lg:px-20 mt-32">
           <motion.a 
             href="mailto:gautampalak77@gmail.com" 
             onMouseEnter={playHover}
             onClick={playClick}
-            className="group relative w-full max-w-4xl px-8 md:px-16 py-8 md:py-10 border border-white/5 bg-white/[0.02] rounded-full overflow-hidden transition-all duration-700 hover:border-primary/40 hover:scale-105 shadow-2xl"
+            className="group relative w-full max-w-4xl px-6 sm:px-12 md:px-24 py-6 md:py-10 border border-white/5 bg-white/[0.02] rounded-full overflow-hidden transition-all duration-700 hover:border-primary/40 hover:scale-105 shadow-2xl"
           >
              <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-1000 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]" />
-             <span className="relative z-10 text-xl md:text-2xl font-serif italic text-white group-hover:text-white flex items-center justify-between transition-colors duration-500">
-                gautampalak77@gmail.com <ArrowUpRight className="w-6 h-6 group-hover:rotate-45 transition-transform duration-700" />
+             <span className="relative z-10 text-xl md:text-3xl font-serif italic text-white group-hover:text-white flex items-center gap-10 transition-colors duration-500">
+                gautampalak77@gmail.com <ArrowUpRight className="w-8 h-8 group-hover:rotate-45 transition-transform duration-700" />
              </span>
           </motion.a>
 
-          <div className="flex gap-6 md:gap-16 justify-center flex-wrap uppercase font-black tracking-[0.4em] text-[9px] md:text-[11px] text-white/40">
-            <a href="https://github.com/PalakGautam-hub" target="_blank" onMouseEnter={playHover} className="hover:text-primary transition-all duration-700">GitHub</a>
-            <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" onMouseEnter={playHover} className="hover:text-primary transition-all duration-700">LinkedIn</a>
-            <a href="https://leetcode.com/u/palakG05/" target="_blank" onMouseEnter={playHover} className="hover:text-primary transition-all duration-700">LeetCode</a>
+          <div className="flex gap-6 md:gap-32 justify-center flex-wrap uppercase font-black tracking-[0.3em] md:tracking-[1em] text-[9px] md:text-[11px] text-white/70">
+            <a href="https://github.com/PalakGautam-hub" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">GitHub</a>
+            <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">LinkedIn</a>
+            <a href="https://leetcode.com/u/palakG05/" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">LeetCode</a>
           </div>
         </div>
       </section>
