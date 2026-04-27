@@ -102,19 +102,31 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: P
             </p>
           </div>
 
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            onMouseEnter={playHover}
-            onClick={playClick}
-            className="group/btn relative w-full py-10 bg-white text-black text-[12px] tracking-[0.8em] font-black uppercase text-center rounded-[2.5rem] overflow-hidden transition-all active:scale-95 shadow-xl"
-          >
-            <div className="absolute inset-0 bg-primary translate-y-full group-hover/btn:translate-y-0 transition-transform duration-1000 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]" />
-            <span className="relative z-10 flex items-center justify-center gap-8 group-hover/btn:text-white transition-colors duration-500">
-              Access Intelligence <ExternalLink className="w-5 h-5" />
-            </span>
-          </a>
+          <div className="flex gap-4">
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={playHover}
+              onClick={playClick}
+              className="group/btn relative flex-grow py-10 bg-white text-black text-[12px] tracking-[0.8em] font-black uppercase text-center rounded-[2.5rem] overflow-hidden transition-all active:scale-95 shadow-xl"
+            >
+              <div className="absolute inset-0 bg-primary translate-y-full group-hover/btn:translate-y-0 transition-transform duration-1000 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]" />
+              <span className="relative z-10 flex items-center justify-center gap-8 group-hover/btn:text-white transition-colors duration-500">
+                Access Intelligence <ExternalLink className="w-5 h-5" />
+              </span>
+            </a>
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={playHover}
+              onClick={playClick}
+              className="p-8 md:p-10 rounded-[2.5rem] border border-white/10 bg-white/[0.03] hover:bg-white/10 hover:border-primary/40 transition-all duration-500 flex items-center justify-center group/gh"
+            >
+              <Github className="w-6 h-6 text-white/20 group-hover/gh:text-primary transition-colors duration-500" />
+            </a>
+          </div>
         </div>
 
       </div>

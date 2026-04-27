@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import WamHeader from "@/components/wam/WamHeader";
 import WamHero from "@/components/wam/WamHero";
 import WamStatement from "@/components/wam/WamStatement";
-import WamTechStack from "@/components/wam/WamTechStack";
 import WamSolutions from "@/components/wam/WamSolutions";
 import WamProjects from "@/components/wam/WamProjects";
 import WamPreloader from "@/components/wam/WamPreloader";
@@ -41,7 +40,6 @@ export default function Index() {
 
                 <div className="w-full relative">
                   <WamStatement />
-                  <WamTechStack />
                   <WamSolutions />
                   <WamProjects />
                 </div>

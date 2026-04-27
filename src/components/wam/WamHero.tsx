@@ -88,12 +88,20 @@ export default function WamHero() {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col gap-3"
+          className="flex flex-col gap-6 pointer-events-auto"
         >
-          <div className="flex items-center gap-4">
-            <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
-            <span className="text-[9px] uppercase tracking-[0.8em] text-primary font-black drop-shadow-neon">SYSTEM ONLINE</span>
-          </div>
+          <a href="/" className="flex items-center gap-5 group">
+            <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center p-2 group-hover:border-primary/40 transition-all duration-700">
+              <img src="/logo_pg.png" alt="PG Logo" className="w-full h-full object-contain" />
+            </div>
+            <div className="flex flex-col gap-1">
+              <div className="flex items-center gap-3">
+                <div className="w-1 h-1 bg-primary rounded-full animate-pulse" />
+                <span className="text-[9px] uppercase tracking-[0.6em] text-primary font-black">SYSTEM ONLINE</span>
+              </div>
+              <span className="text-[10px] md:text-sm font-black tracking-[0.4em] text-white/40 group-hover:text-white transition-colors">PALAK GAUTAM</span>
+            </div>
+          </a>
           <div className="w-24 h-[1px] bg-gradient-to-r from-primary/60 to-transparent" />
         </motion.div>
 

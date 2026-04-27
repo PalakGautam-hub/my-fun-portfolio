@@ -18,20 +18,36 @@ export function SoundSystemProvider({ children }: { children: React.ReactNode })
 
   useEffect(() => {
     try {
-      // Using high-frequency subtle blips for a premium digital feel
-      const hover = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3'); // Soft blip
-      const click = new Audio('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3'); // Mechanical click
-      const transition = new Audio('https://assets.mixkit.co/active_storage/sfx/2567/2567-preview.mp3'); // Airy sweep
+      const hover = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3'); 
+      const click = new Audio('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3'); 
+      const transition = new Audio('https://assets.mixkit.co/active_storage/sfx/2567/2567-preview.mp3'); 
 
-      hover.volume = 0.1;
-      click.volume = 0.15;
-      transition.volume = 0.2;
+      hover.volume = 0.05; // Lower volume for better UX
+      click.volume = 0.1;
+      transition.volume = 0.1;
 
       setHoverSound(hover);
       setClickSound(click);
       setTransitionSound(transition);
+
+      // Mobile Audio Context Unlock
+      const unlock = () => {
+        hover.play().then(() => {
+          hover.pause();
+          hover.currentTime = 0;
+        }).catch(() => {});
+        window.removeEventListener('click', unlock);
+        window.removeEventListener('touchstart', unlock);
+      };
+      window.addEventListener('click', unlock);
+      window.addEventListener('touchstart', unlock);
+
+      return () => {
+        window.removeEventListener('click', unlock);
+        window.removeEventListener('touchstart', unlock);
+      };
     } catch (error) {
-      console.warn("Audio system failed to initialize (common on mobile). Falling back to silent mode.", error);
+      console.warn("Audio system failed to initialize.", error);
     }
   }, []);
 

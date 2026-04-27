@@ -65,6 +65,7 @@
     background-color: #050208;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    overscroll-behavior-y: none;
   }
 
   * {
