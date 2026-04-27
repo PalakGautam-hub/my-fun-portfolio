@@ -25,20 +25,7 @@ export default function Index() {
               animate={{ opacity: 1 }}
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             >
-              {/* Global Futuristic Technical Grid */}
-              <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.05] hidden md:block"
-                style={{
-                  backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)`,
-                  backgroundSize: '80px 80px'
-                }}
-              />
 
-              {/* Global Atmospheric CRT Scan-lines - Benchmark Polish */}
-              <div className="fixed inset-0 z-50 pointer-events-none opacity-[0.02] hidden md:block"
-                style={{
-                  background: `repeating-linear-gradient(to bottom, transparent, transparent 1px, rgba(255,255,255,0.05) 1px, rgba(255,255,255,0.05) 2px)`,
-                }}
-              />
 
               {/* Global Luminous Depth Layers */}
               <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
