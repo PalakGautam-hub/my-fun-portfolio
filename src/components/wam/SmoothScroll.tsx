@@ -16,7 +16,7 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     try {
       // Initialize Lenis
       const lenis = new Lenis({
-        duration: 1.6, // Increased speed from 2.2
+        duration: 1.0, // Set to 1 sec as requested
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
