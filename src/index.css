@@ -210,11 +210,4 @@
     animation: spin-slow 8s linear infinite;
     will-change: transform;
   }
-
-  /* Hide native cursor on desktop — custom cursor takes over */
-  @media (pointer: fine) {
-    *, *::before, *::after {
-      cursor: none !important;
-    }
-  }
 }
