@@ -53,10 +53,10 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: P
         </h1>
       </motion.div>
 
-      <div className="relative z-10 max-w-[1700px] w-full grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-12 gap-16 md:gap-24 xl:gap-32 items-center">
+      <div className="relative z-10 max-w-[1700px] w-full grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-20 md:gap-32 items-center">
         
         {/* Project Typographic Block */}
-        <div className="xl:col-span-7 flex flex-col gap-12">
+        <div className="flex flex-col gap-12">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -69,7 +69,7 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: P
           </motion.div>
 
           <motion.h2 
-            className="text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[9rem] 2xl:text-[11rem] font-light font-serif tracking-tighter leading-none text-white uppercase"
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-[6rem] xl:text-[7rem] 2xl:text-[9rem] font-light font-serif tracking-tighter leading-none text-white uppercase break-words"
             style={{ y }}
           >
             {title}<span className="text-primary/20">.</span>
@@ -86,7 +86,7 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: P
 
         {/* Project Intelligence Module (Glass Card) */}
         <div 
-          className="xl:col-span-5 flex flex-col gap-10 md:gap-14 luminous-glass p-8 md:p-16 lg:p-24 rounded-[3rem] md:rounded-[5rem] group hover:bg-white/[0.04] transition-all duration-1000 border-white/5 hover:border-primary/20 shadow-2xl relative z-20"
+          className="flex flex-col gap-10 md:gap-14 luminous-glass p-8 md:p-16 lg:p-20 rounded-[3rem] md:rounded-[5rem] group hover:bg-white/[0.04] transition-all duration-1000 border-white/5 hover:border-primary/20 shadow-2xl relative z-20 w-full max-w-2xl justify-self-center lg:justify-self-end"
           onMouseEnter={playHover}
         >
           <div className="flex flex-col gap-10">
