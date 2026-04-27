@@ -61,13 +61,13 @@ export default function WamHero() {
   ], []);
 
   return (
-    <section ref={containerRef} className="relative w-full h-[100svh] md:h-[110vh] flex items-center justify-center overflow-hidden bg-[#050208] select-none">
+    <section ref={containerRef} className="relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-[#050208] select-none pt-40 md:pt-48 pb-20">
       
       {/* Immersive Luminous Environment (Background) */}
       <AmbientParticles />
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-[60%] h-[60%] bg-primary/10 blur-3xl md:blur-[160px] rounded-full animate-pulse-luminous" />
-        <div className="absolute bottom-1/4 right-1/4 w-[50%] h-[50%] bg-secondary/10 blur-3xl md:blur-[140px] rounded-full animate-pulse-luminous" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/4 left-1/4 w-[60%] h-[60%] bg-primary/10 blur-3xl md:blur-[120px] rounded-full" />
+        <div className="absolute bottom-1/4 right-1/4 w-[50%] h-[50%] bg-secondary/10 blur-3xl md:blur-[120px] rounded-full" />
         
         {/* Subtle Futuristic Grid */}
         <div className="absolute inset-0 opacity-[0.03]" 
@@ -78,24 +78,53 @@ export default function WamHero() {
       {/* Cinematic Background Typography */}
       <motion.div 
         style={{ y: smoothY1, opacity }}
-        className="absolute inset-0 flex items-center justify-center z-0"
+        className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none"
       >
         <h1 className="text-[10vw] font-black uppercase tracking-tighter text-stroke-futuristic opacity-5 whitespace-nowrap select-none italic">
           PALAK GAUTAM
         </h1>
       </motion.div>
 
-      {/* Central Immersive Composition */}
+      {/* Cinematic Interface Layers (Top Branding ONLY) */}
+      <div className="absolute top-0 inset-x-0 z-30 pointer-events-none flex justify-between p-6 pt-32 md:p-24">
+        {/* Top Branding Section */}
+        <motion.div 
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col gap-3"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
+            <span className="text-[9px] uppercase tracking-[0.8em] text-primary font-black drop-shadow-neon">SYSTEM ONLINE</span>
+          </div>
+          <div className="w-24 h-[1px] bg-gradient-to-r from-primary/60 to-transparent" />
+        </motion.div>
+
+        <motion.div 
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="text-right flex flex-col items-end gap-4 pointer-events-auto"
+        >
+          <div className="flex gap-10">
+            <a href="https://github.com/PalakGautam-hub" target="_blank" className="text-white/20 hover:text-primary transition-all duration-500 hover:scale-110"><Github className="w-5 h-5" /></a>
+            <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" className="text-white/20 hover:text-primary transition-all duration-500 hover:scale-110"><Linkedin className="w-5 h-5" /></a>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Central Immersive Composition (Photo + Text Below) */}
       <motion.div 
         style={{ scale, opacity }}
-        className="relative z-10 w-full max-w-7xl h-full flex flex-col items-center justify-center px-6 md:px-0 pt-32 pb-10 md:pt-0 md:pb-0"
+        className="relative z-10 w-full max-w-7xl flex flex-col items-center justify-center px-6 md:px-0"
       >
         {/* The Central Visual Anchor (Portrait) */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mb-10 md:mb-12 will-change-transform"
+          className="relative mb-12 will-change-transform"
         >
           {/* Animated Glowing Border Ring */}
           <div className="absolute -inset-[3px] rounded-[3rem] md:rounded-[5rem] z-0 animate-spin-slow"
@@ -131,87 +160,38 @@ export default function WamHero() {
           </div>
         </motion.div>
 
-        {/* Mobile-Only Sequential Introduction */}
-        <div className="flex flex-col gap-6 w-full md:hidden relative z-20 items-center text-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 1 }}
-            className="flex flex-wrap gap-2 justify-center"
-          >
-            {skills.slice(0, 3).map((skill, i) => (
-              <div key={i} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md flex items-center gap-3">
-                <skill.icon className={`w-3.5 h-3.5 ${skill.color}`} />
-                <span className="text-[10px] font-black tracking-widest text-white/60 uppercase">{skill.name}</span>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.div>
-
-      {/* Cinematic Interface Layers (Overlay) */}
-      <div className="absolute inset-0 z-30 pointer-events-none flex flex-col justify-between p-6 pt-32 pb-12 md:p-24">
-        
-        {/* Top Branding Section */}
-        <div className="flex justify-between items-start">
-           <motion.div 
-             initial={{ opacity: 0, x: -50 }}
-             animate={{ opacity: 1, x: 0 }}
-             transition={{ duration: 2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-             className="flex flex-col gap-3"
-           >
-             <div className="flex items-center gap-4">
-                <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
-                <span className="text-[9px] uppercase tracking-[0.8em] text-primary font-black drop-shadow-neon">SYSTEM ONLINE</span>
-             </div>
-             <div className="w-24 h-[1px] bg-gradient-to-r from-primary/60 to-transparent" />
-           </motion.div>
-
-           <motion.div 
-             initial={{ opacity: 0, x: 50 }}
-             animate={{ opacity: 1, x: 0 }}
-             transition={{ duration: 2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-             className="text-right flex flex-col items-end gap-4 pointer-events-auto"
-           >
-             <div className="flex gap-10">
-               <a href="https://github.com/PalakGautam-hub" target="_blank" className="text-white/20 hover:text-primary transition-all duration-500 hover:scale-110"><Github className="w-5 h-5" /></a>
-               <a href="https://www.linkedin.com/in/palak-gautam-8805b0311" target="_blank" className="text-white/20 hover:text-primary transition-all duration-500 hover:scale-110"><Linkedin className="w-5 h-5" /></a>
-             </div>
-           </motion.div>
-        </div>
-
-        {/* Bottom Information Architecture */}
-        <div className="flex flex-col items-center gap-10 pointer-events-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 2, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center gap-10"
-          >
-            {/* Quote Block (Shown on all devices, centered below image) */}
-            <div className="flex flex-col gap-4 md:gap-6 max-w-xl group items-center text-center">
-              <div className="flex items-center gap-4">
-                <Sparkles className="w-5 h-5 text-primary group-hover:rotate-12 transition-transform duration-500" />
-                <span className="text-[12px] uppercase tracking-[0.5em] font-black text-white/90">Digital Intelligence</span>
-              </div>
-              <p className="text-sm md:text-xl text-zinc-300 leading-relaxed tracking-wide italic font-light drop-shadow-sm px-4">
-                "Orchestrating logic. <span className="text-white/60">Architecting emotion.</span> Elevating digital existence through cinematic engineering."
-              </p>
+        {/* Text Block - Placed underneath the photo */}
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 2, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-center gap-10 mt-4 md:mt-8 z-20 pointer-events-auto w-full"
+        >
+          {/* Quote Block */}
+          <div className="flex flex-col gap-4 md:gap-6 max-w-2xl group items-center text-center px-4">
+            <div className="flex items-center gap-4">
+              <Sparkles className="w-5 h-5 text-primary group-hover:rotate-12 transition-transform duration-500" />
+              <span className="text-[12px] uppercase tracking-[0.5em] font-black text-white/90">Digital Intelligence</span>
             </div>
-            
-            <a href="mailto:gautampalak77@gmail.com" className="flex flex-col items-center gap-4 group">
-              <div className="relative w-14 h-14 rounded-full border border-white/10 flex items-center justify-center overflow-hidden transition-all duration-700 group-hover:border-primary/50 group-hover:scale-110">
-                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-700" />
-                <MessageSquare className="w-6 h-6 text-white/30 group-hover:text-primary transition-colors duration-500" />
-              </div>
-              <div className="flex flex-col gap-1 items-center">
-                <span className="text-[9px] uppercase tracking-[0.3em] font-black text-white/20">Protocol Access</span>
-                <span className="text-[11px] font-bold text-white tracking-[0.25em] group-hover:text-primary transition-all duration-500 uppercase">Initiate Contact</span>
-              </div>
-            </a>
-          </motion.div>
-        </div>
-      </div>
+            <p className="text-base md:text-xl text-zinc-300 leading-relaxed tracking-wide italic font-light drop-shadow-sm">
+              "Orchestrating logic. <span className="text-white/60">Architecting emotion.</span> Elevating digital existence through cinematic engineering."
+            </p>
+          </div>
+          
+          {/* Contact Button */}
+          <a href="mailto:gautampalak77@gmail.com" className="flex flex-col items-center gap-4 group">
+            <div className="relative w-14 h-14 rounded-full border border-white/10 flex items-center justify-center overflow-hidden transition-all duration-700 group-hover:border-primary/50 group-hover:scale-110">
+              <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-700" />
+              <MessageSquare className="w-6 h-6 text-white/30 group-hover:text-primary transition-colors duration-500" />
+            </div>
+            <div className="flex flex-col gap-1 items-center">
+              <span className="text-[9px] uppercase tracking-[0.3em] font-black text-white/20">Protocol Access</span>
+              <span className="text-[11px] font-bold text-white tracking-[0.25em] group-hover:text-primary transition-all duration-500 uppercase">Initiate Contact</span>
+            </div>
+          </a>
+        </motion.div>
+
+      </motion.div>
 
       {/* Floating Glass Panels (Depth Accents) */}
       <motion.div 
