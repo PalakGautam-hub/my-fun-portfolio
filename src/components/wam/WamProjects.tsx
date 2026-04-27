@@ -53,10 +53,10 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: P
         </h1>
       </motion.div>
 
-      <div className="relative z-10 max-w-[1600px] w-full grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 xl:gap-32 items-center">
+      <div className="relative z-10 max-w-[1700px] w-full grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-12 gap-16 md:gap-24 xl:gap-32 items-center">
         
         {/* Project Typographic Block */}
-        <div className="lg:col-span-7 flex flex-col gap-12">
+        <div className="xl:col-span-7 flex flex-col gap-12">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -69,7 +69,7 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: P
           </motion.div>
 
           <motion.h2 
-            className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-light font-serif tracking-tighter leading-none text-white uppercase"
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[9rem] 2xl:text-[11rem] font-light font-serif tracking-tighter leading-none text-white uppercase"
             style={{ y }}
           >
             {title}<span className="text-primary/20">.</span>
@@ -86,7 +86,7 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: P
 
         {/* Project Intelligence Module (Glass Card) */}
         <div 
-          className="lg:col-span-5 flex flex-col gap-10 md:gap-14 luminous-glass p-8 md:p-16 lg:p-24 rounded-[3rem] md:rounded-[5rem] group hover:bg-white/[0.04] transition-all duration-1000 border-white/5 hover:border-primary/20 shadow-2xl"
+          className="xl:col-span-5 flex flex-col gap-10 md:gap-14 luminous-glass p-8 md:p-16 lg:p-24 rounded-[3rem] md:rounded-[5rem] group hover:bg-white/[0.04] transition-all duration-1000 border-white/5 hover:border-primary/20 shadow-2xl relative z-20"
           onMouseEnter={playHover}
         >
           <div className="flex flex-col gap-10">
@@ -220,11 +220,11 @@ export default function WamProjects() {
             href="mailto:gautampalak77@gmail.com" 
             onMouseEnter={playHover}
             onClick={playClick}
-            className="group relative w-full max-w-4xl px-6 sm:px-12 md:px-24 py-6 md:py-10 border border-white/5 bg-white/[0.02] rounded-full overflow-hidden transition-all duration-700 hover:border-primary/40 hover:scale-105 shadow-2xl"
+            className="group relative w-fit px-8 sm:px-16 md:px-24 py-4 md:py-6 border border-white/5 bg-white/[0.02] rounded-full overflow-hidden transition-all duration-700 hover:border-primary/40 hover:scale-105 shadow-2xl"
           >
              <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-1000 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]" />
-             <span className="relative z-10 text-xl md:text-3xl font-serif italic text-white group-hover:text-white flex items-center gap-10 transition-colors duration-500">
-                gautampalak77@gmail.com <ArrowUpRight className="w-8 h-8 group-hover:rotate-45 transition-transform duration-700" />
+             <span className="relative z-10 text-lg md:text-2xl font-serif italic text-white group-hover:text-white flex items-center gap-8 transition-colors duration-500">
+                gautampalak77@gmail.com <ArrowUpRight className="w-6 h-6 group-hover:rotate-45 transition-transform duration-700" />
              </span>
           </motion.a>
 
