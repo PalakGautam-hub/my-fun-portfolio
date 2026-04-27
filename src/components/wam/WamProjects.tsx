@@ -27,12 +27,13 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: P
 
   const y = useTransform(springProgress, [0, 1], [-50, 50]);
   const scale = useTransform(springProgress, [0, 0.5, 1], [0.98, 1, 0.98]);
-  const opacity = useTransform(springProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-
   return (
     <motion.div
       ref={containerRef}
-      style={{ opacity, scale }}
+      initial={{ opacity: 0, y: 100 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+      transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
       className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden border-b border-white/5 px-6 md:px-12 lg:px-20 xl:px-32 py-32"
     >
       {/* Immersive Cinematic Background */}
@@ -212,7 +213,7 @@ export default function WamProjects() {
       </div>
       
       {/* Final Call to Intelligence */}
-      <section id="work" className="w-full min-h-screen bg-[#050208] py-32 md:py-48 lg:py-64 px-6 md:px-12 lg:px-20 flex flex-col items-center border-t border-white/5 relative overflow-hidden">
+      <section id="contact" className="w-full min-h-screen bg-[#050208] py-32 md:py-48 lg:py-64 px-6 md:px-12 lg:px-20 flex flex-col items-center border-t border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsla(var(--primary)/0.05)_0%,transparent_80%)] pointer-events-none" />
 
         <motion.h2 
