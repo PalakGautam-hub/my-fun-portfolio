@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { LineChart, Code2, BrainCircuit as Zap, Terminal, Database, Cpu, Search, Lock, Layers } from "lucide-react";
+import { BrainCircuit as Zap, Database, Cpu, Lock } from "lucide-react";
 import { useSoundSystem } from "./SoundSystem";
 
 interface ExpertiseCardProps {
