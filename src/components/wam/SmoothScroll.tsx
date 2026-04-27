@@ -16,12 +16,12 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     try {
       // Initialize Lenis
       const lenis = new Lenis({
-        duration: 2.2, // Significantly smoother/slower
+        duration: 1.6, // Increased speed from 2.2
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 0.7, // Reduced speed
+        wheelMultiplier: 1.0, // Increased speed from 0.7
         touchMultiplier: 2,
         infinite: false,
       });
