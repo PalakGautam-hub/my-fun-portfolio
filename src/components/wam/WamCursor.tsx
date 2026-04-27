@@ -1,123 +1,103 @@
-import { useEffect, useState, useRef } from "react";
-import { motion, useSpring, useMotionValue, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, useSpring, useMotionValue } from "framer-motion";
+import { useSoundSystem } from "./SoundSystem";
 
 export default function WamCursor() {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
+  const { playHover } = useSoundSystem();
 
-  // Tight spring for the dot
-  const dotX = useSpring(mouseX, { damping: 50, stiffness: 500, mass: 0.2 });
-  const dotY = useSpring(mouseY, { damping: 50, stiffness: 500, mass: 0.2 });
-
-  // Lazy spring for the ring
-  const ringX = useSpring(mouseX, { damping: 30, stiffness: 200, mass: 0.5 });
-  const ringY = useSpring(mouseY, { damping: 30, stiffness: 200, mass: 0.5 });
-
-  // Even lazier for the comet trail
-  const trailX = useSpring(mouseX, { damping: 60, stiffness: 120, mass: 1 });
-  const trailY = useSpring(mouseY, { damping: 60, stiffness: 120, mass: 1 });
+  const springConfig = { damping: 40, stiffness: 300, mass: 0.5 };
+  const cursorX = useSpring(mouseX, springConfig);
+  const cursorY = useSpring(mouseY, springConfig);
 
   const [isHovering, setIsHovering] = useState(false);
-  const [isClicking, setIsClicking] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const onMove = (e: MouseEvent) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setIsVisible(true);
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
     };
 
-    const onTouch = () => {
-      setIsVisible(false); // Hide custom cursor if user touches screen
+    const handleTouchStart = () => {
+      setIsVisible(false);
     };
 
-    const onOver = (e: MouseEvent) => {
-      const el = e.target as HTMLElement;
-      const isInteractive =
-        el.closest("a, button, [role='button'], input, select, textarea") !== null ||
-        window.getComputedStyle(el).cursor === "pointer";
-      setIsHovering(isInteractive);
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (
+        window.getComputedStyle(target).cursor === "pointer" ||
+        target.closest("a") ||
+        target.closest("button")
+      ) {
+        if (!isHovering) {
+          playHover();
+          setIsHovering(true);
+        }
+      } else {
+        setIsHovering(false);
+      }
     };
 
-    const onDown = () => setIsClicking(true);
-    const onUp   = () => setIsClicking(false);
-    const onLeave = () => setIsVisible(false);
-    const onEnter = () => setIsVisible(true);
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
 
-    window.addEventListener("mousemove", onMove, { passive: true });
-    window.addEventListener("touchstart", onTouch, { passive: true });
-    window.addEventListener("mouseover", onOver, { passive: true });
-    window.addEventListener("mousedown", onDown);
-    window.addEventListener("mouseup",   onUp);
-    document.addEventListener("mouseleave", onLeave);
-    document.addEventListener("mouseenter", onEnter);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("mouseover", handleMouseOver, { passive: true });
+    document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("mouseenter", handleMouseEnter);
 
     return () => {
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("touchstart", onTouch);
-      window.removeEventListener("mouseover", onOver);
-      window.removeEventListener("mousedown", onDown);
-      window.removeEventListener("mouseup",   onUp);
-      document.removeEventListener("mouseleave", onLeave);
-      document.removeEventListener("mouseenter", onEnter);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("mouseover", handleMouseOver);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, isHovering, playHover]);
 
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden">
-
-      {/* Comet trail — slowest */}
+    <div className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden hidden md:block">
+      {/* Primary High-Precision Pointer */}
       <motion.div
-        className="absolute top-0 left-0 w-2 h-2 rounded-full bg-primary/20 blur-[3px]"
+        className="absolute top-0 left-0 w-2 h-2 bg-primary rounded-full shadow-[0_0_15px_hsla(var(--primary)/0.8)]"
         style={{
-          x: trailX,
-          y: trailY,
+          x: cursorX,
+          y: cursorY,
           translateX: "-50%",
           translateY: "-50%",
-          scale: isClicking ? 0.5 : 1,
         }}
       />
-
-      {/* Outer morphing ring */}
+      
+      {/* Outer Atmospheric Aura */}
       <motion.div
-        className="absolute top-0 left-0 rounded-full border"
+        className="absolute top-0 left-0 w-12 h-12 border border-white/10 rounded-full"
         style={{
-          x: ringX,
-          y: ringY,
+          x: cursorX,
+          y: cursorY,
           translateX: "-50%",
           translateY: "-50%",
-          width:  isHovering ? 56 : 40,
-          height: isHovering ? 56 : 40,
-          borderColor: isHovering
-            ? "hsla(320,100%,60%,0.7)"
-            : "rgba(255,255,255,0.15)",
-          background: isHovering 
-            ? "radial-gradient(circle, hsla(320,100%,60%,0.1) 0%, transparent 70%)" 
-            : "transparent",
-          scale: isClicking ? 0.8 : 1,
+          scale: isHovering ? 2 : 1,
+          borderColor: isHovering ? "hsla(var(--primary) / 0.5)" : "rgba(255, 255, 255, 0.1)",
         }}
-        transition={{ type: "spring", damping: 20, stiffness: 150 }}
+        transition={{ type: "spring", damping: 20, stiffness: 100 }}
       />
 
-      {/* Primary precision dot */}
+      {/* Kinetic Trailing Node */}
       <motion.div
-        className="absolute top-0 left-0 rounded-full"
+        className="absolute top-0 left-0 w-1 h-1 bg-white/20 rounded-full"
         style={{
-          x: dotX,
-          y: dotY,
+          x: useSpring(mouseX, { damping: 50, stiffness: 150 }),
+          y: useSpring(mouseY, { damping: 50, stiffness: 150 }),
           translateX: "-50%",
           translateY: "-50%",
-          width:  isHovering ? 8 : 8,
-          height: isHovering ? 8 : 8,
-          background: "radial-gradient(circle at center, hsla(320,100%,60%,1) 0%, hsla(320,100%,60%,0.8) 50%, transparent 100%)",
-          scale: isClicking ? 0.6 : isHovering ? 1.4 : 1,
         }}
-        transition={{ type: "spring", damping: 50, stiffness: 500 }}
       />
-
     </div>
   );
 }
