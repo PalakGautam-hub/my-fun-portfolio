@@ -79,34 +79,49 @@ export default function WamStatement() {
             </div>
           </motion.div>
 
-          {/* Metrics Sidebar */}
+          {/* Portrait Photo Module */}
           <motion.div 
-            className="lg:col-span-5 flex flex-col gap-6 w-full"
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="lg:col-span-5 flex flex-col items-center lg:items-end w-full"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
           >
-            {[
-              { icon: Database, label: "Metric 01", value: "70%", desc: "Manual Workload Reduction" },
-              { icon: ShieldCheck, label: "Metric 02", value: "90%", desc: "Report Precision Rate" },
-              { icon: Zap, label: "Metric 03", value: "100ms", desc: "Service Response Latency" }
-            ].map((metric, i) => (
-              <div 
-                key={i}
-                onMouseEnter={playHover}
-                className="w-full bg-white/[0.05] backdrop-blur-xl border border-white/10 p-8 md:p-10 rounded-[2rem] flex flex-col gap-6 group hover:border-primary/50 hover:bg-white/[0.08] transition-all duration-700 shadow-[0_0_40px_rgba(0,0,0,0.4)]"
-              >
-                 <div className="flex justify-between items-start">
-                    <metric.icon className="w-8 h-8 md:w-9 md:h-9 text-primary opacity-30 group-hover:opacity-70 transition-all duration-700 group-hover:scale-110" />
-                    <span className="text-[9px] uppercase tracking-[0.8em] text-white/10 font-black">{metric.label}</span>
-                 </div>
-                 <div className="flex flex-col gap-2">
-                    <span className="text-4xl md:text-5xl font-sans font-black text-white group-hover:text-primary transition-colors duration-700">{metric.value}</span>
-                    <span className="text-[10px] md:text-[11px] uppercase tracking-[0.4em] text-zinc-600 font-bold group-hover:text-zinc-400 transition-colors">{metric.desc}</span>
-                 </div>
+            <div className="relative group will-change-transform">
+              {/* Elegant Luminous Halo */}
+              <div className="absolute -inset-6 rounded-[3rem] md:rounded-[4rem] z-0 opacity-30 group-hover:opacity-60 transition-opacity duration-1000 pointer-events-none"
+                style={{ background: 'radial-gradient(ellipse at center, hsla(320,100%,60%,0.2), hsla(220,100%,60%,0.1) 40%, transparent 70%)' }}
+              />
+
+              {/* Photo Frame (Optimized for Dossier Sidebar) */}
+              <div className="relative w-full max-w-[420px] aspect-[4/5.5] md:h-[620px] rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden group shadow-2xl z-10 border border-white/10 bg-white/5 backdrop-blur-md">
+                {/* Luminous Aura Effect */}
+                <div className="absolute inset-0 z-20 pointer-events-none">
+                  <div className="absolute -inset-10 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 blur-3xl opacity-40 group-hover:opacity-70 transition-opacity duration-1000" />
+                </div>
+
+                <img 
+                  src="/palak_portrait.png" 
+                  alt="Palak Gautam Portrait" 
+                  className="w-full h-full object-cover object-[center_top] filter saturate-50 contrast-125 brightness-95 group-hover:saturate-100 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105 transition-all [transition-duration:2000ms] ease-out"
+                />
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050208]/90 via-[#050208]/10 to-transparent pointer-events-none" />
+                
+                {/* Inner Premium Glass Border */}
+                <div className="absolute inset-0 rounded-[2.5rem] md:rounded-[3.5rem] pointer-events-none"
+                  style={{ boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.1), inset 0 0 20px rgba(255,255,255,0.02)' }}
+                />
               </div>
-            ))}
+
+              {/* Decorative Tech Tag Overlay */}
+              <div className="absolute -bottom-4 -left-4 z-30 bg-[#050208] border border-white/10 p-5 rounded-2xl hidden md:block backdrop-blur-xl group-hover:border-primary/40 transition-colors duration-700">
+                <div className="flex items-center gap-3">
+                  <div className="w-1 h-1 bg-primary animate-pulse" />
+                  <span className="text-[9px] uppercase tracking-[0.6em] text-white/40 font-black">Archive.Verified</span>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
 
