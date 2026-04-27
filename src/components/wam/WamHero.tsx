@@ -45,8 +45,8 @@ export default function WamHero() {
   // High-end parallax effects
   const y1 = useTransform(scrollY, [0, 1000], [0, 400]);
   const y2 = useTransform(scrollY, [0, 1000], [0, -200]);
-  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const scale = useTransform(scrollY, [0, 400], [1, 0.9]);
+  const opacity = useTransform(scrollY, [300, 900], [1, 0]);
+  const scale = useTransform(scrollY, [300, 900], [1, 0.9]);
 
   const springConfig = { damping: 30, stiffness: 100, mass: 0.5 };
   const smoothY1 = useSpring(y1, springConfig);
@@ -124,7 +124,7 @@ export default function WamHero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mb-12 will-change-transform"
+          className="relative mb-6 md:mb-12 will-change-transform"
         >
           {/* Animated Glowing Border Ring */}
           <div className="absolute -inset-[3px] rounded-[3rem] md:rounded-[5rem] z-0 animate-spin-slow"
@@ -159,6 +159,23 @@ export default function WamHero() {
             />
           </div>
         </motion.div>
+
+        {/* Mobile-Only Sequential Introduction */}
+        <div className="flex flex-col gap-6 w-full md:hidden relative z-20 items-center text-center mt-2 mb-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 1 }}
+            className="flex flex-wrap gap-2 justify-center"
+          >
+            {skills.slice(0, 3).map((skill, i) => (
+              <div key={i} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md flex items-center gap-3">
+                <skill.icon className={`w-3.5 h-3.5 ${skill.color}`} />
+                <span className="text-[10px] font-black tracking-widest text-white/60 uppercase">{skill.name}</span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
 
         {/* Text Block - Placed underneath the photo */}
         <motion.div 
