@@ -19,17 +19,17 @@ export default function WamCursor() {
 
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Only enable on devices with a fine pointer (mouse/trackpad)
-    const mq = window.matchMedia("(pointer: fine)");
-    setIsDesktop(mq.matches);
-    if (!mq.matches) return;
-
     const onMove = (e: MouseEvent) => {
+      setIsVisible(true);
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
+    };
+
+    const onTouch = () => {
+      setIsVisible(false); // Hide custom cursor if user touches screen
     };
 
     const onOver = (e: MouseEvent) => {
@@ -42,21 +42,29 @@ export default function WamCursor() {
 
     const onDown = () => setIsClicking(true);
     const onUp   = () => setIsClicking(false);
+    const onLeave = () => setIsVisible(false);
+    const onEnter = () => setIsVisible(true);
 
     window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("touchstart", onTouch, { passive: true });
     window.addEventListener("mouseover", onOver, { passive: true });
     window.addEventListener("mousedown", onDown);
     window.addEventListener("mouseup",   onUp);
+    document.addEventListener("mouseleave", onLeave);
+    document.addEventListener("mouseenter", onEnter);
 
     return () => {
       window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("touchstart", onTouch);
       window.removeEventListener("mouseover", onOver);
       window.removeEventListener("mousedown", onDown);
       window.removeEventListener("mouseup",   onUp);
+      document.removeEventListener("mouseleave", onLeave);
+      document.removeEventListener("mouseenter", onEnter);
     };
   }, [mouseX, mouseY]);
 
-  if (!isDesktop) return null;
+  if (!isVisible) return null;
 
   return (
     <div className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden">
