@@ -242,7 +242,7 @@ export default function WamProjects() {
             <a href="https://leetcode.com/u/palakG05/" target="_blank" onMouseEnter={playHover} className="hover:text-primary hover:scale-110 transition-all duration-700">LeetCode</a>
           </div>
         </div>
-      </div>
+      </section>
     </section>
   );
 }
