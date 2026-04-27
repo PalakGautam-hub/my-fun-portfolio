@@ -6,7 +6,7 @@ export default function WamStatement() {
   const { playHover, playClick } = useSoundSystem();
 
   return (
-    <section id="insights" className="w-full bg-[#050208] py-48 md:py-80 px-6 md:px-12 flex flex-col items-center justify-center border-y border-white/5 relative overflow-hidden">
+    <section id="insights" className="w-full bg-[#050208] py-48 md:py-80 px-6 md:px-12 flex flex-col items-center justify-center border-y border-white/5 relative">
       
       {/* Background Cinematic Texture */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-[0.02] pointer-events-none" />
@@ -49,11 +49,11 @@ export default function WamStatement() {
         </div>
 
         {/* Narrative & Metrics Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 md:gap-32 lg:gap-48 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 md:gap-24 lg:gap-16 items-start">
           
           {/* Main Narrative */}
           <motion.div 
-            className="lg:col-span-7 xl:col-span-8 flex flex-col gap-12 md:gap-20"
+            className="lg:col-span-7 flex flex-col gap-12 md:gap-20"
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -81,8 +81,8 @@ export default function WamStatement() {
 
           {/* Metrics Sidebar */}
           <motion.div 
-            className="lg:col-span-4 flex flex-col gap-8 w-full"
-            initial={{ opacity: 0, x: 60 }}
+            className="lg:col-span-5 flex flex-col gap-6 w-full"
+            initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -95,14 +95,14 @@ export default function WamStatement() {
               <div 
                 key={i}
                 onMouseEnter={playHover}
-                className="w-full max-w-[320px] sm:max-w-md mx-auto bg-white/[0.08] backdrop-blur-xl md:backdrop-blur-3xl border border-white/20 p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] flex flex-col gap-6 md:gap-10 group hover:border-primary/60 hover:bg-white/[0.12] transition-all duration-1000 shadow-[0_0_40px_rgba(0,0,0,0.5)]"
+                className="w-full bg-white/[0.05] backdrop-blur-xl border border-white/10 p-8 md:p-10 rounded-[2rem] flex flex-col gap-6 group hover:border-primary/50 hover:bg-white/[0.08] transition-all duration-700 shadow-[0_0_40px_rgba(0,0,0,0.4)]"
               >
                  <div className="flex justify-between items-start">
-                    <metric.icon className="w-8 h-8 md:w-10 md:h-10 text-primary opacity-20 group-hover:opacity-60 transition-all duration-700 group-hover:scale-110" />
-                    <span className="text-[9px] uppercase tracking-[0.8em] text-white/5 font-black">{metric.label}</span>
+                    <metric.icon className="w-8 h-8 md:w-9 md:h-9 text-primary opacity-30 group-hover:opacity-70 transition-all duration-700 group-hover:scale-110" />
+                    <span className="text-[9px] uppercase tracking-[0.8em] text-white/10 font-black">{metric.label}</span>
                  </div>
-                 <div className="flex flex-col gap-2 md:gap-3">
-                    <span className="text-5xl md:text-6xl font-sans font-black text-white group-hover:text-primary transition-colors duration-700">{metric.value}</span>
+                 <div className="flex flex-col gap-2">
+                    <span className="text-4xl md:text-5xl font-sans font-black text-white group-hover:text-primary transition-colors duration-700">{metric.value}</span>
                     <span className="text-[10px] md:text-[11px] uppercase tracking-[0.4em] text-zinc-600 font-bold group-hover:text-zinc-400 transition-colors">{metric.desc}</span>
                  </div>
               </div>

@@ -199,4 +199,21 @@
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
     color: transparent;
   }
+
+  /* Slow spin for photo border ring */
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+    will-change: transform;
+  }
+
+  /* Hide native cursor on desktop — custom cursor takes over */
+  @media (pointer: fine) {
+    *, *::before, *::after {
+      cursor: none !important;
+    }
+  }
 }

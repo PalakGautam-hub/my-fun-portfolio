@@ -95,23 +95,40 @@ export default function WamHero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-[90vw] h-[65vh] md:w-[600px] md:h-[800px] rounded-[2rem] md:rounded-[4rem] overflow-hidden group shadow-[0_0_100px_hsla(var(--primary)/0.1)] mb-10 md:mb-12 will-change-transform"
+          className="relative mb-10 md:mb-12 will-change-transform"
         >
-          {/* Luminous Ribbon/Aura Effect */}
-          <div className="absolute inset-0 z-20 pointer-events-none">
-            <div className="absolute -inset-10 bg-gradient-to-br from-primary/30 via-transparent to-secondary/30 blur-3xl opacity-30 group-hover:opacity-60 transition-opacity duration-1000" />
-          </div>
-
-          <img 
-            src="/palak_portrait.png" 
-            alt="Palak Gautam" 
-            className="w-full h-full object-contain group-hover:scale-105 transition-all duration-[2000ms] ease-out"
+          {/* Animated Glowing Border Ring */}
+          <div className="absolute -inset-[3px] rounded-[3rem] md:rounded-[5rem] z-0 animate-spin-slow"
+            style={{
+              background: 'conic-gradient(from 0deg, hsla(320,100%,60%,0.8), hsla(220,100%,60%,0.6), transparent, hsla(320,100%,60%,0.8))',
+              filter: 'blur(2px)',
+            }}
           />
-          
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050208]/40 via-transparent to-transparent pointer-events-none" />
-          
-          {/* Internal Glass Overlay */}
-          <div className="absolute inset-0 border-[1px] border-white/5 rounded-[2rem] md:rounded-[4rem] pointer-events-none m-4 md:m-6" />
+          {/* Outer Glow Halo */}
+          <div className="absolute -inset-6 rounded-[4rem] md:rounded-[6rem] z-0 opacity-30 group-hover:opacity-60 transition-opacity duration-1000"
+            style={{ background: 'radial-gradient(ellipse at center, hsla(320,100%,60%,0.25) 0%, hsla(220,100%,60%,0.1) 50%, transparent 80%)' }}
+          />
+
+          {/* Photo Frame */}
+          <div className="relative w-[80vw] h-[58vh] md:w-[560px] md:h-[760px] rounded-[2.8rem] md:rounded-[4.8rem] overflow-hidden group shadow-[0_0_120px_hsla(320,100%,60%,0.12),0_0_60px_hsla(220,100%,60%,0.08)] z-10">
+            {/* Luminous Aura Effect */}
+            <div className="absolute inset-0 z-20 pointer-events-none">
+              <div className="absolute -inset-10 bg-gradient-to-br from-primary/30 via-transparent to-secondary/30 blur-3xl opacity-30 group-hover:opacity-60 transition-opacity duration-1000" />
+            </div>
+
+            <img 
+              src="/palak_portrait.png" 
+              alt="Palak Gautam" 
+              className="w-full h-full object-contain group-hover:scale-105 transition-all duration-[2000ms] ease-out"
+            />
+            
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050208]/50 via-transparent to-transparent pointer-events-none" />
+            
+            {/* Inner Premium Glass Border */}
+            <div className="absolute inset-0 rounded-[2.8rem] md:rounded-[4.8rem] pointer-events-none"
+              style={{ boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.08), inset 0 0 30px rgba(240,10,180,0.04)' }}
+            />
+          </div>
         </motion.div>
 
         {/* Mobile-Only Sequential Introduction */}

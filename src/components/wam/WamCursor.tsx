@@ -1,95 +1,115 @@
-import { useEffect, useState } from "react";
-import { motion, useSpring, useMotionValue } from "framer-motion";
-import { useSoundSystem } from "./SoundSystem";
+import { useEffect, useState, useRef } from "react";
+import { motion, useSpring, useMotionValue, AnimatePresence } from "framer-motion";
 
 export default function WamCursor() {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const { playHover } = useSoundSystem();
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
 
-  const springConfig = { damping: 40, stiffness: 300, mass: 0.5 };
-  const cursorX = useSpring(mouseX, springConfig);
-  const cursorY = useSpring(mouseY, springConfig);
+  // Tight spring for the dot
+  const dotX = useSpring(mouseX, { damping: 50, stiffness: 500, mass: 0.2 });
+  const dotY = useSpring(mouseY, { damping: 50, stiffness: 500, mass: 0.2 });
+
+  // Lazy spring for the ring
+  const ringX = useSpring(mouseX, { damping: 30, stiffness: 200, mass: 0.5 });
+  const ringY = useSpring(mouseY, { damping: 30, stiffness: 200, mass: 0.5 });
+
+  // Even lazier for the comet trail
+  const trailX = useSpring(mouseX, { damping: 60, stiffness: 120, mass: 1 });
+  const trailY = useSpring(mouseY, { damping: 60, stiffness: 120, mass: 1 });
 
   const [isHovering, setIsHovering] = useState(false);
-  const [isMobileDevice, setIsMobileDevice] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
-      setIsMobileDevice(true);
-      return;
-    }
-    
-    const handleMouseMove = (e: MouseEvent) => {
+    // Only enable on devices with a fine pointer (mouse/trackpad)
+    const mq = window.matchMedia("(pointer: fine)");
+    setIsDesktop(mq.matches);
+    if (!mq.matches) return;
+
+    const onMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
     };
 
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        window.getComputedStyle(target).cursor === "pointer" ||
-        target.closest("a") ||
-        target.closest("button")
-      ) {
-        if (!isHovering) {
-          playHover();
-          setIsHovering(true);
-        }
-      } else {
-        setIsHovering(false);
-      }
+    const onOver = (e: MouseEvent) => {
+      const el = e.target as HTMLElement;
+      const isInteractive =
+        el.closest("a, button, [role='button'], input, select, textarea") !== null ||
+        window.getComputedStyle(el).cursor === "pointer";
+      setIsHovering(isInteractive);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseover", handleMouseOver);
+    const onDown = () => setIsClicking(true);
+    const onUp   = () => setIsClicking(false);
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("mouseover", onOver, { passive: true });
+    window.addEventListener("mousedown", onDown);
+    window.addEventListener("mouseup",   onUp);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseover", onOver);
+      window.removeEventListener("mousedown", onDown);
+      window.removeEventListener("mouseup",   onUp);
     };
-  }, [mouseX, mouseY, isHovering, playHover]);
+  }, [mouseX, mouseY]);
 
-  if (isMobileDevice) return null;
+  if (!isDesktop) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden hidden md:block">
-      {/* Primary High-Precision Pointer */}
+    <div className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden">
+
+      {/* Comet trail — slowest */}
       <motion.div
-        className="absolute top-0 left-0 w-2 h-2 bg-primary rounded-full shadow-[0_0_15px_hsla(var(--primary)/0.8)]"
+        className="absolute top-0 left-0 w-2 h-2 rounded-full bg-primary/20 blur-[3px]"
         style={{
-          x: cursorX,
-          y: cursorY,
+          x: trailX,
+          y: trailY,
           translateX: "-50%",
           translateY: "-50%",
+          scale: isClicking ? 0.5 : 1,
         }}
-      />
-      
-      {/* Outer Atmospheric Aura */}
-      <motion.div
-        className="absolute top-0 left-0 w-12 h-12 border border-white/10 rounded-full"
-        style={{
-          x: cursorX,
-          y: cursorY,
-          translateX: "-50%",
-          translateY: "-50%",
-          scale: isHovering ? 2 : 1,
-          borderColor: isHovering ? "hsla(var(--primary) / 0.5)" : "rgba(255, 255, 255, 0.1)",
-        }}
-        transition={{ type: "spring", damping: 20, stiffness: 100 }}
       />
 
-      {/* Kinetic Trailing Node */}
+      {/* Outer morphing ring */}
       <motion.div
-        className="absolute top-0 left-0 w-1 h-1 bg-white/20 rounded-full"
+        className="absolute top-0 left-0 rounded-full border"
         style={{
-          x: useSpring(mouseX, { damping: 50, stiffness: 150 }),
-          y: useSpring(mouseY, { damping: 50, stiffness: 150 }),
+          x: ringX,
+          y: ringY,
           translateX: "-50%",
           translateY: "-50%",
+          width:  isHovering ? 56 : 40,
+          height: isHovering ? 56 : 40,
+          borderColor: isHovering
+            ? "hsla(320,100%,60%,0.7)"
+            : "rgba(255,255,255,0.15)",
+          boxShadow: isHovering
+            ? "0 0 20px hsla(320,100%,60%,0.25)"
+            : "none",
+          scale: isClicking ? 0.8 : 1,
         }}
+        transition={{ type: "spring", damping: 20, stiffness: 150 }}
       />
+
+      {/* Primary precision dot */}
+      <motion.div
+        className="absolute top-0 left-0 rounded-full bg-primary"
+        style={{
+          x: dotX,
+          y: dotY,
+          translateX: "-50%",
+          translateY: "-50%",
+          width:  isHovering ? 6 : 6,
+          height: isHovering ? 6 : 6,
+          boxShadow: "0 0 12px hsla(320,100%,60%,0.9)",
+          scale: isClicking ? 0.6 : isHovering ? 1.4 : 1,
+        }}
+        transition={{ type: "spring", damping: 50, stiffness: 500 }}
+      />
+
     </div>
   );
 }
-
