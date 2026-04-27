@@ -2,7 +2,6 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useMemo, useState, useEffect } from "react";
 import { Terminal, Database, Code2, Cpu, Cloud, Layers, Server, Atom, Github, Linkedin, MessageSquare, Sparkles } from "lucide-react";
 import Hyperspeed from './Hyperspeed';
-import LiquidEther from './LiquidEther';
 
 function AmbientParticles() {
   const [particleCount, setParticleCount] = useState(10);
@@ -101,26 +100,6 @@ export default function WamHero() {
           }}
         />
         
-        <div className="absolute inset-0 z-10 opacity-60 mix-blend-screen pointer-events-none">
-          <LiquidEther
-            colors={[ '#5227FF', '#FF9FFC', '#B497CF' ]}
-            mouseForce={20}
-            cursorSize={100}
-            isViscous
-            viscous={30}
-            iterationsViscous={32}
-            iterationsPoisson={32}
-            resolution={0.5}
-            isBounce={false}
-            autoDemo
-            autoSpeed={0.5}
-            autoIntensity={2.2}
-            takeoverDuration={0.25}
-            autoResumeDelay={3000}
-            autoRampDuration={0.6}
-          />
-        </div>
-
         <div className="absolute top-1/4 left-1/4 w-[60%] h-[60%] bg-primary/10 blur-3xl md:blur-[120px] rounded-full mix-blend-overlay" />
         <div className="absolute bottom-1/4 right-1/4 w-[50%] h-[50%] bg-secondary/10 blur-3xl md:blur-[120px] rounded-full mix-blend-overlay" />
         

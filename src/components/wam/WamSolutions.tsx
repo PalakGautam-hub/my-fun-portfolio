@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { BrainCircuit as Zap, Database, Cpu, Lock, Terminal, Code2, Layers, Server, Atom } from "lucide-react";
 import { useSoundSystem } from "./SoundSystem";
 import { useMemo, useState, useEffect } from "react";
+import LiquidEther from "./LiquidEther";
 
 interface ExpertiseCardProps {
   title: string;
@@ -131,6 +132,25 @@ export default function WamSolutions() {
     <section id="expertise" className="w-full bg-[#050208] py-48 md:py-80 px-6 md:px-12 border-t border-white/5 relative overflow-hidden">
       
       {/* Background Luminous Aura */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+        <LiquidEther
+          colors={[ '#5227FF', '#FF9FFC', '#B497CF' ]}
+          mouseForce={20}
+          cursorSize={100}
+          isViscous
+          viscous={30}
+          iterationsViscous={32}
+          iterationsPoisson={32}
+          resolution={0.5}
+          isBounce={false}
+          autoDemo
+          autoSpeed={0.5}
+          autoIntensity={2.2}
+          takeoverDuration={0.25}
+          autoResumeDelay={3000}
+          autoRampDuration={0.6}
+        />
+      </div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-primary/5 blur-3xl md:blur-[240px] rounded-full pointer-events-none" />
 
       <div className="max-w-[1600px] mx-auto">
