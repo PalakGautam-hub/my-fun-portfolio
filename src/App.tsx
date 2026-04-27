@@ -7,12 +7,15 @@ import { SoundSystemProvider } from "./components/wam/SoundSystem";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
+import WamCursor from "./components/wam/WamCursor";
+
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <SoundSystemProvider>
       <TooltipProvider>
+        <WamCursor />
         <Toaster />
         <Sonner />
         <BrowserRouter>
