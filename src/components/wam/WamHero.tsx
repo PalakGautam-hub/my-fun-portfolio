@@ -44,12 +44,8 @@ export default function WamHero() {
   
   // High-end parallax effects
   const y1 = useTransform(scrollY, [0, 1000], [0, 400]);
-  const y2 = useTransform(scrollY, [0, 1000], [0, -200]);
   const opacity = useTransform(scrollY, [300, 900], [1, 0]);
   const scale = useTransform(scrollY, [300, 900], [1, 0.9]);
-
-  const springConfig = { damping: 30, stiffness: 100, mass: 0.5 };
-  const smoothY1 = useSpring(y1, springConfig);
 
   const skills = useMemo(() => [
     { name: "Python", icon: Terminal, color: "text-fuchsia-400", glow: "rgba(255, 0, 128, 0.2)" },
@@ -77,7 +73,7 @@ export default function WamHero() {
 
       {/* Cinematic Background Typography */}
       <motion.div 
-        style={{ y: smoothY1, opacity }}
+        style={{ y: y1, opacity }}
         className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none"
       >
         <h1 className="text-[10vw] font-black uppercase tracking-tighter text-stroke-futuristic opacity-5 whitespace-nowrap select-none italic">
@@ -202,16 +198,6 @@ export default function WamHero() {
         </motion.div>
 
       </motion.div>
-
-      {/* Floating Glass Panels (Depth Accents) */}
-      <motion.div 
-        style={{ y: y2 }}
-        className="absolute top-[15%] right-[10%] w-72 h-96 luminous-glass rounded-[4rem] -rotate-12 opacity-10 pointer-events-none" 
-      />
-      <motion.div 
-        style={{ y: y1 }}
-        className="absolute bottom-[10%] left-[5%] w-56 h-72 luminous-glass rounded-[3rem] rotate-12 opacity-5 pointer-events-none" 
-      />
 
     </section>
   );
