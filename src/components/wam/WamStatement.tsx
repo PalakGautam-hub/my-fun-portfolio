@@ -118,7 +118,7 @@ export default function WamStatement() {
             onClick={playClick}
             className="group relative px-8 sm:px-12 md:px-24 py-6 md:py-10 border border-white/5 bg-white/[0.02] overflow-hidden rounded-full transition-all duration-1000 md:hover:border-primary/40 md:hover:scale-105 shadow-2xl text-center"
           >
-             <div className="absolute inset-0 bg-primary translate-y-full md:group-hover:translate-y-0 transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+             <div className="absolute inset-0 bg-primary translate-y-full md:group-hover:translate-y-0 transition-transform duration-1000 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]" />
              <span className="relative z-10 text-[11px] uppercase tracking-[1em] font-black text-white md:group-hover:text-white flex items-center gap-8 transition-colors duration-500">
                 Enter Strategic Archive <ArrowRight className="w-5 h-5 md:group-hover:translate-x-3 transition-transform duration-700" />
              </span>

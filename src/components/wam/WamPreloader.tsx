@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import gsap from "gsap";
 
 export default function WamPreloader({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0);

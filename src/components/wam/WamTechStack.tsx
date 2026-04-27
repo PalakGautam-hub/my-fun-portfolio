@@ -54,7 +54,7 @@ export default function WamTechStack() {
       />
 
       {/* Sophisticated Layered Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-primary/5 rounded-full blur-3xl md:blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-primary/5 rounded-full blur-3xl md:blur-[100px] pointer-events-none" />
       
       <div className="relative z-10 w-full max-w-[1400px] px-6 md:px-12 flex flex-col gap-12 md:gap-24">
         
