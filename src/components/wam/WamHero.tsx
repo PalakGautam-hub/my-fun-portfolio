@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useMemo, useState, useEffect } from "react";
 import { Terminal, Database, Code2, Cpu, Cloud, Layers, Server, Atom, Github, Linkedin, MessageSquare, Sparkles } from "lucide-react";
+import Hyperspeed from './Hyperspeed';
+import LiquidEther from './LiquidEther';
 
 function AmbientParticles() {
   const [particleCount, setParticleCount] = useState(10);
@@ -59,16 +61,75 @@ export default function WamHero() {
   return (
     <section ref={containerRef} className="relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-[#050208] select-none pt-40 md:pt-48 pb-20">
       
-      {/* Immersive Luminous Environment (Background) */}
-      <AmbientParticles />
+      {/* Immersive Background Layers */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-[60%] h-[60%] bg-primary/10 blur-3xl md:blur-[120px] rounded-full" />
-        <div className="absolute bottom-1/4 right-1/4 w-[50%] h-[50%] bg-secondary/10 blur-3xl md:blur-[120px] rounded-full" />
+        <Hyperspeed 
+          effectOptions={{
+            distortion: 'turbulentDistortion',
+            length: 400,
+            roadWidth: 10,
+            islandWidth: 2,
+            lanesPerRoad: 4,
+            fov: 90,
+            fovSpeedUp: 150,
+            speedUp: 2,
+            carLightsFade: 0.4,
+            totalSideLightSticks: 20,
+            lightPairsPerRoadWay: 40,
+            shoulderLinesWidthPercentage: 0.05,
+            brokenLinesWidthPercentage: 0.1,
+            brokenLinesLengthPercentage: 0.5,
+            lightStickWidth: [0.12, 0.5],
+            lightStickHeight: [1.3, 1.7],
+            movingAwaySpeed: [60, 80],
+            movingCloserSpeed: [-120, -160],
+            carLightsLength: [400 * 0.03, 400 * 0.2],
+            carLightsRadius: [0.05, 0.14],
+            carWidthPercentage: [0.3, 0.5],
+            carShiftX: [-0.8, 0.8],
+            carFloorSeparation: [0, 5],
+            colors: {
+              roadColor: 0x050208,
+              islandColor: 0x050208,
+              background: 0x050208,
+              shoulderLines: 0xffffff,
+              brokenLines: 0xffffff,
+              leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
+              rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
+              sticks: 0x03b3c3
+            }
+          }}
+        />
+        
+        <div className="absolute inset-0 z-10 opacity-60 mix-blend-screen pointer-events-none">
+          <LiquidEther
+            colors={[ '#5227FF', '#FF9FFC', '#B497CF' ]}
+            mouseForce={20}
+            cursorSize={100}
+            isViscous
+            viscous={30}
+            iterationsViscous={32}
+            iterationsPoisson={32}
+            resolution={0.5}
+            isBounce={false}
+            autoDemo
+            autoSpeed={0.5}
+            autoIntensity={2.2}
+            takeoverDuration={0.25}
+            autoResumeDelay={3000}
+            autoRampDuration={0.6}
+          />
+        </div>
+
+        <div className="absolute top-1/4 left-1/4 w-[60%] h-[60%] bg-primary/10 blur-3xl md:blur-[120px] rounded-full mix-blend-overlay" />
+        <div className="absolute bottom-1/4 right-1/4 w-[50%] h-[50%] bg-secondary/10 blur-3xl md:blur-[120px] rounded-full mix-blend-overlay" />
         
         {/* Subtle Futuristic Grid */}
-        <div className="absolute inset-0 opacity-[0.03]" 
+        <div className="absolute inset-0 opacity-[0.03] z-20" 
              style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '100px 100px' }} 
         />
+        
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050208]/20 via-transparent to-[#050208] z-30" />
       </div>
 
       {/* Cinematic Background Typography */}
