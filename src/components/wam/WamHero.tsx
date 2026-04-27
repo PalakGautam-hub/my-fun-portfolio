@@ -3,7 +3,7 @@ import { useRef, useMemo, useState, useEffect } from "react";
 import { Terminal, Database, Code2, Cpu, Cloud, Layers, Server, Atom, Github, Linkedin, MessageSquare, Sparkles } from "lucide-react";
 
 function AmbientParticles() {
-  const [particleCount, setParticleCount] = useState(30);
+  const [particleCount, setParticleCount] = useState(10);
   
   useEffect(() => {
     if (window.innerWidth < 768) setParticleCount(12);
