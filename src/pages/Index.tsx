@@ -11,6 +11,20 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Index() {
   const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    if (!loading && window.location.hash) {
+      const id = window.location.hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        // Delay slightly to allow content to render and smooth scroll to initialize
+        const timer = setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 800);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [loading]);
+
   return (
     <div id="root-container" data-version="4.2.0-FINAL" className="relative min-h-screen bg-[#06020a] text-white selection:bg-primary selection:text-white font-sans overflow-x-hidden cinematic-grain">
       {/* System Build: v4.2.0 - Final Hard Refresh */}

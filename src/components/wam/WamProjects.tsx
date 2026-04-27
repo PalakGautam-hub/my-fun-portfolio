@@ -139,24 +139,24 @@ export default function WamProjects() {
   
   const projects = [
     {
-      id: "lucy",
+      id: "lexora",
       index: "01",
+      title: "LEXORA AI",
+      role: "AI Engineering | 2026",
+      desc: "Spearheaded an AI full-stack application using LLM APIs, slashing document review cycles by 60%.",
+      link: "https://github.com/PalakGautam-hub/Lexora-AI",
+      tags: ["Python", "LLMs", "NLP"],
+      bgGradient: "from-secondary/20 via-transparent to-transparent",
+    },
+    {
+      id: "lucy",
+      index: "02",
       title: "LUCY AI",
       role: "Digital Twin | 2026",
       desc: "An AI-powered digital twin interface featuring voice-to-response interaction and vision support.",
       link: "https://github.com/PalakGautam-hub/LUCY-AI-Digital-Twin",
       tags: ["AI", "Digital Twin", "React"],
       bgGradient: "from-primary/20 via-transparent to-transparent",
-    },
-    {
-      id: "lexora",
-      index: "02",
-      title: "LEXORA",
-      role: "AI Engineering | 2026",
-      desc: "Spearheaded an AI full-stack application using LLM APIs, slashing document review cycles by 60%.",
-      link: "https://github.com/PalakGautam-hub/Lexora-AI",
-      tags: ["Python", "LLMs", "NLP"],
-      bgGradient: "from-secondary/20 via-transparent to-transparent",
     },
     {
       id: "traffic",
@@ -167,16 +167,6 @@ export default function WamProjects() {
       link: "https://github.com/PalakGautam-hub/Traffic_Management",
       tags: ["Python", "Simulation", "System Design"],
       bgGradient: "from-indigo-500/20 via-transparent to-transparent",
-    },
-    {
-      id: "snip",
-      index: "04",
-      title: "SNIP URL",
-      role: "Microservice Engineer | 2026",
-      desc: "Designed a scalable microservice architecture, achieving sub-100ms redirection latency for 50,000+ requests.",
-      link: "https://github.com/PalakGautam-hub/Snip-URL-shortner",
-      tags: ["Node", "REST API", "System Design"],
-      bgGradient: "from-cyan-500/20 via-transparent to-transparent",
     },
   ];
 
