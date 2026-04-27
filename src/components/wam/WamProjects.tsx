@@ -110,7 +110,7 @@ function ProjectItem({ id, title, role, desc, link, tags, bgGradient, index }: P
             onClick={playClick}
             className="group/btn relative w-full py-10 bg-white text-black text-[12px] tracking-[0.8em] font-black uppercase text-center rounded-[2.5rem] overflow-hidden transition-all active:scale-95 shadow-xl"
           >
-            <div className="absolute inset-0 bg-primary translate-y-full group-hover/btn:translate-y-0 transition-transform duration-1000 ease-[0.16,1,0.3,1]" />
+            <div className="absolute inset-0 bg-primary translate-y-full group-hover/btn:translate-y-0 transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]" />
             <span className="relative z-10 flex items-center justify-center gap-8 group-hover/btn:text-white transition-colors duration-500">
               Access Intelligence <ExternalLink className="w-5 h-5" />
             </span>
@@ -230,7 +230,7 @@ export default function WamProjects() {
             onClick={playClick}
             className="group relative w-full max-w-4xl px-6 sm:px-12 md:px-24 py-6 md:py-10 border border-white/5 bg-white/[0.02] rounded-full overflow-hidden transition-all duration-700 hover:border-primary/40 hover:scale-105 shadow-2xl"
           >
-             <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-1000 ease-[0.16,1,0.3,1]" />
+             <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]" />
              <span className="relative z-10 text-xl md:text-3xl font-serif italic text-white group-hover:text-white flex items-center gap-10 transition-colors duration-500">
                 gautampalak77@gmail.com <ArrowUpRight className="w-8 h-8 group-hover:rotate-45 transition-transform duration-700" />
              </span>

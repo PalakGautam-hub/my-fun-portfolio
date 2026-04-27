@@ -18,7 +18,7 @@ export default function WamHeader() {
   return (
     <>
       <motion.header 
-        className={`fixed top-0 left-0 w-full z-[1100] px-6 md:px-16 py-5 md:py-12 flex justify-between items-center transition-all duration-[1000ms] ${scrolled ? 'backdrop-blur-lg md:backdrop-blur-3xl bg-black/40 border-b border-white/5 py-3 md:py-8 opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}
+        className={`fixed top-0 left-0 w-full z-[1100] px-6 md:px-16 py-5 md:py-12 flex justify-between items-center transition-all duration-1000 ${scrolled ? 'backdrop-blur-lg md:backdrop-blur-3xl bg-black/40 border-b border-white/5 py-3 md:py-8 opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}
         initial={{ y: -100, opacity: 0 }}
         animate={scrolled ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
