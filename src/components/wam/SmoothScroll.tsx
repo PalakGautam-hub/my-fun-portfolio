@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 
@@ -7,40 +7,56 @@ interface SmoothScrollProps {
 }
 
 export default function SmoothScroll({ children }: SmoothScrollProps) {
+  const lenisRef = useRef<Lenis | null>(null);
+  const rafRef = useRef<number | null>(null);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    let lenis: any;
-    
     try {
-      // Disable Lenis on touch devices for better native performance and reliability
-      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      
-      if (isTouchDevice) return;
-
-      lenis = new Lenis({
-        duration: 1,
+      // Initialize Lenis
+      const lenis = new Lenis({
+        duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
         wheelMultiplier: 1,
-        touchMultiplier: 1.5,
+        touchMultiplier: 2,
         infinite: false,
       });
 
-      function raf(time: number) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
+      lenisRef.current = lenis;
 
-      requestAnimationFrame(raf);
+      // Robust RAF loop
+      const raf = (time: number) => {
+        lenis.raf(time);
+        rafRef.current = requestAnimationFrame(raf);
+      };
+
+      rafRef.current = requestAnimationFrame(raf);
+
+      // Handle hash navigation after initialization
+      if (window.location.hash) {
+        const id = window.location.hash.substring(1);
+        const element = document.getElementById(id);
+        if (element) {
+          setTimeout(() => {
+            lenis.scrollTo(element, { offset: 0, duration: 2 });
+          }, 500);
+        }
+      }
     } catch (e) {
-      console.warn("Lenis failed to initialize, falling back to native scroll.", e);
+      console.warn("Lenis failed to initialize.", e);
     }
 
     return () => {
-      if (lenis) lenis.destroy();
+      if (lenisRef.current) {
+        lenisRef.current.destroy();
+      }
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+      }
     };
   }, []);
 
