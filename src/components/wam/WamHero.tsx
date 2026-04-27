@@ -126,23 +126,16 @@ export default function WamHero() {
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           className="relative mb-6 md:mb-12 will-change-transform"
         >
-          {/* Animated Glowing Border Ring */}
-          <div className="absolute -inset-[3px] rounded-[3rem] md:rounded-[5rem] z-0 animate-spin-slow"
-            style={{
-              background: 'conic-gradient(from 0deg, hsla(320,100%,60%,0.8), hsla(220,100%,60%,0.6), transparent, hsla(320,100%,60%,0.8))',
-              filter: 'blur(2px)',
-            }}
-          />
-          {/* Outer Glow Halo */}
-          <div className="absolute -inset-6 rounded-[4rem] md:rounded-[6rem] z-0 opacity-30 group-hover:opacity-60 transition-opacity duration-1000"
-            style={{ background: 'radial-gradient(ellipse at center, hsla(320,100%,60%,0.25) 0%, hsla(220,100%,60%,0.1) 50%, transparent 80%)' }}
+          {/* Elegant Static Glow Halo (Replaces glitchy rotating ring) */}
+          <div className="absolute -inset-4 md:-inset-8 rounded-[4rem] md:rounded-[6rem] z-0 opacity-40 group-hover:opacity-80 transition-opacity duration-1000 pointer-events-none"
+            style={{ background: 'radial-gradient(ellipse at center, hsla(320,100%,60%,0.2), hsla(220,100%,60%,0.1) 40%, transparent 70%)' }}
           />
 
           {/* Photo Frame */}
-          <div className="relative w-[80vw] h-[58vh] md:w-[560px] md:h-[760px] rounded-[2.8rem] md:rounded-[4.8rem] overflow-hidden group shadow-[0_0_120px_hsla(320,100%,60%,0.12),0_0_60px_hsla(220,100%,60%,0.08)] z-10">
+          <div className="relative w-[80vw] h-[58vh] md:w-[560px] md:h-[760px] rounded-[2.8rem] md:rounded-[4.8rem] overflow-hidden group shadow-2xl z-10 border border-white/10 bg-white/5 backdrop-blur-sm">
             {/* Luminous Aura Effect */}
             <div className="absolute inset-0 z-20 pointer-events-none">
-              <div className="absolute -inset-10 bg-gradient-to-br from-primary/30 via-transparent to-secondary/30 blur-3xl opacity-30 group-hover:opacity-60 transition-opacity duration-1000" />
+              <div className="absolute -inset-10 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 blur-3xl opacity-40 group-hover:opacity-70 transition-opacity duration-1000" />
             </div>
 
             <img 
@@ -151,11 +144,11 @@ export default function WamHero() {
               className="w-full h-full object-cover object-[center_top] filter saturate-50 contrast-125 brightness-95 group-hover:saturate-100 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105 transition-all [transition-duration:2000ms] ease-out"
             />
             
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050208]/50 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050208]/80 via-[#050208]/20 to-transparent pointer-events-none" />
             
             {/* Inner Premium Glass Border */}
             <div className="absolute inset-0 rounded-[2.8rem] md:rounded-[4.8rem] pointer-events-none"
-              style={{ boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.08), inset 0 0 30px rgba(240,10,180,0.04)' }}
+              style={{ boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.1), inset 0 0 20px rgba(255,255,255,0.02)' }}
             />
           </div>
         </motion.div>
