@@ -47,10 +47,8 @@ export default function Index() {
                 <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary/5 blur-3xl md:blur-[160px] rounded-full animate-pulse-luminous" style={{ animationDelay: '3s' }} />
               </div>
 
-              {/* Custom High-Precision Cursor (Desktop/Laptop Only) */}
-              <div className="hidden lg:block">
-                <WamCursor />
-              </div>
+              {/* Custom High-Precision Cursor (Pointer Devices Only) */}
+              <WamCursor />
 
               {/* Protocol Navigation Bar */}
               <WamHeader />
