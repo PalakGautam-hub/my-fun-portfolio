@@ -163,39 +163,6 @@ export default function WamHero() {
         style={{ scale, opacity }}
         className="relative z-10 w-full max-w-7xl flex flex-col items-center justify-center px-6 md:px-0"
       >
-        {/* The Central Visual Anchor (Portrait) */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mb-6 md:mb-12 will-change-transform"
-        >
-          {/* Elegant Static Glow Halo (Replaces glitchy rotating ring) */}
-          <div className="absolute -inset-4 md:-inset-8 rounded-[4rem] md:rounded-[6rem] z-0 opacity-40 group-hover:opacity-80 transition-opacity duration-1000 pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse at center, hsla(320,100%,60%,0.2), hsla(220,100%,60%,0.1) 40%, transparent 70%)' }}
-          />
-
-          {/* Photo Frame */}
-          <div className="relative w-[80vw] h-[58vh] md:w-[560px] md:h-[760px] rounded-[2.8rem] md:rounded-[4.8rem] overflow-hidden group shadow-2xl z-10 border border-white/10 bg-white/5 backdrop-blur-sm">
-            {/* Luminous Aura Effect */}
-            <div className="absolute inset-0 z-20 pointer-events-none">
-              <div className="absolute -inset-10 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 blur-3xl opacity-40 group-hover:opacity-70 transition-opacity duration-1000" />
-            </div>
-
-            <img 
-              src="/palak_portrait.png" 
-              alt="Palak Gautam" 
-              className="w-full h-full object-cover object-[center_top] filter saturate-50 contrast-125 brightness-95 group-hover:saturate-100 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105 transition-all [transition-duration:2000ms] ease-out"
-            />
-            
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050208]/80 via-[#050208]/20 to-transparent pointer-events-none" />
-            
-            {/* Inner Premium Glass Border */}
-            <div className="absolute inset-0 rounded-[2.8rem] md:rounded-[4.8rem] pointer-events-none"
-              style={{ boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.1), inset 0 0 20px rgba(255,255,255,0.02)' }}
-            />
-          </div>
-        </motion.div>
 
         {/* Mobile-Only Sequential Introduction */}
         <div className="flex flex-col gap-6 w-full md:hidden relative z-20 items-center text-center mt-2 mb-4">
