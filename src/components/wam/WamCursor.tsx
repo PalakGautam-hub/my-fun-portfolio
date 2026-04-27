@@ -86,9 +86,9 @@ export default function WamCursor() {
           borderColor: isHovering
             ? "hsla(320,100%,60%,0.7)"
             : "rgba(255,255,255,0.15)",
-          boxShadow: isHovering
-            ? "0 0 20px hsla(320,100%,60%,0.25)"
-            : "none",
+          background: isHovering 
+            ? "radial-gradient(circle, hsla(320,100%,60%,0.1) 0%, transparent 70%)" 
+            : "transparent",
           scale: isClicking ? 0.8 : 1,
         }}
         transition={{ type: "spring", damping: 20, stiffness: 150 }}
@@ -96,15 +96,15 @@ export default function WamCursor() {
 
       {/* Primary precision dot */}
       <motion.div
-        className="absolute top-0 left-0 rounded-full bg-primary"
+        className="absolute top-0 left-0 rounded-full"
         style={{
           x: dotX,
           y: dotY,
           translateX: "-50%",
           translateY: "-50%",
-          width:  isHovering ? 6 : 6,
-          height: isHovering ? 6 : 6,
-          boxShadow: "0 0 12px hsla(320,100%,60%,0.9)",
+          width:  isHovering ? 8 : 8,
+          height: isHovering ? 8 : 8,
+          background: "radial-gradient(circle at center, hsla(320,100%,60%,1) 0%, hsla(320,100%,60%,0.8) 50%, transparent 100%)",
           scale: isClicking ? 0.6 : isHovering ? 1.4 : 1,
         }}
         transition={{ type: "spring", damping: 50, stiffness: 500 }}

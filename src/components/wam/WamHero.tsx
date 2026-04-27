@@ -14,7 +14,7 @@ function AmbientParticles() {
       {[...Array(particleCount)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-1 h-1 bg-primary/40 rounded-full blur-[1px]"
+          className="absolute w-1 h-1 bg-primary/40 rounded-full"
           initial={{
             x: Math.random() * 100 + "vw",
             y: Math.random() * 100 + "vh",
